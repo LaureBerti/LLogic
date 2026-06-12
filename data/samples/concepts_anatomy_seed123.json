@@ -1,0 +1,487 @@
+[
+  {
+    "iri": "http://human.owl#NCI_C32396",
+    "label": "Cremaster_Muscle",
+    "depth": 8,
+    "stratum": "leaf",
+    "parents": [
+      "http://human.owl#NCI_C33658"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C33034",
+    "label": "Lymph_Node_Tissue",
+    "depth": 10,
+    "stratum": "leaf",
+    "parents": [
+      "http://human.owl#NCI_C38466",
+      "http://human.owl#NCI_C33177",
+      "http://human.owl#NCI_C12801"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C12693",
+    "label": "Cervical_Vertebra",
+    "depth": 9,
+    "stratum": "leaf",
+    "parents": [
+      "http://human.owl#NCI_C12933"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C12592",
+    "label": "Merkel_Cell",
+    "depth": 11,
+    "stratum": "leaf",
+    "parents": [
+      "http://human.owl#NCI_C32271",
+      "http://human.owl#NCI_C12485"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C32599",
+    "label": "Fibrocartilage",
+    "depth": 10,
+    "stratum": "leaf",
+    "parents": [
+      "http://human.owl#NCI_C32268"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C12782",
+    "label": "Rib",
+    "depth": 9,
+    "stratum": "leaf",
+    "parents": [
+      "http://human.owl#NCI_C32616"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C13154",
+    "label": "Bipolar_Neuron",
+    "depth": 8,
+    "stratum": "leaf",
+    "parents": [
+      "http://human.owl#NCI_C12623"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C32943",
+    "label": "Lateral_Orbitofrontal_Artery",
+    "depth": 11,
+    "stratum": "leaf",
+    "parents": [
+      "http://human.owl#NCI_C33114"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C12446",
+    "label": "Corpus_Callosum",
+    "depth": 17,
+    "stratum": "leaf",
+    "parents": [
+      "http://human.owl#NCI_C49347",
+      "http://human.owl#NCI_C33892"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C52745",
+    "label": "Palatine_Bone",
+    "depth": 10,
+    "stratum": "leaf",
+    "parents": [
+      "http://human.owl#NCI_C33248"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C33725",
+    "label": "T3_Vertebra",
+    "depth": 10,
+    "stratum": "leaf",
+    "parents": [
+      "http://human.owl#NCI_C12798"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C32843",
+    "label": "Internal_Geniculate_Body",
+    "depth": 8,
+    "stratum": "leaf",
+    "parents": [
+      "http://human.owl#NCI_C32673"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C13115",
+    "label": "Myelocyte",
+    "depth": 9,
+    "stratum": "leaf",
+    "parents": [
+      "http://human.owl#NCI_C12530"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C13126",
+    "label": "Immature_Platelet",
+    "depth": 9,
+    "stratum": "leaf",
+    "parents": [
+      "http://human.owl#NCI_C12520"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C33726",
+    "label": "T4_Vertebra",
+    "depth": 10,
+    "stratum": "leaf",
+    "parents": [
+      "http://human.owl#NCI_C12798"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C32094",
+    "label": "Anterior_Jugular_Vein",
+    "depth": 10,
+    "stratum": "leaf",
+    "parents": [
+      "http://human.owl#NCI_C12738"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C13084",
+    "label": "Perforant_Pathway",
+    "depth": 7,
+    "stratum": "intermediate",
+    "parents": [
+      "http://human.owl#NCI_C13079"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C32727",
+    "label": "Hemispheric_Cistern",
+    "depth": 7,
+    "stratum": "intermediate",
+    "parents": [
+      "http://human.owl#NCI_C33640"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C52751",
+    "label": "Ankle_Skin",
+    "depth": 6,
+    "stratum": "intermediate",
+    "parents": [
+      "http://human.owl#NCI_C53276"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C32055",
+    "label": "Alveolar_Cell_Type_II",
+    "depth": 8,
+    "stratum": "leaf",
+    "parents": [
+      "http://human.owl#NCI_C32053"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C12440",
+    "label": "Amygdala",
+    "depth": 7,
+    "stratum": "intermediate",
+    "parents": [
+      "http://human.owl#NCI_C13031"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C13051",
+    "label": "Hematopoietic_Tissue",
+    "depth": 8,
+    "stratum": "leaf",
+    "parents": [
+      "http://human.owl#NCI_C41168"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C53051",
+    "label": "Masseteric_Vein",
+    "depth": 7,
+    "stratum": "intermediate",
+    "parents": [
+      "http://human.owl#NCI_C12814"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C33073",
+    "label": "Mediastinal_Lymph_Node",
+    "depth": 6,
+    "stratum": "intermediate",
+    "parents": [
+      "http://human.owl#NCI_C33027"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C33598",
+    "label": "Splenic_Capsule",
+    "depth": 7,
+    "stratum": "intermediate",
+    "parents": [
+      "http://human.owl#NCI_C38510",
+      "http://human.owl#NCI_C34030"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C13005",
+    "label": "Pericardium",
+    "depth": 8,
+    "stratum": "leaf",
+    "parents": [
+      "http://human.owl#NCI_C12749"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C52948",
+    "label": "Lacrimal_Artery",
+    "depth": 7,
+    "stratum": "intermediate",
+    "parents": [
+      "http://human.owl#NCI_C12372"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C32604",
+    "label": "Filiform_Papilla",
+    "depth": 6,
+    "stratum": "intermediate",
+    "parents": [
+      "http://human.owl#NCI_C33258"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C48762",
+    "label": "Bone_Cell",
+    "depth": 7,
+    "stratum": "intermediate",
+    "parents": [
+      "http://human.owl#NCI_C12555"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C53167",
+    "label": "Longissimus_Cervicis",
+    "depth": 7,
+    "stratum": "intermediate",
+    "parents": [
+      "http://human.owl#NCI_C32716"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C33811",
+    "label": "Triangular_Part_of_the_Inferior_Frontal_Gyrus",
+    "depth": 7,
+    "stratum": "intermediate",
+    "parents": [
+      "http://human.owl#NCI_C13031"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C32612",
+    "label": "Fissure_of_the_Gallbladder",
+    "depth": 6,
+    "stratum": "intermediate",
+    "parents": [
+      "http://human.owl#NCI_C32996"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C33091",
+    "label": "Membranous_Urethra",
+    "depth": 5,
+    "stratum": "root",
+    "parents": [
+      "http://human.owl#NCI_C13035"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C33849",
+    "label": "Cardiac_Valve_Cusp",
+    "depth": 6,
+    "stratum": "intermediate",
+    "parents": [
+      "http://human.owl#NCI_C13023"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C13087",
+    "label": "Apex_of_the_Prostate",
+    "depth": 6,
+    "stratum": "intermediate",
+    "parents": [
+      "http://human.owl#NCI_C13038"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C32981",
+    "label": "Lesser_Omentum",
+    "depth": 5,
+    "stratum": "root",
+    "parents": [
+      "http://human.owl#NCI_C33209"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C32811",
+    "label": "Inner_Segment_of_the_Photoreceptor_Cell",
+    "depth": 6,
+    "stratum": "intermediate",
+    "parents": [
+      "http://human.owl#NCI_C13019"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C12735",
+    "label": "Immune_System",
+    "depth": 4,
+    "stratum": "root",
+    "parents": [
+      "http://human.owl#NCI_C12919"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C32937",
+    "label": "Lateral_Domain_of_the_Epithelium",
+    "depth": 6,
+    "stratum": "intermediate",
+    "parents": [
+      "http://human.owl#NCI_C38622"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C53169",
+    "label": "Longissimus_Thoracis",
+    "depth": 6,
+    "stratum": "intermediate",
+    "parents": [
+      "http://human.owl#NCI_C13056"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C52971",
+    "label": "Omohyoid",
+    "depth": 6,
+    "stratum": "intermediate",
+    "parents": [
+      "http://human.owl#NCI_C13056"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C13107",
+    "label": "Wall_of_Human_Prostatic_Duct",
+    "depth": 6,
+    "stratum": "intermediate",
+    "parents": [
+      "http://human.owl#NCI_C13038"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C33838",
+    "label": "Upper_Opening_of_the_Thorax",
+    "depth": 5,
+    "stratum": "root",
+    "parents": [
+      "http://human.owl#NCI_C38631"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C32103",
+    "label": "Anterior_Pole_of_the_Lens",
+    "depth": 6,
+    "stratum": "intermediate",
+    "parents": [
+      "http://human.owl#NCI_C13019"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C32933",
+    "label": "Laryngeal_Ligament",
+    "depth": 6,
+    "stratum": "intermediate",
+    "parents": [
+      "http://human.owl#NCI_C13046"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C13062",
+    "label": "Back",
+    "depth": 4,
+    "stratum": "root",
+    "parents": [
+      "http://human.owl#NCI_C12680"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C12666",
+    "label": "Adrenal_Gland",
+    "depth": 6,
+    "stratum": "intermediate",
+    "parents": [
+      "http://human.owl#NCI_C12704"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://human.owl#NCI_C12621",
+    "label": "Antigen_Presenting_Cell",
+    "depth": 6,
+    "stratum": "intermediate",
+    "parents": [
+      "http://human.owl#NCI_C12508"
+    ],
+    "definition": ""
+  }
+]

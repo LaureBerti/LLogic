@@ -1,0 +1,290 @@
+[
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##collection",
+    "label": "collection",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##InCollection"
+    ],
+    "range": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Collection"
+    ]
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##isPartOf",
+    "label": "is part of",
+    "is_transitive": true,
+    "is_symmetric": false,
+    "domain": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Part"
+    ],
+    "range": []
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##contract",
+    "label": "Contract",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Reference"
+    ],
+    "range": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ]
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##chapters",
+    "label": "chapters",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Reference"
+    ],
+    "range": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Chapter"
+    ]
+  },
+  {
+    "iri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
+    "label": "rest",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#List"
+    ],
+    "range": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#List"
+    ]
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##school",
+    "label": "school",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##School"
+    ]
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##editor",
+    "label": "editor",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##humanCreator",
+    "label": "human creator",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Reference"
+    ],
+    "range": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##PersonList"
+    ]
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##proceedings",
+    "label": "proceedings",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##InProceedings"
+    ],
+    "range": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Proceedings"
+    ]
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##date",
+    "label": "date",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Date"
+    ]
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##parts",
+    "label": "parts",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Reference"
+    ],
+    "range": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Part"
+    ]
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##organization",
+    "label": "organization",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": [
+      "http://xmlns.com/foaf/0.1/Organization"
+    ]
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##book",
+    "label": "book",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##InBook"
+    ],
+    "range": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Monograph"
+    ]
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##communications",
+    "label": "communications",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Proceedings"
+    ],
+    "range": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##InProceedings"
+    ]
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##pages",
+    "label": "pages",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Part"
+    ],
+    "range": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##PageRange"
+    ]
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##address",
+    "label": "address",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "range": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Address"
+    ]
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##institution",
+    "label": "institution",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Report"
+    ],
+    "range": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Institution"
+    ]
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##organizer",
+    "label": "organizer",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Conference"
+    ],
+    "range": [
+      "http://xmlns.com/foaf/0.1/Organization"
+    ]
+  },
+  {
+    "iri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+    "label": "first",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#List"
+    ],
+    "range": []
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##directors",
+    "label": "directors",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##MotionPicture"
+    ],
+    "range": []
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##location",
+    "label": "location",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Address"
+    ]
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##event",
+    "label": "event",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Proceedings"
+    ],
+    "range": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Conference"
+    ]
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##publisher",
+    "label": "publisher",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Publisher"
+    ]
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##articles",
+    "label": "articles",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Journal"
+    ],
+    "range": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Article"
+    ]
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##author",
+    "label": "author",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##journal",
+    "label": "journal",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Article"
+    ],
+    "range": [
+      "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Journal"
+    ]
+  }
+]

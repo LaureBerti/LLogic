@@ -1,0 +1,362 @@
+[
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Report",
+    "label": "Report",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "A report published by an institution with some explicit policy."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##MotionPicture",
+    "label": "MotionPicture",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "A film/movie/motion picture."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##TechReport",
+    "label": "TechReport",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "A report published by a school or other institution, usually numbered within a series."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Institution",
+    "label": "Institution",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "An institution."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##PersonList",
+    "label": "Person list",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "A list of persons."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##PageRange",
+    "label": "PageRange",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "A range of pages."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Publisher",
+    "label": "Publisher",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "The publisher of books or journals."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Unpublished",
+    "label": "Unpublished",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "A document having an author and title, but not formally published."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Deliverable",
+    "label": "Deliverable report",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "A report delivered for accomplishing a contract."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##School",
+    "label": "School",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "A school or university."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Journal",
+    "label": "Journal or magazine",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "A periodical publication collecting works from different authors."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Address",
+    "label": "Address",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "The street address of the location of some organization or event."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##InBook",
+    "label": "InBook",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "A subpart of a book given by a range of pages."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Manual",
+    "label": "Manual",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "Technical documentation."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##PhdThesis",
+    "label": "PhdThesis",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "A PhD thesis."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Proceedings",
+    "label": "Proceedings",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "The proceedings of a conference."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##InProceedings",
+    "label": "InProceedings",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "An article in a conference proceedings."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Part",
+    "label": "Part",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "A part of something (either Book or Proceedings)."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Booklet",
+    "label": "Booklet",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "A work that is printed and bound, but without a named publisher or sponsoring institution."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##MastersThesis",
+    "label": "MastersThesis",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "A Master's thesis."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Misc",
+    "label": "Misc",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "Use this type when nothing else fits."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Conference",
+    "label": "The location of an event",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "An event presenting work."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Academic",
+    "label": "Academic",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "A Master's or PhD thesis."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##LectureNotes",
+    "label": "LectureNotes",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "Lecture notes."
+  },
+  {
+    "iri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#List",
+    "label": "List",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Date",
+    "label": "Date",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "Date of a day which can be unknown (i.e., only the year is known or only the year and month). This is for overcoming the limits of XML-Schema for wich a date is not separable."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Monograph",
+    "label": "Monograph",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "A book that is a single entity, as opposed to a collection."
+  },
+  {
+    "iri": "http://xmlns.com/foaf/0.1/Person",
+    "label": "Person",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Informal",
+    "label": "Informal",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "A document that was informally published or not published."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Collection",
+    "label": "Collection",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "A book that is collection of texts or articles."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##InCollection",
+    "label": "Incollection",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "A part of a book having its own title."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Chapter",
+    "label": "BookPart",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "A chapter (or section or whatever) of a book having its own title."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Article",
+    "label": "Article",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "An article from a journal or magazine."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Book",
+    "label": "Book",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "A book that may be a monograph or a collection of written texts."
+  },
+  {
+    "iri": "http://oaei.ontologymatching.org/2007/benchmarks/232/onto.rdf##Reference",
+    "label": "Reference",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "Base class for all entries"
+  },
+  {
+    "iri": "http://xmlns.com/foaf/0.1/Organization",
+    "label": "Organization",
+    "depth": 2,
+    "stratum": "leaf",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": ""
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "label": "is_a",
+    "iri": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+    "is_transitive": true,
+    "is_symmetric": false
+  },
+  {
+    "label": "mapped_from",
+    "iri": "http://purl.bioontology.org/ontology/MESH/mapped_from",
+    "is_transitive": false,
+    "is_symmetric": false
+  },
+  {
+    "label": "mapped_to",
+    "iri": "http://purl.bioontology.org/ontology/MESH/mapped_to",
+    "is_transitive": false,
+    "is_symmetric": false
+  }
+]

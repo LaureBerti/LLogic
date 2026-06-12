@@ -1,0 +1,526 @@
+[
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D055442",
+    "label": "Metabolome",
+    "depth": 1,
+    "stratum": "root",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D008660"
+    ],
+    "definition": "A measurement of all the metabolites of a sample of cells or tissue."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D015432",
+    "label": "Glomerulonephritis, Membranoproliferative",
+    "depth": 1,
+    "stratum": "root",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D007154",
+      "http://purl.bioontology.org/ontology/MESH/D005921"
+    ],
+    "definition": "A type of mesangiocapillary glomerulonephritis that is characterized by the dark bands of electron-dense deposits in the GLOMERULAR BASEMENT MEMBRANE caused by autoantibodies against ALTERNATIVE PATHWAY C3 CONVERTASE (C3bBb)."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D060909",
+    "label": "Economics, Behavioral",
+    "depth": 2,
+    "stratum": "root",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D011584",
+      "http://purl.bioontology.org/ontology/MESH/D004467"
+    ],
+    "definition": "The combined discipline of psychology and economics that investigates what happens in markets in which some of the agents display human limitations and complications."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D004360",
+    "label": "Drug Therapy, Computer-Assisted",
+    "depth": 2,
+    "stratum": "root",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D013813",
+      "http://purl.bioontology.org/ontology/MESH/D004358"
+    ],
+    "definition": "Adjunctive computer programs in providing drug treatment to patients."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D007172",
+    "label": "Erectile Dysfunction",
+    "depth": 2,
+    "stratum": "root",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D005832",
+      "http://purl.bioontology.org/ontology/MESH/D012735",
+      "http://purl.bioontology.org/ontology/MESH/D020018"
+    ],
+    "definition": "The inability in the male to have a PENILE ERECTION due to psychological or organ dysfunction."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D061665",
+    "label": "Time-to-Treatment",
+    "depth": 2,
+    "stratum": "root",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D005791"
+    ],
+    "definition": "The interval of time between onset of symptoms, or suspicion of disease and initiation of therapy; being a combination of wait times for consultative, diagnostic, and treatment services."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D014603",
+    "label": "Uveal Diseases",
+    "depth": 1,
+    "stratum": "root",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D005128"
+    ],
+    "definition": "Diseases of the uvea."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D014236",
+    "label": "Trichlorfon",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D063065"
+    ],
+    "definition": "An organochlorophosphate cholinesterase inhibitor that is used as an insecticide for the control of flies and roaches. It is also used in anthelmintic compositions for animals. (From Merck, 11th ed)"
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D005627",
+    "label": "Frostbite",
+    "depth": 1,
+    "stratum": "root",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D014947",
+      "http://purl.bioontology.org/ontology/MESH/D000067390"
+    ],
+    "definition": "Damage to tissues as the result of low environmental temperatures."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D011609",
+    "label": "Psychosine",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D013110",
+      "http://purl.bioontology.org/ontology/MESH/D006028"
+    ],
+    "definition": "An intermediate in the biosynthesis of cerebrosides. It is formed by reaction of sphingosine with UDP-galactose and then itself reacts with fatty acid-Coenzyme A to form the cerebroside."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D006370",
+    "label": "Heliotherapy",
+    "depth": 2,
+    "stratum": "root",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D010789"
+    ],
+    "definition": "The treatment of disease by exposing the body to SUNLIGHT, a therapeutic use of SUNBATHING."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D014916",
+    "label": "Whole-Body Irradiation",
+    "depth": 1,
+    "stratum": "root",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D008919",
+      "http://purl.bioontology.org/ontology/MESH/D011878"
+    ],
+    "definition": "Irradiation of the whole body with ionizing or non-ionizing radiation. It is applicable to humans or animals but not to microorganisms."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D019567",
+    "label": "Back Injuries",
+    "depth": 1,
+    "stratum": "root",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D014947"
+    ],
+    "definition": "General or unspecified injuries to the posterior part of the trunk. It includes injuries to the muscles of the back."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D009672",
+    "label": "Notochord",
+    "depth": 1,
+    "stratum": "root",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D004628"
+    ],
+    "definition": "A cartilaginous rod of mesodermal cells at the dorsal midline of all CHORDATE embryos. In lower vertebrates, notochord is the backbone of support. In the higher vertebrates, notochord is a transient structure, and segments of the vertebral column will develop around it. Notochord is also a source of midline signals that pattern surrounding tissues including the NEURAL TUBE development."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D020197",
+    "label": "Head Injuries, Penetrating",
+    "depth": 2,
+    "stratum": "root",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D006259",
+      "http://purl.bioontology.org/ontology/MESH/D014950"
+    ],
+    "definition": "Head injuries which feature compromise of the skull and dura mater. These may result from gunshot wounds (WOUNDS, GUNSHOT), stab wounds (WOUNDS, STAB), and other forms of trauma."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D011110",
+    "label": "Polymorphism, Genetic",
+    "depth": 2,
+    "stratum": "root",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D014644"
+    ],
+    "definition": "The regular and simultaneous occurrence in a single interbreeding population of two or more discontinuous genotypes. The concept includes differences in genotypes ranging in size from a single nucleotide site (POLYMORPHISM, SINGLE NUCLEOTIDE) to large nucleotide sequences visible at a chromosomal level."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D015331",
+    "label": "Cohort Studies",
+    "depth": 4,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D016021"
+    ],
+    "definition": "Studies in which subsets of a defined population are identified. These groups may or may not be exposed to factors hypothesized to influence the probability of the occurrence of a particular disease or other outcome. Cohorts are defined populations which, as a whole, are followed in an attempt to determine distinguishing subgroup characteristics."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D024509",
+    "label": "3' Flanking Region",
+    "depth": 4,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D040461",
+      "http://purl.bioontology.org/ontology/MESH/D021901"
+    ],
+    "definition": "The region of DNA which borders the 3' end of a transcription unit and where a variety of regulatory sequences are located."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D012681",
+    "label": "Sensitivity Training Groups",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D011615",
+      "http://purl.bioontology.org/ontology/MESH/D006126"
+    ],
+    "definition": "A group of people who meet in an unstructured setting to learn about themselves, interpersonal relationships, and group processes and about larger social systems."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D015072",
+    "label": "2-Acetolactate Mutase",
+    "depth": 4,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D019751"
+    ],
+    "definition": "An enzyme involved in the biosynthesis of isoleucine and valine. It converts 2-acetolactate into 3-hydroxy-2-oxo-isovalerate. Also acts on 2-hydroxy-2-acetobutyrate to form 2-hydroxy-2-oxo-3-methylvalerate. EC 5.4.99.3."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D000072137",
+    "label": "Vaping",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D012907"
+    ],
+    "definition": "Inhaling of vapors produced by ELECTRONIC NICOTINE DELIVERY SYSTEMS such as E-CIGARETTES."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D050764",
+    "label": "Cyclin-Dependent Kinase Inhibitor p19",
+    "depth": 4,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D050756"
+    ],
+    "definition": "An INK4 cyclin-dependent kinase inhibitor containing five ANKYRIN REPEATS. Aberrant expression of this protein has been associated with TESTICULAR CANCER."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D044166",
+    "label": "Xanthomonadaceae",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D016946",
+      "http://purl.bioontology.org/ontology/MESH/D020563"
+    ],
+    "definition": "A family of gram-negative bacteria, in the order Xanthomonadales, pathogenic to plants."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D000077642",
+    "label": "Family Separation",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D005190"
+    ],
+    "definition": "Geographic separation of members of a family."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D015090",
+    "label": "25-Hydroxyvitamin D3 1-alpha-Hydroxylase",
+    "depth": 4,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D000072501",
+      "http://purl.bioontology.org/ontology/MESH/D013250"
+    ],
+    "definition": "A mitochondrial cytochrome P450 enzyme that catalyzes the 1-alpha-hydroxylation of 25-hydroxyvitamin D3 (also known as 25-hydroxycholecalciferol) in the presence of molecular oxygen and NADPH-FERRIHEMOPROTEIN REDUCTASE. This enzyme, encoded by CYP27B1 gene, converts 25-hydroxyvitamin D3 to 1-alpha,25-dihydroxyvitamin D3 which is the active form of VITAMIN D in regulating bone growth and calcium metabolism. This enzyme is also active on plant 25-hydroxyvitamin D2 (ergocalciferol)."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D051559",
+    "label": "Hepatocyte Nuclear Factor 6",
+    "depth": 4,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D051536",
+      "http://purl.bioontology.org/ontology/MESH/D051558"
+    ],
+    "definition": "A onecut transcription factor that regulates expression of GENES involved in EMBRYONIC DEVELOPMENT of the PANCREAS and LIVER."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D001822",
+    "label": "Body Burden",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D011834",
+      "http://purl.bioontology.org/ontology/MESH/D004787"
+    ],
+    "definition": "The total amount of a chemical, metal or radioactive substance present at any time after absorption in the body of man or animal."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D003857",
+    "label": "Deoxyuridine",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D003853",
+      "http://purl.bioontology.org/ontology/MESH/D014529"
+    ],
+    "definition": "2'-Deoxyuridine. An antimetabolite that is converted to deoxyuridine triphosphate during DNA synthesis. Laboratory suppression of deoxyuridine is used to diagnose megaloblastic anemias due to vitamin B12 and folate deficiencies."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D000067528",
+    "label": "Ataxins",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D009419",
+      "http://purl.bioontology.org/ontology/MESH/D009687"
+    ],
+    "definition": "A family of predominantly nuclear proteins that regulate gene transcription and protein degradation. The expansion of CAG trinucleotide repeats in genes that encode Ataxins is associated with SPINOCEREBELLAR ATAXIAS (SCA). In SCA patients, the number of CAG repeats correlates with the severity of disease and inversely correlates with the age of disease onset."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D000076603",
+    "label": "Syndemic",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D015981"
+    ],
+    "definition": "Synergistically-interacting health conditions producing excess disease occurrence in a population."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D010761",
+    "label": "Phosphorus Radioisotopes",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D010759",
+      "http://purl.bioontology.org/ontology/MESH/D011868"
+    ],
+    "definition": "Unstable isotopes of phosphorus that decay or disintegrate emitting radiation. P atoms with atomic weights 28-34 except 31 are radioactive phosphorus isotopes."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D001797",
+    "label": "Blood Protein Electrophoresis",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D004586",
+      "http://purl.bioontology.org/ontology/MESH/D001774"
+    ],
+    "definition": "Electrophoresis applied to BLOOD PROTEINS."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D055354",
+    "label": "Exosomes",
+    "depth": 4,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D000067128",
+      "http://purl.bioontology.org/ontology/MESH/D022161"
+    ],
+    "definition": "A type of extracellular vesicle, containing RNA and proteins, that is secreted into the extracellular space by EXOCYTOSIS when MULTIVESICULAR BODIES fuse with the PLASMA MEMBRANE."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D062949",
+    "label": "rho Guanine Nucleotide Dissociation Inhibitor beta",
+    "depth": 5,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D062947",
+      "http://purl.bioontology.org/ontology/MESH/D015778"
+    ],
+    "definition": "A rho GDP-dissociation inhibitor subtype that is highly expressed in hematopoietic cells and in LYMPHOCYTES. The expression of this subtype is associated with the regulation of CELL PROLIFERATION; TUMORIGENESIS; and APOPTOSIS."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D000099058",
+    "label": "Exostosin 1",
+    "depth": 5,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D017351",
+      "http://purl.bioontology.org/ontology/MESH/D000099054"
+    ],
+    "definition": "A bifunctional glycosyltransferase involved in transferring GLUCURONIC ACID and N-ACETYLGLUCOSAMINE in the elongation of HEPARAN SULFATE chains. Mutations in the gene EXT1, coding for this protein (as well as mutations in other genes), are responsible for defects in heparan sulfate synthesis resulting in HEREDITARY MULTIPLE EXOSTOSES. Exostosin-1, along with EXOSTOSIN-2, is a component of heparan sulfate polymerase."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D004957",
+    "label": "Estonia",
+    "depth": 4,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D001454"
+    ],
+    "definition": "A country in Eastern Europe, bordering the Baltic Sea and Gulf of Finland, between Latvia and Russia. The capital is Tallinn."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D002416",
+    "label": "Cattell Personality Factor Questionnaire",
+    "depth": 4,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D010555"
+    ],
+    "definition": "Self report questionnaire which yields 16 scores on personality traits, such as reserved vs. outgoing, humble vs. assertive, etc."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D044184",
+    "label": "Xanthomonas vesicatoria",
+    "depth": 5,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D014974"
+    ],
+    "definition": "A species of gram-negative bacteria, in the genus XANTHOMONAS, causing disease in TOMATO and pepper crops."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D003353",
+    "label": "Corynebacterium diphtheriae",
+    "depth": 4,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D003352"
+    ],
+    "definition": "A species of gram-positive, asporogenous bacteria in which three cultural types are recognized. These types (gravis, intermedius, and mitis) were originally given in accordance with the clinical severity of the cases from which the different strains were most frequently isolated. This species is the causative agent of DIPHTHERIA."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D012761",
+    "label": "Shigella boydii",
+    "depth": 5,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D012760"
+    ],
+    "definition": "One of the SHIGELLA species that produces bacillary dysentery (DYSENTERY, BACILLARY)."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D003546",
+    "label": "Cysteine Endopeptidases",
+    "depth": 5,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D010450",
+      "http://purl.bioontology.org/ontology/MESH/D057056"
+    ],
+    "definition": "ENDOPEPTIDASES which have a cysteine involved in the catalytic process. This group of enzymes is inactivated by CYSTEINE PROTEINASE INHIBITORS such as CYSTATINS and SULFHYDRYL REAGENTS."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D000077594",
+    "label": "Nivolumab",
+    "depth": 8,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D061067"
+    ],
+    "definition": "A genetically engineered, fully humanized immunoglobulin G4 monoclonal antibody that binds to the PD-1 RECEPTOR, activating an immune response to tumor cells. It is used as monotherapy or in combination with IPILIMUMAB for the treatment of advanced malignant MELANOMA. It is also used in the treatment of advanced or recurring NON-SMALL CELL LUNG CANCER; RENAL CELL CARCINOMA; and HODGKIN'S LYMPHOMA."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D013914",
+    "label": "Threonine-tRNA Ligase",
+    "depth": 5,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D000604"
+    ],
+    "definition": "An enzyme that activates threonine with its specific transfer RNA. EC 6.1.1.3."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D000069982",
+    "label": "Bifidobacterium animalis",
+    "depth": 4,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D001644"
+    ],
+    "definition": "A species of Bifidobacterium that occurs in the LARGE INTESTINE of humans and other mammals and in FERMENTED DAIRY PRODUCTS. It is used as a PROBIOTIC."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D065427",
+    "label": "Factor Xa Inhibitors",
+    "depth": 6,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D000991"
+    ],
+    "definition": "Endogenous factors and drugs that inhibit or block the activity of FACTOR XA."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D027927",
+    "label": "Pistacia",
+    "depth": 7,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D027926"
+    ],
+    "definition": "A plant genus in the ANACARDIACEAE family known for species that produce pistachio nuts (Pistacia vera) and GUM MASTIC (Pistacia lentiscus). Several of the species have the common name Pistachio."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D011031",
+    "label": "Pneumothorax, Artificial",
+    "depth": 4,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D003096"
+    ],
+    "definition": "Injection of air or a more slowly absorbed gas such as nitrogen, into the PLEURAL CAVITY to collapse the lung."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D044142",
+    "label": "Pasteurella pneumotropica",
+    "depth": 5,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D010325"
+    ],
+    "definition": "A species of gram-negative bacteria in the genus PASTEURELLA, found in the NASOPHARYNX of normal GUINEA PIGS; RATS; HAMSTERS; MICE; DOGS; and CATS. When associated with disease, it is usually a secondary invader. Occasional infections have been reported in humans."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D000097586",
+    "label": "Cefozopran",
+    "depth": 4,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D002511",
+      "http://purl.bioontology.org/ontology/MESH/D013777"
+    ],
+    "definition": "A fourth-generation cephalosporin antibacterial agent with a broad spectrum of activity against Gram-positive and Gram-negative bacteria. Cefozopran has a 1-methyltetrazolethiol (MTT) moiety at C-3 of its cephalosporin core."
+  },
+  {
+    "iri": "http://purl.bioontology.org/ontology/MESH/D028464",
+    "label": "Cucurbita",
+    "depth": 7,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.bioontology.org/ontology/MESH/D019662"
+    ],
+    "definition": "A plant genus of the family CUCURBITACEAE, order Violales, subclass Dilleniidae, which includes pumpkin, gourd and squash."
+  }
+]
