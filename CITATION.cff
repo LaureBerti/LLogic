@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "If you use this software or its findings, please cite the paper below."
+title: "LLOGIC: Measuring Logical Inconsistency of Large Language Models over OWL Ontologies"
+abstract: >-
+  A three-phase empirical framework that compiles LLM-generated first-order-logic
+  statements into a Z3 SMT solver to measure whether large language models stay
+  logically consistent when defining and relating concepts in formal OWL/SKOS
+  ontologies. Central finding: LLM inconsistency is relational, not definitional.
+type: software
+authors:
+  - family-names: "Berti-Équille"
+    given-names: "Laure"
+    affiliation: "IRD (Institut de Recherche pour le Développement)"
+    email: laure.berti@ird.fr
+license: MIT
+repository-code: "https://github.com/LaureBerti/LLogic"
+keywords:
+  - large language models
+  - knowledge-based systems
+  - neurosymbolic verification
+  - OWL ontologies
+  - logical consistency
+  - SMT solver
+preferred-citation:
+  type: article
+  title: "Measuring Logical Inconsistency of Large Language Models over OWL Ontologies"
+  authors:
+    - family-names: "Berti-Équille"
+      given-names: "Laure"
+      affiliation: "IRD (Institut de Recherche pour le Développement)"
+  journal: "Knowledge-Based Systems (under review)"
+  year: 2026
