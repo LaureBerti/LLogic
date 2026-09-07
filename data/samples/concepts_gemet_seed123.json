@@ -1,0 +1,352 @@
+[
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/7621",
+    "label": "7621",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/10511",
+    "label": "10511",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/13272",
+    "label": "13272",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/2955",
+    "label": "2955",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/2309",
+    "label": "2309",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/7925",
+    "label": "7925",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/336",
+    "label": "336",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/15034",
+    "label": "15034",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/3837",
+    "label": "3837",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/7975",
+    "label": "7975",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/9208",
+    "label": "9208",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/15153",
+    "label": "15153",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/8525",
+    "label": "8525",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/2735",
+    "label": "2735",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/129",
+    "label": "129",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/10012",
+    "label": "10012",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/13255",
+    "label": "13255",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/10092",
+    "label": "10092",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/9352",
+    "label": "9352",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/5958",
+    "label": "5958",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/2908",
+    "label": "2908",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/3539",
+    "label": "3539",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/1971",
+    "label": "1971",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/7582",
+    "label": "7582",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/6951",
+    "label": "6951",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/8804",
+    "label": "8804",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/11638",
+    "label": "11638",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/3510",
+    "label": "3510",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/435",
+    "label": "435",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/453",
+    "label": "453",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/4144",
+    "label": "4144",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/15089",
+    "label": "15089",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/518",
+    "label": "518",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/5496",
+    "label": "5496",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/15328",
+    "label": "15328",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/4047",
+    "label": "4047",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/2536",
+    "label": "2536",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/1700",
+    "label": "1700",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/12656",
+    "label": "12656",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/14663",
+    "label": "14663",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/6152",
+    "label": "6152",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/6658",
+    "label": "6658",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/594",
+    "label": "594",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/2679",
+    "label": "2679",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/9330",
+    "label": "9330",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/7204",
+    "label": "7204",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/2517",
+    "label": "2517",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/14914",
+    "label": "14914",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/4628",
+    "label": "4628",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://www.eionet.europa.eu/gemet/concept/10067",
+    "label": "10067",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  }
+]

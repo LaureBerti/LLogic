@@ -1,0 +1,272 @@
+[
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002231",
+    "label": "has start location",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://purl.obolibrary.org/obo/BFO_0000015"
+    ],
+    "range": [
+      "http://purl.obolibrary.org/obo/BFO_0000004"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0009001",
+    "label": "has substance added",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://purl.obolibrary.org/obo/BFO_0000040"
+    ],
+    "range": [
+      "http://purl.obolibrary.org/obo/BFO_0000040"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002377",
+    "label": "distributary of",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002263",
+    "label": "acts upstream of",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002418",
+    "label": "causally upstream of or within",
+    "is_transitive": true,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0004028",
+    "label": "realized in response to stimulus",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://purl.obolibrary.org/obo/BFO_0000017"
+    ],
+    "range": [
+      "http://purl.obolibrary.org/obo/BFO_0000040"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002503",
+    "label": "towards",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002331",
+    "label": "involved in",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002404",
+    "label": "causally downstream of",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002353",
+    "label": "output of",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002220",
+    "label": "adjacent to",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://purl.obolibrary.org/obo/BFO_0000004"
+    ],
+    "range": [
+      "http://purl.obolibrary.org/obo/BFO_0000004"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002376",
+    "label": "tributary of",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002091",
+    "label": "starts during",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://purl.obolibrary.org/obo/BFO_0000003"
+    ],
+    "range": [
+      "http://purl.obolibrary.org/obo/BFO_0000003"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002323",
+    "label": "mereotopologically related to",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_2100001",
+    "label": "obsolete determined by",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002598",
+    "label": "capable of positively regulating",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0003000",
+    "label": "produces",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://purl.obolibrary.org/obo/BFO_0000040"
+    ],
+    "range": [
+      "http://purl.obolibrary.org/obo/BFO_0000040"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0001019",
+    "label": "obsolete contains",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002335",
+    "label": "negatively regulated by",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002213",
+    "label": "positively regulates",
+    "is_transitive": true,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002428",
+    "label": "involved in regulation of",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002229",
+    "label": "ends",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_02500016",
+    "label": "results in expansion of",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002354",
+    "label": "formed as result of",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002226",
+    "label": "develops in",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://purl.obolibrary.org/obo/UBERON_0001062"
+    ],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002495",
+    "label": "immediate transformation of",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/BFO_0000055",
+    "label": "realizes",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://purl.obolibrary.org/obo/BFO_0000015"
+    ],
+    "range": [
+      "http://purl.obolibrary.org/obo/BFO_0000017"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002093",
+    "label": "ends during",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_2100007",
+    "label": "obsolete determined by part of",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002608",
+    "label": "process has causal agent",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  }
+]

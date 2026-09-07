@@ -21,7 +21,6 @@ try:
 except ImportError:
     HAS_NX = False
 
-
 RESULT_COLS = [
     "ontology", "llm_model", "strategy", "use_phase1_context",
     "onto_sim_structural", "onto_sim_semantic",
@@ -30,7 +29,6 @@ RESULT_COLS = [
     "reconstruction_text_chars",
     "time_search_s", "time_eval_s", "n_candidates", "time_condition_s",
 ]
-
 
 def _load_gt_graph(ontology_name: str, seed: int = 42) -> tuple[Any, list[str], list[tuple]]:
     """Load ground-truth ontology as networkx graph from the concept sample (proxy)."""
@@ -55,7 +53,6 @@ def _load_gt_graph(ontology_name: str, seed: int = 42) -> tuple[Any, list[str], 
     for (child, parent) in gt_edges:
         g.add_edge(child, parent, rel="subClassOf")
     return g, gt_concepts, gt_edges
-
 
 def run_phase3(cfg: Any, out_dir: Path) -> None:
     use_ctx: bool = bool(cfg.phase3.use_phase1_context)

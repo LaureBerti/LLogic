@@ -18,7 +18,6 @@ except ImportError:
     Graph = None  # type: ignore
     SKOSXL = None  # type: ignore
 
-
 ONTOLOGY_FILES = {
     "book":    ("book.rdf",    "owl"),   # RDF/XML OWL — .rdf URL is live; .owl URL is dead
     "anatomy": ("anatomy.owl", "owl"),
@@ -27,8 +26,37 @@ ONTOLOGY_FILES = {
     "cso":     ("cso.owl",     "rdf"),   # uses cso:Topic, not owl:Class — rdflib required
     "snomed":  ("snomed.owl",  "snomed"), # SNOMED CT OWL — custom loader (see _sample_snomed)
     "mesh":    ("mesh.ttl",   "mesh"),   # MeSH RDF Turtle — custom loader (see _sample_mesh)
+    # --- ontology set: balancing the general and technical arms ---
+    # An earlier design had 2 general vs 3 technical ontologies. With that
+    # split the smallest attainable one-tailed Mann-Whitney p is 0.1, so no
+    # domain claim could reach significance whatever the data. These three take
+    # the design to 4 vs 4, where the floor drops to 0.014.
+    "schemaorg": ("schemaorg.nt", "rdf"),  # general-purpose web vocabulary, rdfs:Class
+    "go":        ("go.owl",       "go"),   # Gene Ontology — technical
+    # --- ontologies that declare real disjointness ---------
+    # Every ontology above declares ZERO owl:disjointWith axioms, which is why a
+    # reasoner accepts almost any definition asserted into them and why the
+    # false-pass rate could not be measured. These two do declare it, verified
+    # locally with rdflib: ido 312 disjointness axioms over 728 classes, envo 135
+    # over 9,188. They are the substrate for the filter-validation experiment.
+    "ido":       ("candidates/obo/ido.owl",  "owl"),  # Infectious Disease Ontology
+    "envo":      ("candidates/obo/envo.owl", "owl"),  # Environment Ontology
+    # --- the general arm was the thin one ------------------
+    # The general arm was thin. OBO Foundry has no
+    # general-domain ontologies at all -- every one of its domains is technical
+    # or biomedical -- so adding from there would have deepened the very
+    # confound this analysis objected to. These two are genuinely general.
+    "dbpedia":   ("dbpedia.nt",   "rdf"),   # 790 classes, 813 subClassOf, general
 }
 
+#: Domain label per ontology, used by the C6 analysis. Kept here so the mapping
+#: has one home rather than being restated in each analysis script.
+ONTOLOGY_DOMAIN = {
+    "book": "general", "agrovoc": "general", "gemet": "general", "schemaorg": "general",
+    "anatomy": "technical", "cso": "technical", "mesh": "technical", "go": "technical",
+    "snomed": "technical",
+    "ido": "technical", "envo": "technical", "dbpedia": "general",
+}
 
 def load_and_sample(cfg: Any) -> None:
     """Entry point for phase=0: load ontology, sample concepts & relations, write JSON."""
@@ -77,7 +105,6 @@ def load_and_sample(cfg: Any) -> None:
 
     print(f"  Sampled {len(concepts)} concepts → {concept_file}")
     print(f"  Sampled {len(relations)} relations → {relation_file}")
-
 
 def _sample_owl(onto_path: Path, cfg: Any, rng: random.Random) -> tuple[list, list]:
     """Sample from OWL ontology using owlready2."""
@@ -133,7 +160,6 @@ def _sample_owl(onto_path: Path, cfg: Any, rng: random.Random) -> tuple[list, li
 
     return concepts, relations
 
-
 def _dominant_type_subjects(g: Any) -> list:
     """Return subjects of the most frequent rdf:type in the graph (fallback for custom schemas)."""
     from collections import Counter
@@ -146,6 +172,64 @@ def _dominant_type_subjects(g: Any) -> list:
     dominant = type_counts.most_common(1)[0][0]
     return list(g.subjects(_RDF.type, dominant))
 
+#: Properties this loader knows how to interpret, with the semantics the
+#: standards actually license. Nothing here is asserted transitive or symmetric
+#: unless the defining standard says so.
+#:
+#: The earlier implementation returned a fixed
+#: SKOS triple for every RDF ontology, with skos:broader/skos:narrower marked
+#: transitive. SKOS does not license that — it defines the separate
+#: skos:broaderTransitive/skos:narrowerTransitive for the transitive closure.
+#: The fixed list was also applied to CSO, which contains no skos:broader at
+#: all, so Phase 2 probed CSO for relations CSO does not have.
+_CSO_SCHEMA = "http://cso.kmi.open.ac.uk/schema/cso#"
+
+_KNOWN_RELATIONS = [
+    # (label, iri, is_transitive, is_symmetric, rationale)
+    ("broader", str(SKOS.broader), False, False,
+     "skos:broader is not transitive in SKOS"),
+    ("narrower", str(SKOS.narrower), False, False,
+     "skos:narrower is not transitive in SKOS"),
+    ("related", str(SKOS.related), False, True,
+     "skos:related is symmetric by SKOS definition"),
+    ("broaderTransitive", str(SKOS.broaderTransitive), True, False,
+     "skos:broaderTransitive is transitive by SKOS definition"),
+    ("narrowerTransitive", str(SKOS.narrowerTransitive), True, False,
+     "skos:narrowerTransitive is transitive by SKOS definition"),
+    ("superTopicOf", _CSO_SCHEMA + "superTopicOf", False, False,
+     "CSO declares no transitivity axiom for superTopicOf"),
+    ("contributesTo", _CSO_SCHEMA + "contributesTo", False, False,
+     "CSO declares no transitivity or symmetry axiom for contributesTo"),
+]
+
+def _detect_relations(g: "Graph") -> list[dict]:
+    """Return only the relations the ontology actually uses.
+
+    Presence is decided by counting triples in the parsed graph, so an ontology
+    is never probed for a property it does not contain. Transitivity and
+    symmetry flags come from the defining standard, and an explicit
+    owl:TransitiveProperty / owl:SymmetricProperty assertion in the file
+    upgrades them.
+    """
+    from rdflib import URIRef
+
+    declared_transitive = {str(s) for s in g.subjects(RDF.type, OWL.TransitiveProperty)}
+    declared_symmetric = {str(s) for s in g.subjects(RDF.type, OWL.SymmetricProperty)}
+
+    detected: list[dict] = []
+    for label, iri, transitive, symmetric, rationale in _KNOWN_RELATIONS:
+        if next(g.triples((None, URIRef(iri), None)), None) is None:
+            continue
+        detected.append({
+            "label": label,
+            "iri": iri,
+            "is_transitive": bool(transitive or iri in declared_transitive),
+            "is_symmetric": bool(symmetric or iri in declared_symmetric),
+            "semantics_source": ("declared in ontology"
+                                 if (iri in declared_transitive or iri in declared_symmetric)
+                                 else rationale),
+        })
+    return detected
 
 def _sample_rdf(onto_path: Path, cfg: Any, rng: random.Random) -> tuple[list, list]:
     """Sample from RDF/SKOS ontology using rdflib."""
@@ -153,12 +237,61 @@ def _sample_rdf(onto_path: Path, cfg: Any, rng: random.Random) -> tuple[list, li
     g.parse(str(onto_path))
 
     # Collect SKOS concepts or OWL classes; fall back to dominant rdf:type in file
+    # rdfs:Class is checked explicitly before the dominant-type fallback:
+    # schema.org declares its types as rdfs:Class rather than owl:Class, and the
+    # fallback would otherwise select rdf:Property, sampling properties as if
+    # they were concepts.
     concepts_iris = (
         list(g.subjects(RDF.type, SKOS.Concept))
         or list(g.subjects(RDF.type, OWL.Class))
+        or list(g.subjects(RDF.type, RDFS.Class))
         or _dominant_type_subjects(g)
     )
     concepts_iris = [str(c) for c in concepts_iris if str(c).startswith("http")]
+
+    # Keep only the ontology's own terms. A vocabulary that declares equivalences to
+    # other vocabularies pulls their IRIs in as typed classes: schema.org's pool was
+    # 7.6% external (FIBO, UNECE, OMG, SNOMED, W3C), and a SNOMED code was sampled as
+    # if it were a schema.org concept. Filtering on the modal host keeps imports that
+    # share a host (all OBO terms are under purl.obolibrary.org) while dropping
+    # genuinely foreign vocabularies.
+    if concepts_iris:
+        from collections import Counter as _Counter
+        from urllib.parse import urlparse as _urlparse
+        hosts = _Counter(_urlparse(i).netloc for i in concepts_iris)
+        modal_host, modal_n = hosts.most_common(1)[0]
+        if modal_n / len(concepts_iris) >= 0.5:
+            dropped = len(concepts_iris) - modal_n
+            concepts_iris = [i for i in concepts_iris
+                             if _urlparse(i).netloc == modal_host]
+            if dropped:
+                print(f"  Restricted to {modal_host}: dropped {dropped} foreign IRIs")
+
+    # Depth by distance to a root over rdfs:subClassOf. SKOS sources have no such
+    # edges and keep depth -1, as before; sources that do declare a hierarchy
+    # (DBpedia has 813 subClassOf triples) get real strata instead of "unknown",
+    # so the sample is stratified the same way the OWL path stratifies it.
+    parents: dict[str, list[str]] = {}
+    for child, _, parent in g.triples((None, RDFS.subClassOf, None)):
+        if str(child).startswith("http") and str(parent).startswith("http"):
+            parents.setdefault(str(child), []).append(str(parent))
+
+    depth_map: dict[str, int] = {}
+
+    def _depth(iri: str, seen: frozenset = frozenset()) -> int:
+        if iri in depth_map:
+            return depth_map[iri]
+        if iri in seen:                      # cycle guard
+            return 0
+        ancestors = parents.get(iri)
+        value = 0 if not ancestors else 1 + min(
+            _depth(p, seen | {iri}) for p in ancestors)
+        depth_map[iri] = value
+        return value
+
+    if parents:
+        for iri in concepts_iris:
+            _depth(iri)
 
     sampled_iris = rng.sample(concepts_iris, min(cfg.sampling.n_concepts, len(concepts_iris)))
     concepts = []
@@ -184,27 +317,34 @@ def _sample_rdf(onto_path: Path, cfg: Any, rng: random.Random) -> tuple[list, li
                     if forms:
                         labels = [forms[0]]
                         break
-        # Fallback: rdfs:label
+        # Fallback: rdfs:label. English must be filtered here exactly as it is for
+        # skos:prefLabel above. Without the filter, a multilingual source returns
+        # whichever language happens to come first -- DBpedia yielded Dutch labels
+        # ("renbaan", "ambtstermijn"), which would have put the models to work on a
+        # different task than the one the paper reports.
+        if not labels:
+            labels = [o for o in g.objects(ref, RDFS.label)
+                      if not hasattr(o, "language") or o.language in ("en", None)]
         if not labels:
             labels = list(g.objects(ref, RDFS.label))
         defs = list(g.objects(ref, SKOS.definition)) or list(g.objects(ref, RDFS.comment))
+        # Splitting on "/" alone leaves an IRI fragment as the label for vocabularies
+        # that use "#" (schema.org gave "vocab#Offer").
+        fallback = iri.rsplit("/", 1)[-1].rsplit("#", 1)[-1]
+        depth = depth_map.get(iri, -1)
         concepts.append({
             "iri": iri,
-            "label": str(labels[0]) if labels else iri.split("/")[-1],
-            "depth": -1,  # depth not trivially available in SKOS
-            "stratum": "unknown",
+            "label": str(labels[0]) if labels else fallback,
+            "depth": depth,
+            "stratum": ("unknown" if depth < 0 else
+                        "root" if depth == 0 else
+                        "leaf" if depth >= 3 else "intermediate"),
             "definition": str(defs[0]) if defs else "",
         })
 
-    # Relations: use SKOS broader/narrower/related
-    relations = [
-        {"label": "broader",  "iri": str(SKOS.broader),  "is_transitive": True,  "is_symmetric": False},
-        {"label": "narrower", "iri": str(SKOS.narrower), "is_transitive": True,  "is_symmetric": False},
-        {"label": "related",  "iri": str(SKOS.related),  "is_transitive": False, "is_symmetric": True},
-    ]
+    relations = _detect_relations(g)
 
     return concepts, relations
-
 
 def _sample_go(onto_path: Path, cfg: Any, rng: random.Random) -> tuple[list, list]:
     """Sample from Gene Ontology OWL using rdflib.
@@ -323,7 +463,6 @@ def _sample_go(onto_path: Path, cfg: Any, rng: random.Random) -> tuple[list, lis
 
     return concepts, relations
 
-
 def _sample_snomed(onto_path: Path, cfg: Any, rng: random.Random) -> tuple[list, list]:
     """Sample from SNOMED CT OWL (RDF/XML format from international release).
 
@@ -423,7 +562,6 @@ def _sample_snomed(onto_path: Path, cfg: Any, rng: random.Random) -> tuple[list,
     relations = snomed_props[:cfg.sampling.n_relations]
 
     return concepts, relations
-
 
 def _sample_mesh(onto_path: Path, cfg: Any, rng: random.Random) -> tuple[list, list]:
     """Sample from MeSH BioPortal/UMLS Turtle (owl:Class + rdfs:subClassOf + skos:prefLabel).

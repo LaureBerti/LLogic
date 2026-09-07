@@ -1,0 +1,20 @@
+[
+  {
+    "label": "broader",
+    "iri": "http://www.w3.org/2004/02/skos/core#broader",
+    "is_transitive": true,
+    "is_symmetric": false
+  },
+  {
+    "label": "narrower",
+    "iri": "http://www.w3.org/2004/02/skos/core#narrower",
+    "is_transitive": true,
+    "is_symmetric": false
+  },
+  {
+    "label": "related",
+    "iri": "http://www.w3.org/2004/02/skos/core#related",
+    "is_transitive": false,
+    "is_symmetric": true
+  }
+]

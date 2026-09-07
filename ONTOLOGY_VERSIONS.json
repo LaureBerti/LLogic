@@ -1,0 +1,37 @@
+[
+  {
+    "ontology": "book",
+    "file": "book.rdf",
+    "source": "https://protege.stanford.edu/ontologies/books.owl",
+    "sha256": "6222da74b2d806082dbc548e7e668653d93f0893eceee5f7eafc6abe90e08019",
+    "bytes": 54372
+  },
+  {
+    "ontology": "anatomy",
+    "file": "anatomy.owl",
+    "source": "OAEI Anatomy track (mouse/human anatomy)",
+    "sha256": "737e12203b2496812a6b74d60974b5c2fd2580c76c3cd5869bbc2bb83c0a6155",
+    "bytes": 2926857
+  },
+  {
+    "ontology": "agrovoc",
+    "file": "agrovoc_core.rdf",
+    "source": "https://agrovoc.fao.org/",
+    "sha256": "b5c7b85dd03800d215fcfce8755ac93bcfc608a43bc0828fd14a7f68e3634729",
+    "bytes": 1237620344
+  },
+  {
+    "ontology": "cso",
+    "file": "CSO.3.5.owl",
+    "source": "https://cso.kmi.open.ac.uk/ (v3.5)",
+    "sha256": "1369d0c6c6e9ceb34891f557d3ab902784924b895e63d1058b70d1a7a0f1e585",
+    "bytes": 16074151
+  },
+  {
+    "ontology": "gemet",
+    "file": "gemet.rdf",
+    "source": "https://www.eionet.europa.eu/gemet/",
+    "sha256": "70d09ad2eaa525f63e1dd69c1f29d9330835be0c6d9ff87c5d5089766617ceaf",
+    "bytes": 2253817
+  }
+]

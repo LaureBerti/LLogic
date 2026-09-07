@@ -23,16 +23,13 @@ try:
 except ImportError:
     HAS_ST = False
 
-
 _OWL_BUILTINS = frozenset({"owl", "rdfs", "rdf", "xsd", "thing", "class", "nothing"})
-
 
 def _norm_label(s: str) -> str:
     """Lowercase + collapse underscores/hyphens to spaces for fuzzy label matching."""
     s = s.lower()
     s = re.sub(r"[_\-]+", " ", s)
     return re.sub(r"\s+", " ", s).strip()
-
 
 def parse_manchester_to_graph(manchester_text: str) -> Any | None:
     """
@@ -271,7 +268,6 @@ def parse_manchester_to_graph(manchester_text: str) -> Any | None:
         return None
     return g
 
-
 def structural_similarity(gt_graph: Any, llm_graph: Any) -> float:
     """
     Approximate normalised GED via node/edge overlap (exact GED is NP-hard).
@@ -292,7 +288,6 @@ def structural_similarity(gt_graph: Any, llm_graph: Any) -> float:
         return 0.0
     return round(2 * node_overlap * edge_overlap / (node_overlap + edge_overlap), 4)
 
-
 def semantic_similarity(gt_concepts: list[str], llm_concepts: list[str], model_name: str = "all-MiniLM-L6-v2") -> float:
     """
     Average cosine similarity between GT concept labels and their nearest LLM concept match.
@@ -307,7 +302,6 @@ def semantic_similarity(gt_concepts: list[str], llm_concepts: list[str], model_n
 
     sims = (gt_embs @ llm_embs.T).max(axis=1)
     return round(float(np.mean(sims)), 4)
-
 
 def compute_coverage(gt_concepts: list[str], llm_concepts: list[str],
                      gt_edges: list[tuple], llm_edges: list[tuple]) -> dict:

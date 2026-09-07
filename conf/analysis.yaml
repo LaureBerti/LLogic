@@ -1,0 +1,143 @@
+# Configuration for the LLogic analyses.
+# Every parameter of the analyses is exposed here and overridable with
+# Hydra dot-notation, e.g.:
+#   python src/analysis/reanalysis.py task=parse_audit audit.sample_n=100
+
+defaults:
+  - _self_
+
+# Which analysis to run: counts | parse_audit
+task: counts
+
+paths:
+  results_dir: outputs/results
+  phase1_glob: "**/phase1_results.csv"
+  phase2_glob: "**/phase2_results.csv"
+  phase3_glob: "**/phase3_results.csv"
+  out_dir: outputs/analysis
+
+# The experimental grid as actually run. Rows whose keys fall outside these sets
+# are CSV-garbled records (unescaped newlines inside quoted fields) and are
+# counted and reported separately rather than silently dropped.
+grid:
+  ontologies: [book, anatomy, agrovoc, cso, mesh]
+  models: ["llama3.2:latest", "gemma2:2b", "mistral:7b", "qwen2.5:7b"]
+  strategies: [zero_shot, cot, tot, self_consistency]
+
+stats:
+  # Two-sided coverage for Clopper-Pearson intervals on rates.
+  conf_level: 0.95
+
+injection:
+  # Contradiction-injection validation of the Phase 1 checker.
+  n_per_kind: 300
+  seed: 42
+  solver_timeout_s: 5
+
+audit:
+  # Size of the stratified manual-audit sample exported for human inspection
+  #. Stratified by model x strategy.
+  sample_n: 60
+  seed: 42
+  # Substantive-failure categories are assigned by the rules in
+  # reanalysis.py:classify_failure(); this flag exports the full failure set too.
+  export_all_failures: true
+
+semantic:
+  # Backfill of onto_sim_semantic for Phase 3. Reads the
+  # reconstruction.txt written by each Phase 3 cell; makes no LLM calls.
+  model_name: all-MiniLM-L6-v2
+  samples_dir: data/samples
+  results_dirs: [outputs/results, outputs/results_seed123]
+  # Phase 0 sample seed to compare against, per top-level results directory.
+  default_seed: 42
+  seed_by_dir:
+    results: 42
+    results_seed123: 123
+  # Write nothing until the numbers have been inspected once.
+  dry_run: true
+
+reasoner:
+  # Reasoner validation of the Phase 1 filter.
+  # arm: control | arm_a | arm_b   (arm_c is the author's manual curation)
+  arm: control
+  results_dirs: [outputs/results, outputs/results_seed123]
+  # Which ontologies each arm may assert into. An arm must use ontologies whose own
+  # concepts the models defined; anything else creates unconstrained classes and a
+  # vacuous 0% false-pass rate. Empty list = no restriction (the control uses the
+  # study ontologies, all of which declare zero disjointness).
+  arm_ontologies:
+    arm_a: [ido, dbpedia]  # IDO: 312 disjointness axioms over 728 classes, HermiT ~4s/definition.
+                           # DBpedia: 27 asserted owl:disjointWith, the repaired file
+                           # (dbpedia_r4b.nt); its definitions came from the reasoner validation run.
+                           # ENVO is excluded: 9,188 classes take >7min per definition at
+                           # whole-ontology scale, and its disjointness is far sparser.
+    arm_b: [dbpedia]       # DBpedia definitions, asserted into the ENRICHED file via
+                           # arm_file_override below. DBpedia + the 170,144 pruned axioms of
+                           # Crum et al. (KBC-LM'24). Those axioms are themselves
+                           # LLM-generated at ~0.75 reported accuracy, so this arm
+                           # measures consistency against a published enrichment,
+                           # NOT correctness.
+    # Every study ontology declares zero disjointness, so all of them demonstrate the
+    # null. The ontology is now loaded once and reused, so the large ones are viable.
+    # Copied per definition, so size matters: AGROVOC (1.2GB) and MeSH (842MB) are
+    # excluded and the exclusion is reported. All five declare zero disjointness, so
+    # the three included ones demonstrate the null just as well.
+    control: [book, anatomy, cso]
+    # Arm C: the author's manual labels on filter-ACCEPTED definitions. The the reasoner validation audit
+    # cannot serve here -- it sampled parse FAILURES, and 0 of its 96 items reach the
+    # OWL fragment, so it says nothing about accepted definitions. Restricted to the
+    # ontologies that actually declare disjointness, so a verdict can differ from the
+    # vacuous control.
+    arm_c: [ido, dbpedia]
+  # Definitions asserted per ontology. The control is cheap; keep it bounded so a
+  # first pass is quick, then raise it for the reported run.
+  # An arm may assert into a different file than the one its definitions came from.
+  # Arm B reuses the DBpedia definitions but asserts them into the Crum-enriched
+  # ontology, so the rows still say ontology=dbpedia while the constraints differ.
+  arm_file_override:
+    arm_b:
+      dbpedia: dbpedia_enriched
+    # Arm C reasons over the SAME ontologies the definitions came from. Its purpose is
+    # not to find unsatisfiability -- the control already shows the study ontologies
+    # cannot produce it -- but to attach a reasoner verdict to each definition the
+    # author will hand-label, so agreement can be computed without a second pass.
+    arm_c: {}
+  limit: 150
+  timeout_s: 60
+  ontology_files:
+    book: data/ontologies/book.rdf
+    anatomy: data/ontologies/anatomy.owl
+    cso: data/ontologies/cso.owl
+    agrovoc: data/ontologies/agrovoc_core.rdf
+    mesh: data/ontologies/mesh.ttl
+    ido: data/ontologies/candidates/obo/ido.owl
+    envo: data/ontologies/candidates/obo/envo.owl
+    dbpedia: data/ontologies/candidates/dbpedia_r4b.nt
+    dbpedia_enriched: data/ontologies/candidates/enriched_dbpedia_r4b.nt
+
+stem:
+  # Mechanical stem-overlap pass over the manual audit (see stem_overlap.py).
+  # `stem_reuse` is computed, not annotated, so it is comparable across all 96
+  # items; items 1-64 predate the tag and would otherwise read 0%.
+  worksheet: data/audit/audit_worksheet.csv
+  older_models: ["llama3.2:latest", "gemma2:2b", "mistral:7b", "qwen2.5:7b"]
+  prefix_len: 5        # compare words on a fixed-length prefix
+  min_word_len: 4      # ignore short function words
+  body_chars: 600      # how much of the definiens to scan
+  dry_run_note: set write=true to persist
+  write: false
+
+base_tuned:
+  # this analysis: base vs instruction-tuned, prompting held constant (see base_vs_tuned.py).
+  # Raw completion for both arms so no chat template is applied to either.
+  api_base: http://localhost:11434
+  seed: 42
+  ontologies: [book, anatomy, cso, agrovoc]
+  max_tokens: 220
+  timeout_s: 300.0
+  pairs:
+    - {family: mistral7b,  base: "mistral:7b-text",     tuned: "mistral:7b-instruct"}
+    - {family: qwen05b,    base: "qwen2.5:0.5b-base",   tuned: "qwen2.5:0.5b-instruct"}
+  out_csv: outputs/analysis/r1_8_base_vs_tuned.csv
+

@@ -31,7 +31,6 @@ GENERAL = {"book", "agrovoc"}
 TECHNICAL = {"anatomy", "cso", "mesh"}
 ALL_ONTOS = sorted(GENERAL | TECHNICAL)
 
-
 def _uniq_rows(path: Path) -> list[dict]:
     if not path.exists():
         return []
@@ -44,10 +43,8 @@ def _uniq_rows(path: Path) -> list[dict]:
         out.append(r)
     return out
 
-
 def _is_true(v: str) -> bool:
     return str(v).strip().lower() in ("true", "1")
-
 
 def phase1(base: Path) -> None:
     print("\n" + "=" * 60)
@@ -89,7 +86,6 @@ def phase1(base: Path) -> None:
     elif not _SCIPY:
         print("  (install scipy for the Kruskal-Wallis test)")
 
-
 def phase2b(base: Path) -> None:
     print("\n" + "=" * 60)
     print(" C3 — subClassOf transitivity violation rate (Phase 2b)")
@@ -113,7 +109,6 @@ def phase2b(base: Path) -> None:
                   f"(cells: {', '.join(f'{r:.0f}%' for r in rates)})")
     if not found:
         print("  (no Phase 2b results found)")
-
 
 def phase3(base: Path) -> None:
     print("\n" + "=" * 60)
@@ -150,7 +145,6 @@ def phase3(base: Path) -> None:
             U, p = mannwhitneyu(gen, tec, alternative="two-sided")
             print(f"  Mann-Whitney U={U:.0f}, p={p:.4f}")
 
-
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--base", default="outputs/results", help="results directory")
@@ -164,7 +158,6 @@ def main() -> None:
     phase2b(base)
     phase3(base)
     print()
-
 
 if __name__ == "__main__":
     main()

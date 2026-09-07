@@ -1,0 +1,298 @@
+[
+  {
+    "iri": "http://purl.obolibrary.org/obo/BFO_0000066",
+    "label": "occurs in",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://purl.obolibrary.org/obo/BFO_0000003"
+    ],
+    "range": [
+      "http://purl.obolibrary.org/obo/BFO_0000004"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0000092",
+    "label": "disposition of",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/BFO_0000062",
+    "label": "preceded by",
+    "is_transitive": true,
+    "is_symmetric": false,
+    "domain": [
+      "http://purl.obolibrary.org/obo/BFO_0000003"
+    ],
+    "range": [
+      "http://purl.obolibrary.org/obo/BFO_0000003"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002234",
+    "label": "has output",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0000085",
+    "label": "has function",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://purl.obolibrary.org/obo/BFO_0000004"
+    ],
+    "range": [
+      "http://purl.obolibrary.org/obo/BFO_0000034"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0000091",
+    "label": "has disposition",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://purl.obolibrary.org/obo/BFO_0000004"
+    ],
+    "range": [
+      "http://purl.obolibrary.org/obo/BFO_0000016"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0000053",
+    "label": "bearer of",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": [
+      "http://purl.obolibrary.org/obo/BFO_0000020"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/BFO_0000055",
+    "label": "realizes",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://purl.obolibrary.org/obo/BFO_0000015"
+    ],
+    "range": [
+      "http://purl.obolibrary.org/obo/BFO_0000017"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/BFO_0000051",
+    "label": "has part",
+    "is_transitive": true,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0000081",
+    "label": "role of",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002351",
+    "label": "has member",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002350",
+    "label": "member of",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000660",
+    "label": "results_in",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://www.w3.org/2002/07/owl#topObjectProperty",
+    "label": "topObjectProperty",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0001025",
+    "label": "located in",
+    "is_transitive": true,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/BFO_0000054",
+    "label": "realized in",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://purl.obolibrary.org/obo/BFO_0000017"
+    ],
+    "range": [
+      "http://purl.obolibrary.org/obo/BFO_0000015"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002212",
+    "label": "negatively regulates",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/BFO_0000067",
+    "label": "contains process",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0000057",
+    "label": "has participant",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://purl.obolibrary.org/obo/BFO_0000003"
+    ],
+    "range": [
+      "http://purl.obolibrary.org/obo/BFO_0000002"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0000052",
+    "label": "inheres in",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002297",
+    "label": "results in formation of",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0000080",
+    "label": "quality of",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0000079",
+    "label": "function of",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://purl.obolibrary.org/obo/BFO_0000034"
+    ],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/BFO_0000063",
+    "label": "precedes",
+    "is_transitive": true,
+    "is_symmetric": false,
+    "domain": [
+      "http://purl.obolibrary.org/obo/BFO_0000003"
+    ],
+    "range": [
+      "http://purl.obolibrary.org/obo/BFO_0000003"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000664",
+    "label": "has_material_basis_in",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": [
+      "http://purl.obolibrary.org/obo/BFO_0000040"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002211",
+    "label": "regulates",
+    "is_transitive": true,
+    "is_symmetric": false,
+    "domain": [
+      "http://purl.obolibrary.org/obo/BFO_0000015"
+    ],
+    "range": [
+      "http://purl.obolibrary.org/obo/BFO_0000015"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0000059",
+    "label": "concretizes",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://purl.obolibrary.org/obo/BFO_0000020"
+    ],
+    "range": [
+      "http://purl.obolibrary.org/obo/BFO_0000031"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0000086",
+    "label": "has quality",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": [
+      "http://purl.obolibrary.org/obo/BFO_0000019"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0000087",
+    "label": "has role",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://purl.obolibrary.org/obo/BFO_0000004"
+    ],
+    "range": [
+      "http://purl.obolibrary.org/obo/BFO_0000023"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002002",
+    "label": "has 2D boundary",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://purl.obolibrary.org/obo/BFO_0000040"
+    ],
+    "range": [
+      "http://purl.obolibrary.org/obo/BFO_0000141"
+    ]
+  }
+]

@@ -1,0 +1,352 @@
+[
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_3757",
+    "label": "c_3757",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_1375432196418",
+    "label": "c_1375432196418",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_44215",
+    "label": "c_44215",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_39636",
+    "label": "c_39636",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_6265",
+    "label": "c_6265",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_32189",
+    "label": "c_32189",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_49633",
+    "label": "c_49633",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_cb1f5fd4",
+    "label": "c_cb1f5fd4",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_8331",
+    "label": "c_8331",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": "http://aims.fao.org/aos/agrovoc/xDef_01602895"
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_ce1ba42b",
+    "label": "c_ce1ba42b",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_8148",
+    "label": "c_8148",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": "http://aims.fao.org/aos/agrovoc/xDef_9e9cfbb2"
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_14213",
+    "label": "c_14213",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_28727",
+    "label": "c_28727",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": "http://aims.fao.org/aos/agrovoc/xDef_c6600a25"
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_11449",
+    "label": "c_11449",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_30937",
+    "label": "c_30937",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_38151",
+    "label": "c_38151",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_f678e199",
+    "label": "c_f678e199",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": "http://aims.fao.org/aos/agrovoc/xDef_1ec8e0c9"
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_8476dd49",
+    "label": "c_8476dd49",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": "http://aims.fao.org/aos/agrovoc/xDef_5828dc3b"
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_2636",
+    "label": "c_2636",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_705cfc43",
+    "label": "c_705cfc43",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": "http://aims.fao.org/aos/agrovoc/xDef_f5ce3669"
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_30644",
+    "label": "c_30644",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_5ff9ce03",
+    "label": "c_5ff9ce03",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_6783",
+    "label": "c_6783",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_1149",
+    "label": "c_1149",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_26827",
+    "label": "c_26827",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_a6881706",
+    "label": "c_a6881706",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": "http://aims.fao.org/aos/agrovoc/xDef_08b12262"
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_44498",
+    "label": "c_44498",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_6744",
+    "label": "c_6744",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_2036",
+    "label": "c_2036",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_1358262149742",
+    "label": "c_1358262149742",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": "http://aims.fao.org/aos/agrovoc/xDef_1358262151282"
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_7285",
+    "label": "c_7285",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": "http://aims.fao.org/aos/agrovoc/xDef_7b9a6cc8"
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_44477",
+    "label": "c_44477",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_32313",
+    "label": "c_32313",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_3405",
+    "label": "c_3405",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_33255",
+    "label": "c_33255",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": "http://aims.fao.org/aos/agrovoc/xDef_5307e305"
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_49622",
+    "label": "c_49622",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_36247",
+    "label": "c_36247",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_13318",
+    "label": "c_13318",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_36450",
+    "label": "c_36450",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_10470",
+    "label": "c_10470",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_10594",
+    "label": "c_10594",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": "http://aims.fao.org/aos/agrovoc/xDef_1e4d52e5"
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_2113dd9f",
+    "label": "c_2113dd9f",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": "http://aims.fao.org/aos/agrovoc/xDef_214ee505"
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_40990",
+    "label": "c_40990",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_43590",
+    "label": "c_43590",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_7799",
+    "label": "c_7799",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_a527b0a9",
+    "label": "c_a527b0a9",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": "http://aims.fao.org/aos/agrovoc/xDef_154ea739"
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_26562",
+    "label": "c_26562",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_36882",
+    "label": "c_36882",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_6828",
+    "label": "c_6828",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": ""
+  },
+  {
+    "iri": "http://aims.fao.org/aos/agrovoc/c_1afc194b",
+    "label": "c_1afc194b",
+    "depth": -1,
+    "stratum": "unknown",
+    "definition": "http://aims.fao.org/aos/agrovoc/xDef_df669b0c"
+  }
+]

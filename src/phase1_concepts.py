@@ -11,7 +11,6 @@ from src.prompting.llm_client import get_client, call_llm, call_self_consistency
 from src.parsing.fol_parser import extract_fol_block, parse_to_z3, check_satisfiability
 from src.metrics.consistency_metrics import compute_concept_metrics, majority_vote, aggregate_fol_responses
 
-
 RESULT_COLS = [
     "ontology", "llm_model", "strategy", "concept_iri", "concept_label",
     "concept_depth", "concept_stratum",
@@ -19,7 +18,6 @@ RESULT_COLS = [
     "contradiction", "response_text",
     "time_search_s", "time_eval_s", "n_candidates", "time_condition_s",
 ]
-
 
 def run_phase1(cfg: Any, out_dir: Path) -> None:
     samples_path = Path("data/samples") / f"concepts_{cfg.ontology.name}_seed{cfg.sampling.seed}.json"
@@ -84,6 +82,19 @@ def run_phase1(cfg: Any, out_dir: Path) -> None:
                                          temperature=cfg.llm.temperature,
                                          max_tokens=cfg.llm.max_tokens,
                                          timeout=getattr(cfg.llm, "timeout_s", 120.0))
+                if not response_text.strip():
+                    # A reasoning model can spend the whole budget thinking and emit
+                    # no answer: qwen3:30b-a3b returned finish_reason="length" with
+                    # 7,883 characters of reasoning and empty content at 2,048 tokens.
+                    # The client refuses to hand truncated reasoning to the parser --
+                    # a verdict must not be read out of unfinished thought -- so the
+                    # only honest recovery is to give the model room to finish. This
+                    # is the Phase 1 counterpart of the retry in phase2b_subclassof.
+                    response_text = call_llm(
+                        client, model, messages,
+                        temperature=cfg.llm.temperature,
+                        max_tokens=int(getattr(cfg.llm, "max_tokens_retry", 8192)),
+                        timeout=float(getattr(cfg.llm, "timeout_retry_s", 1800.0)))
                 n_candidates = 1
             t_search = round(time.time() - t_search_start, 3)
 
@@ -114,7 +125,13 @@ def run_phase1(cfg: Any, out_dir: Path) -> None:
                 "solver_result": solver_result,
                 "is_tautology": int(is_tautology),
                 "contradiction": contradiction,
-                "response_text": response_text[:300],
+                # R1 fix: earlier runs stored only the first 300 characters.
+                # A Chain-of-Thought reply spends that budget on Steps 1-3, so the
+                # final biconditional at Step 5 was truncated away and it became
+                # impossible to tell whether an extracted "Step 3: ..." scaffold
+                # line meant the model failed or the extractor picked the wrong
+                # line. Store the full response so that is decidable.
+                "response_text": response_text,
                 "time_search_s": t_search,
                 "time_eval_s": t_eval,
                 "n_candidates": n_candidates,
@@ -148,7 +165,6 @@ def run_phase1(cfg: Any, out_dir: Path) -> None:
     print(f"  Total wall time   : {t_total:.1f}s ({t_total/60:.1f} min)")
     print(f"  Results → {results_path}")
     print(f"{'─'*60}")
-
 
 def _write_timing(timing_rows: list[dict], out_dir: Path) -> None:
     import csv as _csv

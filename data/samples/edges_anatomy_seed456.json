@@ -1,0 +1,18 @@
+[
+  {
+    "iri": "http://human.owl#UNDEFINED_part_of",
+    "label": "part of",
+    "is_transitive": true,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://www.geneontology.org/formats/oboInOwl#ObsoleteProperty",
+    "label": "ObsoleteProperty",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  }
+]

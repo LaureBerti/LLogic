@@ -1,0 +1,61 @@
+{
+  "total_calls": 24762,
+  "columns": [
+    "seed",
+    "ontology",
+    "llm_model",
+    "strategy",
+    "concept_iri",
+    "concept_label",
+    "response_text",
+    "source"
+  ],
+  "note": "One row per LLM call. `response_text` is the model's reply as returned. `source` records which run the reply came from: replies stored truncated in the primary run are taken from a second run that stored them in full.",
+  "files": [
+    {
+      "file": "llm_calls_seed42.csv",
+      "seed": "42",
+      "calls": 9584,
+      "replies_upgraded_to_full_text": 3658,
+      "empty_replies": 88,
+      "reply_characters": 9513944,
+      "bytes": 10804364
+    },
+    {
+      "file": "llm_calls_seed123.csv",
+      "seed": "123",
+      "calls": 6346,
+      "replies_upgraded_to_full_text": 0,
+      "empty_replies": 102,
+      "reply_characters": 5719415,
+      "bytes": 6553021
+    },
+    {
+      "file": "llm_calls_seed456.csv",
+      "seed": "456",
+      "calls": 2944,
+      "replies_upgraded_to_full_text": 0,
+      "empty_replies": 0,
+      "reply_characters": 3076614,
+      "bytes": 3485046
+    },
+    {
+      "file": "llm_calls_seed789.csv",
+      "seed": "789",
+      "calls": 2944,
+      "replies_upgraded_to_full_text": 0,
+      "empty_replies": 0,
+      "reply_characters": 3058879,
+      "bytes": 3465439
+    },
+    {
+      "file": "llm_calls_seed1011.csv",
+      "seed": "1011",
+      "calls": 2944,
+      "replies_upgraded_to_full_text": 0,
+      "empty_replies": 0,
+      "reply_characters": 3115487,
+      "bytes": 3529198
+    }
+  ]
+}

@@ -1,0 +1,352 @@
+[
+  {
+    "iri": "http://dbpedia.org/ontology/RadioControlledRacingLeague",
+    "label": "radio-controlled racing league",
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "A group of sports teams or person that compete against each other in radio-controlled racing."
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/ChristianDoctrine",
+    "label": "Christian Doctrine",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "Tenets of the Christian faith, e.g. Trinity, Nicene Creed"
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/Racecourse",
+    "label": "racecourse",
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "A racecourse is an alternate term for a horse racing track, found in countries such as the United Kingdom, Australia, Hong Kong, and the United Arab Emirates."
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/TermOfOffice",
+    "label": "term of office",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": ""
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/Cardinal",
+    "label": "cardinal",
+    "depth": 6,
+    "stratum": "leaf",
+    "definition": ""
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/Watermill",
+    "label": "Watermill",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "\u0648\u0627\u0679\u0631 \u0645\u0644 \u0627\u06cc\u06a9 \u0627\u06cc\u0633\u0627 \u0688\u06be\u0627\u0646\u0686\u06c1 \u06c1\u06d2 \u062c\u0648 \u067e\u0627\u0646\u06cc \u06a9\u06d2 \u067e\u06c1\u06cc\u06d2 \u06cc\u0627 \u0679\u0631\u0628\u0627\u0626\u0646 \u06a9\u0627 \u0627\u0633\u062a\u0639\u0645\u0627\u0644 \u0645\u06a9\u06cc\u0646\u06cc\u06a9\u0644 \u0639\u0645\u0644 \u06a9\u0648 \u0686\u0644\u0627\u0646\u06d2 \u06a9\u06d2 \u0644\u06cc\u06d2 \u06a9\u0631\u062a\u0627 \u06c1\u06d2 \u062c\u06cc\u0633\u06d2 \u0622\u0679\u0627\u060c \u0644\u06a9\u0691\u06cc \u06cc\u0627 \u0679\u06cc\u06a9\u0633\u0679\u0627\u0626\u0644 \u06a9\u06cc \u067e\u06cc\u062f\u0627\u0648\u0627\u0631\u060c \u06cc\u0627 \u062f\u06be\u0627\u062a \u06a9\u06cc \u062a\u0634\u06a9\u06cc\u0644 (\u0631\u0648\u0644\u0646\u06af\u060c \u067e\u06cc\u0633\u0646\u0627 \u06cc\u0627 \u062a\u0627\u0631 \u0688\u0631\u0627\u0626\u0646\u06af)"
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/Volcano",
+    "label": "volcano",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "A volcano is currently subclass of naturalplace, but it might also be considered a mountain."
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/RacingDriver",
+    "label": "racing driver",
+    "depth": 7,
+    "stratum": "leaf",
+    "definition": ""
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/HistoricalRegion",
+    "label": "Historical region",
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "a place which used to be a region."
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/MotocycleRacer",
+    "label": "motocycle racer",
+    "depth": 8,
+    "stratum": "leaf",
+    "definition": ""
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/SkiResort",
+    "label": "ski resort",
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "\u03a4\u03bf \u03b8\u03ad\u03c1\u03b5\u03c4\u03c1\u03bf \u03c3\u03ba\u03b9 \u03c7\u03c1\u03b7\u03c3\u03b9\u03bc\u03bf\u03c0\u03bf\u03b9\u03b5\u03af\u03c4\u03b1\u03b9 \u03b3\u03b9\u03b1 \u03bd\u03b1 \u03c0\u03b5\u03c1\u03b9\u03b3\u03c1\u03ac\u03c8\u03b5\u03b9 \u03ad\u03bd\u03b1\u03bd \u03c4\u03cc\u03c0\u03bf \u03b4\u03b9\u03b1\u03ba\u03bf\u03c0\u03ce\u03bd \u03bc\u03b5 \u03c4\u03b9\u03c2 \u03b1\u03c0\u03b1\u03c1\u03b1\u03af\u03c4\u03b7\u03c4\u03b5\u03c2 \u03b5\u03b3\u03ba\u03b1\u03c4\u03b1\u03c3\u03c4\u03ac\u03c3\u03b5\u03b9\u03c2 \u03b4\u03b9\u03b1\u03bc\u03bf\u03bd\u03ae\u03c2 \u03ba\u03b1\u03b9 \u03b5\u03be\u03ac\u03c3\u03ba\u03b7\u03c3\u03b7\u03c2 \u03c4\u03bf\u03c5 \u03c7\u03b5\u03b9\u03bc\u03b5\u03c1\u03b9\u03bd\u03bf\u03cd \u03b1\u03b8\u03bb\u03ae\u03bc\u03b1\u03c4\u03bf\u03c2 \u03c4\u03b7\u03c2 \u03c7\u03b9\u03bf\u03bd\u03bf\u03b4\u03c1\u03bf\u03bc\u03af\u03b1\u03c2"
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/MovingImage",
+    "label": "moving image",
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "A visual document that is intended to be animated; equivalent to http://purl.org/dc/dcmitype/MovingImage"
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/Curler",
+    "label": "curler",
+    "depth": 7,
+    "stratum": "leaf",
+    "definition": ""
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/SumoWrestler",
+    "label": "sumo wrestler",
+    "depth": 7,
+    "stratum": "leaf",
+    "definition": ""
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/AmericanFootballLeague",
+    "label": "american football league",
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "A group of sports teams that compete against each other in american football."
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/MovieGenre",
+    "label": "movie genre",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": ""
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/MilitaryConflict",
+    "label": "military conflict",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": ""
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/FootballMatch",
+    "label": "football match",
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "a competition between two football teams"
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/Instrumentalist",
+    "label": "instrumentalist",
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "\u039f \u03bc\u03bf\u03c5\u03c3\u03b9\u03ba\u03cc\u03c2 \u03b5\u03af\u03bd\u03b1\u03b9 \u03ad\u03bd\u03b1 \u03ac\u03c4\u03bf\u03bc\u03bf \u03c4\u03bf \u03bf\u03c0\u03bf\u03af\u03bf \u03b3\u03c1\u03ac\u03c6\u03b5\u03b9, \u03b5\u03c1\u03bc\u03b7\u03bd\u03b5\u03cd\u03b5\u03b9, \u03ae \u03ba\u03ac\u03bd\u03b5\u03b9 \u03bc\u03bf\u03c5\u03c3\u03b9\u03ba\u03ae."
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/Road",
+    "label": "road",
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": ""
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/BeautyQueen",
+    "label": "beauty queen",
+    "depth": 5,
+    "stratum": "leaf",
+    "definition": "A beauty pageant titleholder"
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/Polysaccharide",
+    "label": "polysaccharide",
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "Zijn koolhydraten die zijn opgebouwd uit tien of meer monosacharide-eenheden"
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/Mountain",
+    "label": "mountain",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": ""
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/IceHockeyPlayer",
+    "label": "ice hockey player",
+    "depth": 7,
+    "stratum": "leaf",
+    "definition": ""
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/ClubMoss",
+    "label": "club moss",
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": ""
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/Ginkgo",
+    "label": "ginkgo",
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "\u0686\u06cc\u0646\u06cc \u062f\u0631\u062e\u062a \u067e\u0646\u06a9\u06be\u06d2 \u06a9\u06d2 \u062c\u06cc\u0633\u06d2 \u067e\u062a\u0648\u06ba \u0648\u0627\u0644\u0627"
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/Lighthouse",
+    "label": "lighthouse",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": ""
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/Biomolecule",
+    "label": "Biomolecule",
+    "depth": 1,
+    "stratum": "intermediate",
+    "definition": "equivalent to http://ccdb.ucsd.edu/NIF/BIRNLex-OBO-UBO.owl#birnlex_22."
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/Cyclist",
+    "label": "cyclist",
+    "depth": 6,
+    "stratum": "leaf",
+    "definition": ""
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/Diocese",
+    "label": "diocese",
+    "depth": 6,
+    "stratum": "leaf",
+    "definition": "District or see under the supervision of a bishop."
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/PhilosophicalConcept",
+    "label": "Philosophical concept",
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "Philosophical concepts, e.g. Existentialism, Cogito Ergo Sum"
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/Architect",
+    "label": "architect",
+    "depth": 5,
+    "stratum": "leaf",
+    "definition": ""
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/Arrondissement",
+    "label": "arrondissement",
+    "depth": 6,
+    "stratum": "leaf",
+    "definition": "An administrative (France) or lawcourts (Netherlands) body governing a territorial unity on the intermediate level, between local and national level"
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/Wine",
+    "label": "wine",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": ""
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/MilitaryPerson",
+    "label": "military person",
+    "depth": 5,
+    "stratum": "leaf",
+    "definition": ""
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/MilitaryStructure",
+    "label": "military structure",
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "A military structure such as a Castle, Fortress, Wall, etc."
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/Case",
+    "label": "case",
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "A case is the total of work done to prepare for an administrative or business decision. As a rule, a case is reflected in a set of documents."
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/CountrySeat",
+    "label": "country estate",
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "A country seat is a rural patch of land owned by a land owner."
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/AmusementParkAttraction",
+    "label": "amusement park attraction",
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": ""
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/Galaxy",
+    "label": "galaxy",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": ""
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/Comedian",
+    "label": "comedian",
+    "depth": 6,
+    "stratum": "leaf",
+    "definition": ""
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/MountainRange",
+    "label": "mountain range",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "a chain of mountains bordered by highlands or separated from other mountains by passes or valleys."
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/Canal",
+    "label": "canal",
+    "depth": 5,
+    "stratum": "leaf",
+    "definition": "a man-made channel for water"
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/SpeedwayLeague",
+    "label": "speedway league",
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "A group of sports teams that compete against each other in motorcycle speedway racing."
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/File",
+    "label": "file",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "A document with a filename"
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/CricketGround",
+    "label": "cricket ground",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": ""
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/Activity",
+    "label": "activity",
+    "depth": 1,
+    "stratum": "intermediate",
+    "definition": ""
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/MusicComposer",
+    "label": "music composer",
+    "depth": 6,
+    "stratum": "leaf",
+    "definition": "a person who creates music."
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/CyclingRace",
+    "label": "cycling race",
+    "depth": 5,
+    "stratum": "leaf",
+    "definition": ""
+  },
+  {
+    "iri": "http://dbpedia.org/ontology/Gene",
+    "label": "gene",
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": ""
+  }
+]

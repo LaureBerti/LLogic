@@ -1,0 +1,270 @@
+[
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002469",
+    "label": "provides nutrients for",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002085",
+    "label": "encompasses",
+    "is_transitive": true,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_02500006",
+    "label": "results in transformation into",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/BFO_0000066",
+    "label": "occurs in",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://purl.obolibrary.org/obo/BFO_0000003"
+    ],
+    "range": [
+      "http://purl.obolibrary.org/obo/BFO_0000004"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002162",
+    "label": "in taxon",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": [
+      "http://purl.obolibrary.org/obo/COB_0000022"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002202",
+    "label": "develops from",
+    "is_transitive": true,
+    "is_symmetric": false,
+    "domain": [
+      "http://purl.obolibrary.org/obo/BFO_0000004"
+    ],
+    "range": [
+      "http://purl.obolibrary.org/obo/BFO_0000004"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_2000036",
+    "label": "generates",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002320",
+    "label": "evolutionarily related to",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0000053",
+    "label": "has characteristic",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": [
+      "http://purl.obolibrary.org/obo/BFO_0000020"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002223",
+    "label": "starts",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002567",
+    "label": "biomechanically related to",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://purl.obolibrary.org/obo/UBERON_0000061"
+    ],
+    "range": [
+      "http://purl.obolibrary.org/obo/UBERON_0000061"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002354",
+    "label": "formed as result of",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002608",
+    "label": "process has causal agent",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0001025",
+    "label": "located in",
+    "is_transitive": true,
+    "is_symmetric": false,
+    "domain": [
+      "http://purl.obolibrary.org/obo/BFO_0000004"
+    ],
+    "range": [
+      "http://purl.obolibrary.org/obo/BFO_0000004"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002219",
+    "label": "surrounded by",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002328",
+    "label": "functionally related to",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002224",
+    "label": "starts with",
+    "is_transitive": true,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0003001",
+    "label": "produced by",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [
+      "http://purl.obolibrary.org/obo/BFO_0000040"
+    ],
+    "range": [
+      "http://purl.obolibrary.org/obo/BFO_0000040"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_02500016",
+    "label": "results in expansion of",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0001019",
+    "label": "obsolete contains",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002410",
+    "label": "causally related to",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002211",
+    "label": "regulates",
+    "is_transitive": true,
+    "is_symmetric": false,
+    "domain": [
+      "http://purl.obolibrary.org/obo/BFO_0000015"
+    ],
+    "range": [
+      "http://purl.obolibrary.org/obo/BFO_0000015"
+    ]
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002559",
+    "label": "causally influenced by",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002321",
+    "label": "ecologically related to",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002596",
+    "label": "capable of regulating",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002163",
+    "label": "spatially disjoint from",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002429",
+    "label": "involved in positive regulation of",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002151",
+    "label": "partially overlaps",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/RO_0002212",
+    "label": "negatively regulates",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_01003004",
+    "label": "derives from part of",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "domain": [],
+    "range": []
+  }
+]

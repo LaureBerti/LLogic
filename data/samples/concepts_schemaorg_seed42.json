@@ -1,0 +1,352 @@
+[
+  {
+    "iri": "https://schema.org/PostalCodeRangeSpecification",
+    "label": "PostalCodeRangeSpecification",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "Indicates a range of postal codes, usually defined as the set of valid codes between [[postalCodeBegin]] and [[postalCodeEnd]], inclusively."
+  },
+  {
+    "iri": "https://schema.org/BusinessFunction",
+    "label": "BusinessFunction",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "The business function specifies the type of activity or access (i.e., the bundle of rights) offered by the organization or business person through the offer. Typical are sell, rental or lease, maintenance or repair, manufacture / produce, recycle / dispose, engineering / construction, or installation. Proprietary specifications of access rights are also instances of this class.\\n\\nCommonly used values:\\n\\n* http://purl.org/goodrelations/v1#ConstructionInstallation\\n* http://purl.org/goodrelations/v1#Dispose\\n* http://purl.org/goodrelations/v1#LeaseOut\\n* http://purl.org/goodrelations/v1#Maintain\\n* http://purl.org/goodrelations/v1#ProvideService\\n* http://purl.org/goodrelations/v1#Repair\\n* http://purl.org/goodrelations/v1#Sell\\n* http://purl.org/goodrelations/v1#Buy\n        "
+  },
+  {
+    "iri": "https://schema.org/AmusementPark",
+    "label": "AmusementPark",
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "An amusement park."
+  },
+  {
+    "iri": "https://schema.org/Sculpture",
+    "label": "Sculpture",
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "A piece of sculpture."
+  },
+  {
+    "iri": "https://schema.org/EnergyStarEnergyEfficiencyEnumeration",
+    "label": "EnergyStarEnergyEfficiencyEnumeration",
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "Used to indicate whether a product is EnergyStar certified."
+  },
+  {
+    "iri": "https://schema.org/DrugClass",
+    "label": "DrugClass",
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "A class of medical drugs, e.g., statins. Classes can represent general pharmacological class, common mechanisms of action, common physiological effects, etc."
+  },
+  {
+    "iri": "https://schema.org/DiagnosticLab",
+    "label": "DiagnosticLab",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "A medical laboratory that offers on-site or off-site diagnostic services."
+  },
+  {
+    "iri": "https://schema.org/City",
+    "label": "City",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "A city or town."
+  },
+  {
+    "iri": "https://schema.org/ScheduleAction",
+    "label": "ScheduleAction",
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "Scheduling future actions, events, or tasks.\\n\\nRelated actions:\\n\\n* [[ReserveAction]]: Unlike ReserveAction, ScheduleAction allocates future actions (e.g. an event, a task, etc) towards a time slot / spatial allocation."
+  },
+  {
+    "iri": "https://schema.org/BrokerageAccount",
+    "label": "BrokerageAccount",
+    "depth": 5,
+    "stratum": "leaf",
+    "definition": "An account that allows an investor to deposit funds and place investment orders with a licensed broker or brokerage firm."
+  },
+  {
+    "iri": "https://schema.org/QuoteAction",
+    "label": "QuoteAction",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "An agent quotes/estimates/appraises an object/product/service with a price at a location/store."
+  },
+  {
+    "iri": "https://schema.org/ScreeningEvent",
+    "label": "ScreeningEvent",
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "A screening of a movie or other video."
+  },
+  {
+    "iri": "https://schema.org/WatchAction",
+    "label": "WatchAction",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "The act of consuming dynamic/moving visual content."
+  },
+  {
+    "iri": "https://schema.org/MusicVenue",
+    "label": "MusicVenue",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "A music venue."
+  },
+  {
+    "iri": "https://schema.org/BookSeries",
+    "label": "BookSeries",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "A series of books. Included books can be indicated with the hasPart property."
+  },
+  {
+    "iri": "https://schema.org/PalliativeProcedure",
+    "label": "PalliativeProcedure",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "A medical procedure intended primarily for palliative purposes, aimed at relieving the symptoms of an underlying health condition."
+  },
+  {
+    "iri": "https://schema.org/Library",
+    "label": "Library",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "A library."
+  },
+  {
+    "iri": "https://schema.org/ApartmentComplex",
+    "label": "ApartmentComplex",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "Residence type: Apartment complex."
+  },
+  {
+    "iri": "https://schema.org/Answer",
+    "label": "Answer",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "An answer offered to a question; perhaps correct, perhaps opinionated or wrong."
+  },
+  {
+    "iri": "https://schema.org/BrainStructure",
+    "label": "BrainStructure",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "Any anatomical structure which pertains to the soft nervous tissue functioning as the coordinating center of sensation and intellectual and nervous activity."
+  },
+  {
+    "iri": "https://schema.org/Demand",
+    "label": "Demand",
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "A demand entity represents the public, not necessarily binding, not necessarily exclusive, announcement by an organization or person to seek a certain type of goods or services. For describing demand using this type, the very same properties used for Offer apply."
+  },
+  {
+    "iri": "https://schema.org/DiscussionForumPosting",
+    "label": "DiscussionForumPosting",
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "A posting to a discussion forum."
+  },
+  {
+    "iri": "https://schema.org/MenuSection",
+    "label": "MenuSection",
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "A sub-grouping of food or drink items in a menu. E.g. courses (such as 'Dinner', 'Breakfast', etc.), specific type of dishes (such as 'Meat', 'Vegan', 'Drinks', etc.), or some other classification made by the menu provider."
+  },
+  {
+    "iri": "https://schema.org/PaymentMethodType",
+    "label": "PaymentMethodType",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "The type of payment method, only for generic payment types, specific forms of payments, like card payment should be expressed using subclasses of PaymentMethod."
+  },
+  {
+    "iri": "https://schema.org/AnatomicalStructure",
+    "label": "AnatomicalStructure",
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "Any part of the human body, typically a component of an anatomical system. Organs, tissues, and cells are all anatomical structures."
+  },
+  {
+    "iri": "https://schema.org/Occupation",
+    "label": "Occupation",
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "A profession, may involve prolonged training and/or a formal qualification."
+  },
+  {
+    "iri": "https://schema.org/DataCatalog",
+    "label": "DataCatalog",
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "A collection of datasets."
+  },
+  {
+    "iri": "https://schema.org/Resort",
+    "label": "Resort",
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "A resort is a place used for relaxation or recreation, attracting visitors for holidays or vacations. Resorts are places, towns or sometimes commercial establishments operated by a single company (source: Wikipedia, the free encyclopedia, see <a href=\"http://en.wikipedia.org/wiki/Resort\">http://en.wikipedia.org/wiki/Resort</a>).\n<br /><br />\nSee also the <a href=\"/docs/hotels.html\">dedicated document on the use of schema.org for marking up hotels and other forms of accommodations</a>.\n    "
+  },
+  {
+    "iri": "https://schema.org/ProductCollection",
+    "label": "ProductCollection",
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "A set of products (either [[ProductGroup]]s or specific variants) that are listed together e.g. in an [[Offer]]."
+  },
+  {
+    "iri": "https://schema.org/ReplaceAction",
+    "label": "ReplaceAction",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "The act of editing a recipient by replacing an old object with a new object."
+  },
+  {
+    "iri": "https://schema.org/LegislationObject",
+    "label": "LegislationObject",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "A specific object or file containing a Legislation. Note that the same Legislation can be published in multiple files. For example, a digitally signed PDF, a plain PDF and an HTML version."
+  },
+  {
+    "iri": "https://schema.org/DepartAction",
+    "label": "DepartAction",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "The act of  departing from a place. An agent departs from a fromLocation for a destination, optionally with participants."
+  },
+  {
+    "iri": "https://schema.org/MeasurementMethodEnum",
+    "label": "MeasurementMethodEnum",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "Enumeration(s) for use with [[measurementMethod]]."
+  },
+  {
+    "iri": "https://schema.org/Painting",
+    "label": "Painting",
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "A painting."
+  },
+  {
+    "iri": "https://schema.org/EntryPoint",
+    "label": "EntryPoint",
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "An entry point, within some Web-based protocol."
+  },
+  {
+    "iri": "https://schema.org/Table",
+    "label": "Table",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "A table on a Web page."
+  },
+  {
+    "iri": "https://schema.org/Vein",
+    "label": "Vein",
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "A type of blood vessel that specifically carries blood to the heart."
+  },
+  {
+    "iri": "https://schema.org/AccountingService",
+    "label": "AccountingService",
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "Accountancy business.\\n\\nAs a [[LocalBusiness]] it can be described as a [[provider]] of one or more [[Service]]\\(s).\n      "
+  },
+  {
+    "iri": "https://schema.org/ShippingConditions",
+    "label": "ShippingConditions",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "ShippingConditions represent a set of constraints and information about the conditions of shipping a product. Such conditions may apply to only a subset of the products being shipped, depending on aspects of the product like weight, size, price, destination, and others. All the specified conditions must be met for this ShippingConditions to apply."
+  },
+  {
+    "iri": "https://schema.org/TVEpisode",
+    "label": "TVEpisode",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "A TV episode which can be part of a series or season."
+  },
+  {
+    "iri": "https://schema.org/CompleteDataFeed",
+    "label": "CompleteDataFeed",
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "A [[CompleteDataFeed]] is a [[DataFeed]] whose standard representation includes content for every item currently in the feed.\n\nThis is the equivalent of Atom's element as defined in Feed Paging and Archiving [RFC 5005](https://tools.ietf.org/html/rfc5005), for example (and as defined for Atom), when using data from a feed that represents a collection of items that varies over time (e.g. \"Top Twenty Records\") there is no need to have newer entries mixed in alongside older, obsolete entries. By marking this feed as a CompleteDataFeed, old entries can be safely discarded when the feed is refreshed, since we can assume the feed has provided descriptions for all current items."
+  },
+  {
+    "iri": "https://schema.org/RejectAction",
+    "label": "RejectAction",
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "The act of rejecting to/adopting an object.\\n\\nRelated actions:\\n\\n* [[AcceptAction]]: The antonym of RejectAction."
+  },
+  {
+    "iri": "https://schema.org/Guide",
+    "label": "Guide",
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "[[Guide]] is a page or article that recommends specific products or services, or aspects of a thing for a user to consider. A [[Guide]] may represent a Buying Guide and detail aspects of products or services for a user to consider. A [[Guide]] may represent a Product Guide and recommend specific products or services. A [[Guide]] may represent a Ranked List and recommend specific products or services with ranking."
+  },
+  {
+    "iri": "https://schema.org/ComicStory",
+    "label": "ComicStory",
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "The term \"story\" is any indivisible, re-printable\n    \tunit of a comic, including the interior stories, covers, and backmatter. Most\n    \tcomics have at least two stories: a cover (ComicCoverArt) and an interior story."
+  },
+  {
+    "iri": "https://schema.org/DeliveryChargeSpecification",
+    "label": "DeliveryChargeSpecification",
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "The price for the delivery of an offer using a particular delivery method."
+  },
+  {
+    "iri": "https://schema.org/ShoeStore",
+    "label": "ShoeStore",
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "A shoe store."
+  },
+  {
+    "iri": "https://schema.org/GovernmentPermit",
+    "label": "GovernmentPermit",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "A permit issued by a government agency."
+  },
+  {
+    "iri": "https://schema.org/BowlingAlley",
+    "label": "BowlingAlley",
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "A bowling alley."
+  },
+  {
+    "iri": "https://schema.org/ImagingTest",
+    "label": "ImagingTest",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "Any medical imaging modality typically used for diagnostic purposes."
+  },
+  {
+    "iri": "https://schema.org/Bridge",
+    "label": "Bridge",
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "A bridge."
+  }
+]

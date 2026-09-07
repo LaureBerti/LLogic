@@ -23,7 +23,6 @@ except ImportError:
 
 import z3
 
-
 # ── 1. A tiny FOL -> Z3 compiler (the heart of Phase 1) ────────────────────────
 def check_definition(name: str, body: z3.BoolRef) -> str:
     """Return 'unsat' (contradiction), 'sat' (satisfiable), or 'unknown'.
@@ -35,7 +34,6 @@ def check_definition(name: str, body: z3.BoolRef) -> str:
     s.set("timeout", 5000)
     s.add(body)
     return str(s.check())
-
 
 def demo_handwritten() -> None:
     print("=" * 64)
@@ -59,7 +57,6 @@ def demo_handwritten() -> None:
     print("  The second definition is 'unsat': no entity can be both Written and")
     print("  not-Written. LLOGIC flags exactly this failure mode at scale.")
     print()
-
 
 # ── 2. (Optional) ask a local LLM to define a concept, then check it ───────────
 def demo_llm(concept: str = "Hardcover book",
@@ -92,7 +89,6 @@ def demo_llm(concept: str = "Hardcover book",
         print("  Then: ollama pull llama3.2")
     print()
 
-
 # ── 3. A small visual: how the contradiction collapses the model space ─────────
 def demo_plot() -> None:
     try:
@@ -122,7 +118,6 @@ def demo_plot() -> None:
     fig.savefig(out, dpi=120)
     print(f"  Plot saved to {out}")
     print()
-
 
 if __name__ == "__main__":
     demo_handwritten()

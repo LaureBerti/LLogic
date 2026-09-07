@@ -4,7 +4,6 @@ import re
 from typing import Any
 from collections import Counter
 
-
 def compute_concept_metrics(results: list[dict]) -> dict:
     """
     Aggregate per-concept solver results into phase-1 metrics.
@@ -25,7 +24,6 @@ def compute_concept_metrics(results: list[dict]) -> dict:
         "fol_parse_success_rate": round(n_parsed / n, 4),
         "tautology_rate": round(n_cycle / n, 4),
     }
-
 
 def check_transitivity(llm_responses: dict[tuple, str], relation: dict) -> dict:
     """
@@ -55,7 +53,6 @@ def check_transitivity(llm_responses: dict[tuple, str], relation: dict) -> dict:
     rate = round(violations / checked, 4) if checked > 0 else 0.0
     return {"transitivity_violation_rate": rate, "n_triples_checked": checked, "n_violations": violations}
 
-
 def check_symmetry(llm_responses: dict[tuple, str], relation: dict) -> dict:
     """Check symmetry violations for symmetric relations."""
     if not relation.get("is_symmetric", False):
@@ -75,7 +72,6 @@ def check_symmetry(llm_responses: dict[tuple, str], relation: dict) -> dict:
 
     rate = round(violations / checked, 4) if checked > 0 else 0.0
     return {"symmetry_violation_rate": rate, "n_pairs_checked": checked, "n_violations": violations}
-
 
 def check_domain_range(llm_response: str, relation: dict, subject_concept: dict, object_concept: dict) -> dict:
     """Heuristic domain/range check: flag if subject/object are outside declared domain/range."""
@@ -97,7 +93,6 @@ def check_domain_range(llm_response: str, relation: dict, subject_concept: dict,
         "range_declared": bool(range_iris),
     }
 
-
 def majority_vote(responses: list[str]) -> str:
     """For self-consistency on YES/NO questions (Phase 2): return the majority vote."""
     votes = []
@@ -109,7 +104,6 @@ def majority_vote(responses: list[str]) -> str:
     if not votes:
         return "ABSTAIN"
     return Counter(votes).most_common(1)[0][0]
-
 
 def aggregate_fol_responses(responses: list[str]) -> str:
     """For self-consistency on FOL generation (Phase 1): majority vote on solver result.

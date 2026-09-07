@@ -11,7 +11,6 @@ from src.prompting.prompter import relation_consistency_prompt
 from src.prompting.llm_client import get_client, call_llm
 from src.metrics.consistency_metrics import check_transitivity, check_symmetry, check_domain_range
 
-
 RESULT_COLS = [
     "ontology", "llm_model", "strategy", "relation_label",
     "is_transitive", "is_symmetric",
@@ -20,7 +19,6 @@ RESULT_COLS = [
     "domain_range_error_rate", "n_dr_checked",
     "time_search_s", "time_eval_s", "n_candidates", "time_condition_s",
 ]
-
 
 def run_phase2(cfg: Any, out_dir: Path) -> None:
     concepts_path = Path("data/samples") / f"concepts_{cfg.ontology.name}_seed{cfg.sampling.seed}.json"
@@ -134,7 +132,6 @@ def run_phase2(cfg: Any, out_dir: Path) -> None:
     print(f"  Relations processed: {len(timing_rows)}")
     print(f"  Total wall time    : {t_total:.1f}s ({t_total/60:.1f} min)")
     print(f"{'─'*60}")
-
 
 def _write_timing(timing_rows: list[dict], out_dir: Path) -> None:
     import csv as _csv

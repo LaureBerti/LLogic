@@ -1,0 +1,489 @@
+[
+  {
+    "iri": "http://purl.obolibrary.org/obo/UBERON_0018674",
+    "label": "heart vasculature",
+    "depth": 13,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/UBERON_0002201",
+      "http://purl.obolibrary.org/obo/UBERON_0006876"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/CHEBI_23906",
+    "label": "monoatomic cation",
+    "depth": 13,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/CHEBI_24867",
+      "http://purl.obolibrary.org/obo/CHEBI_36916"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_01000061",
+    "label": "marine wind mixed layer",
+    "depth": 16,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_01000295"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/UBERON_0003077",
+    "label": "paraxial mesoderm",
+    "depth": 15,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/UBERON_0005291",
+      "http://purl.obolibrary.org/obo/UBERON_0007524",
+      "http://purl.obolibrary.org/obo/UBERON_0015212"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_03501299",
+    "label": "charcuterie shop",
+    "depth": 15,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_01000970"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_01000322",
+    "label": "brackish water environment",
+    "depth": 14,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_01000307"
+    ],
+    "definition": "This may refer to environments submerged in brackish water or those that are determined by its presence, such as a brackish water pond environment."
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/UBERON_0000991",
+    "label": "gonad",
+    "depth": 13,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/UBERON_0003133"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/NCBITaxon_37567",
+    "label": "Ditrysia",
+    "depth": 36,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/NCBITaxon_41197"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_09200029",
+    "label": "thickness of topsoil",
+    "depth": 13,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/PATO_0000915"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/PATO_0001713",
+    "label": "decreased perimeter",
+    "depth": 20,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/PATO_0000574",
+      "http://purl.obolibrary.org/obo/PATO_0001711"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/CHEBI_33372",
+    "label": "neodymium atom",
+    "depth": 13,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/CHEBI_33319",
+      "http://purl.obolibrary.org/obo/CHEBI_33562"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/CHEBI_30496",
+    "label": "sulfur hexafluoride",
+    "depth": 13,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/CHEBI_50094"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/FOODON_03412344",
+    "label": "devils tongue plant",
+    "depth": 13,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/FOODON_03411016"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/PATO_0015022",
+    "label": "increased combustibility",
+    "depth": 15,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/PATO_0002305",
+      "http://purl.obolibrary.org/obo/PATO_0015021"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/FOODON_00002038",
+    "label": "millet food product",
+    "depth": 15,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/FOODON_00001093"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/NCBITaxon_4435",
+    "label": "Batis <eudicots>",
+    "depth": 26,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/NCBITaxon_4434"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_00000309",
+    "label": "depressed landform",
+    "depth": 10,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_01001886"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/PO_0000112",
+    "label": "shoot axis epidermis",
+    "depth": 12,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/PO_0006035"
+    ],
+    "definition": "Can occur on a stem or branch."
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/UBERON_0005409",
+    "label": "alimentary part of gastrointestinal system",
+    "depth": 10,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/UBERON_0000467"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/FOODON_00001242",
+    "label": "spice or herb",
+    "depth": 12,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/FOODON_00001015"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/UBERON_0004522",
+    "label": "vasculature of musculoskeletal system",
+    "depth": 11,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/UBERON_0002049"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/CHEBI_50313",
+    "label": "onium cation",
+    "depth": 11,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/CHEBI_50312"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/PATO_0002254",
+    "label": "flattened",
+    "depth": 12,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/PATO_0001591"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/PATO_0001547",
+    "label": "quality of a gas",
+    "depth": 11,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/PATO_0002198"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/UBERON_0002050",
+    "label": "embryonic structure",
+    "depth": 9,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/UBERON_0005423"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_03501328",
+    "label": "fork",
+    "depth": 10,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_03501353"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/UBERON_3000972",
+    "label": "head external integument structure",
+    "depth": 11,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/UBERON_3000961"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_03000091",
+    "label": "permafrost methane explosion",
+    "depth": 11,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_03000090"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_01000251",
+    "label": "subpolar",
+    "depth": 11,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_01000203"
+    ],
+    "definition": "Note that  this class refers to a climatic rather than a positional condition."
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_03501231",
+    "label": "hospice",
+    "depth": 10,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_03501134"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/CHEBI_22985",
+    "label": "calcium molecular entity",
+    "depth": 11,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/CHEBI_33299"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_02500032",
+    "label": "planned revegetation",
+    "depth": 11,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_01001170"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_02000061",
+    "label": "obsolete unpasteurized orange juice",
+    "depth": 2,
+    "stratum": "root",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_01000011",
+    "label": "obsolete dairy product",
+    "depth": 2,
+    "stratum": "root",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_04000017",
+    "label": "geological carbon sequestration",
+    "depth": 8,
+    "stratum": "root",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_04000015"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_01000756",
+    "label": "obsolete vegetable",
+    "depth": 2,
+    "stratum": "root",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": "According to the FAO definition, vegetables grown principally for animal feed or seed should be separated from those grown for human consumption. They both, however, fall under the label \"vegetable\"."
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_01001850",
+    "label": "frost",
+    "depth": 8,
+    "stratum": "root",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_01000814"
+    ],
+    "definition": "In British usage, a day on which the minimum temperature at the level of the ground or on the tops of low, close-growing vegetation falls to -0.9C (30.4F) or below (also called a \"day with ground frost\").  In more general usage, \"frost\" can refer to the condition that exists when the temperature of the Earth's surface and Earthbound objects fall below the melting point of water (0 degrees Celsius or 32 degrees Fahrenheit). Depending upon the actual values of ambient-air temperature, dewpoint, and the temperature attained by surface objects, frost may occur in a variety of forms. These include a general freeze, hoarfrost (or white frost), and dry freeze (or black frost). If a frost period is sufficiently severe to end the growing season (or delay its beginning), it is commonly referred to as a killing frost."
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_01001210",
+    "label": "defence against flooding",
+    "depth": 8,
+    "stratum": "root",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_02500026"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_3200022",
+    "label": "concentration of cerium in water ice",
+    "depth": 7,
+    "stratum": "root",
+    "parents": [
+      "http://purl.obolibrary.org/obo/PATO_0000033"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_00003888",
+    "label": "obsolete bottled fruit product",
+    "depth": 2,
+    "stratum": "root",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_01000749",
+    "label": "oceanic crust",
+    "depth": 9,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_01000639"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_02000141",
+    "label": "refinery",
+    "depth": 9,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_00000070"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/CHEBI_52209",
+    "label": "aetiopathogenetic role",
+    "depth": 4,
+    "stratum": "root",
+    "parents": [
+      "http://purl.obolibrary.org/obo/CHEBI_24432"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_03600069",
+    "label": "nest of alligator",
+    "depth": 8,
+    "stratum": "root",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_00005803"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_0010114",
+    "label": "obsolete winged bean product",
+    "depth": 2,
+    "stratum": "root",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_03600036",
+    "label": "pathogen-suppressive soil",
+    "depth": 9,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_00001998"
+    ],
+    "definition": "The pathogenicity that is suppressed is typically directed towards plants, especially crops. Soils are typically classified as pathogen-suppressive if a pathogen 1) cannot establish itself or persist, 2) is able to establish itself, but causes little or no damage, or 3) is able to establishe itself, but only causes disease that does not result in long-term harm."
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_01001691",
+    "label": "mass of compounded environmental materials",
+    "depth": 8,
+    "stratum": "root",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_01001686"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_02000055",
+    "label": "plant feed",
+    "depth": 8,
+    "stratum": "root",
+    "parents": [
+      "http://purl.obolibrary.org/obo/FOODON_00002403"
+    ],
+    "definition": ""
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "label": "superTopicOf",
+    "iri": "http://cso.kmi.open.ac.uk/schema/cso#superTopicOf",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "semantics_source": "CSO declares no transitivity axiom for superTopicOf"
+  },
+  {
+    "label": "contributesTo",
+    "iri": "http://cso.kmi.open.ac.uk/schema/cso#contributesTo",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "semantics_source": "CSO declares no transitivity or symmetry axiom for contributesTo"
+  }
+]

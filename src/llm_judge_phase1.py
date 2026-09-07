@@ -47,7 +47,6 @@ If there is no explicit P(x) and not P(x) pattern, answer NO.
 Reason step by step, then end your response with exactly one line: YES, NO, or UNSURE.\
 """
 
-
 def build_judge_messages(concept_label: str, fol_block: str) -> list[dict]:
     return [
         {"role": "system", "content": JUDGE_PROMPT_SYSTEM},
@@ -55,7 +54,6 @@ def build_judge_messages(concept_label: str, fol_block: str) -> list[dict]:
             concept_label=concept_label, fol_block=fol_block
         )},
     ]
-
 
 def parse_judge_response(response: str) -> int:
     """Return 1=yes, 0=no, -1=unsure.
@@ -86,7 +84,6 @@ def parse_judge_response(response: str) -> int:
     if "\nNO" in tail or tail.endswith("NO") or tail.endswith("NO."):
         return 0
     return -1
-
 
 def judge_file(path: Path, client: object, model: str, dry_run: bool = False) -> Path:
     from src.prompting.llm_client import call_llm
@@ -168,7 +165,6 @@ def judge_file(path: Path, client: object, model: str, dry_run: bool = False) ->
     print(f"  → {path.parts[-4]}/{path.parts[-3]}/{path.parts[-2]}: {judged} judged, {skipped} skipped")
     return out_path
 
-
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--judge-model", default="mistral:7b")
@@ -207,7 +203,6 @@ def main() -> None:
     if not args.dry_run:
         print("\nDone. Judged CSVs: phase1_results_judged.csv alongside each input.")
         print("Run src/reanalyze_phase1.py to also apply the improved Z3 parser (if not done).")
-
 
 if __name__ == "__main__":
     main()

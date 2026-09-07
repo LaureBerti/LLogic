@@ -1,0 +1,482 @@
+[
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000621",
+    "label": "acquired immunity to infectious agent",
+    "depth": 10,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/IDO_0000448"
+    ],
+    "definition": "The disposition is realized in an immune response in which such antigen receptors participate."
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000599",
+    "label": "host living in endemic area",
+    "depth": 7,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/IDO_0000597"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000492",
+    "label": "infectious disease endemic rate",
+    "depth": 7,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/IDO_0000483"
+    ],
+    "definition": "Infectious disease endemic rate is relational to previous infectious disease incidence rates of the disease."
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000445",
+    "label": "resistance to drug",
+    "depth": 8,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/IDO_0000444"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000452",
+    "label": "infectious disposition",
+    "depth": 8,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/IDO_0000450"
+    ],
+    "definition": "The disposition is realized in a process that has as part a transmission process, an establishment in host process, a process that results in a disorder, and a process in which the bearer of the disposition becomes part of that disorder.  The infectious disposition has a complementary disposition that inheres in an organism and is the capability to be host to an organism with an infectious disposition and to undergo processes initiated by that infectious organism that result in a disorder."
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000401",
+    "label": "mutualist role",
+    "depth": 8,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/IDO_0000400"
+    ],
+    "definition": "The role is realized in processes that result in the growth, survival, or fitness advantage of either organism."
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000638",
+    "label": "nursing-home acquired infection",
+    "depth": 7,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/IDO_0000586"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000595",
+    "label": "potential host of infectious agent",
+    "depth": 7,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/OBI_0100026"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000653",
+    "label": "reverse zoonosis",
+    "depth": 9,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/IDO_0000436"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000564",
+    "label": "viricide",
+    "depth": 7,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/IDO_0000559"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0001006",
+    "label": "immunosuppressed organism experiencing infection-based immunosuppression",
+    "depth": 9,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/IDO_0001005"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0001005",
+    "label": "pathologically immunosuppressed organism",
+    "depth": 8,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/IDO_0000456"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000590",
+    "label": "chronic infectious disease course",
+    "depth": 7,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/IDO_0000495"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000493",
+    "label": "infectious disease hyper-endemicity",
+    "depth": 7,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/IDO_0000490"
+    ],
+    "definition": "Hyper-endemic infectious diseases may have high endemic levels only in certain seasons.  A hyper-endemic disease affects all age groups equally."
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000565",
+    "label": "microbistatic",
+    "depth": 7,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/IDO_0000558"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IAO_0000225",
+    "label": "obsolescence reason specification",
+    "depth": 8,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/IAO_0000102"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/GO_0032502",
+    "label": "developmental process",
+    "depth": 6,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/GO_0008150"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IAO_0000102",
+    "label": "data about an ontology part",
+    "depth": 7,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/IAO_0000027"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000442",
+    "label": "antibacterial disposition",
+    "depth": 7,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/BFO_0000016"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/BFO_0000020",
+    "label": "specifically dependent continuant",
+    "depth": 4,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/BFO_0000002"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000625",
+    "label": "establishment of localization in host",
+    "depth": 7,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/GO_0051234"
+    ],
+    "definition": "An organism begins bearing a particular host role as soon as the extended organism contains the relevant material entity, regardless of that entity's location in the extended organism.  An establishment process is any process by which the entity reaches a location in the extended organism in which it can persist and continue its lifecycle.  For example, an organism is host to a virus as soon as any part of the extended organism is occupied by virus particles.  During an establishment process, virus particles enter host cells of the relevant type, and viral DNA is integrated into host DNA."
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000559",
+    "label": "antiviral",
+    "depth": 6,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/BFO_0000040"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000509",
+    "label": "organism population",
+    "depth": 7,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/BFO_0000027"
+    ],
+    "definition": "The organism population may be delineated by spatio-temporal proximity or by demographic criteria such as age."
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000435",
+    "label": "secondary infection role",
+    "depth": 7,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/BFO_0000023"
+    ],
+    "definition": "The role is realized in a process by which the infectious disorder is established in the host."
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000663",
+    "label": "negative regulation of life-sustaining process",
+    "depth": 6,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/GO_0065007"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/GO_0000003",
+    "label": "reproduction",
+    "depth": 6,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/GO_0008150"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/BFO_0000146",
+    "label": "two-dimensional continuant fiat boundary",
+    "depth": 7,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/BFO_0000140"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000438",
+    "label": "invasion disposition",
+    "depth": 7,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/BFO_0000016"
+    ],
+    "definition": "A molecule with the invasion disposition is referred to as an invasion factor or invasin."
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/OGMS_0000045",
+    "label": "disorder",
+    "depth": 6,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/BFO_0000040"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000614",
+    "label": "_obsolete_replicating biological material entity",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/BFO_0000027",
+    "label": "object aggregate",
+    "depth": 6,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/BFO_0000040"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/BFO_0000034",
+    "label": "function",
+    "depth": 7,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/BFO_0000016"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000083",
+    "label": "_obsolete_transmission",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000067",
+    "label": "_obsolete_opportunistic pathogen",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000035",
+    "label": "_obsolete_fusion protein",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000051",
+    "label": "_obsolete_therapeutic",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000082",
+    "label": "_obsolete_utilization of membranous cell gateway",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000022",
+    "label": "_obsolete_live",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000019",
+    "label": "_obsolete_prevalence",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000093",
+    "label": "_obsolete_induction of damaging host immune response",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000020",
+    "label": "_obsolete_epidemic",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000087",
+    "label": "_obsolete_fusion with host cell membrane",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000084",
+    "label": "_obsolete_pathogenesis",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000233",
+    "label": "_obsolete_infectious disease progression stage",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000063",
+    "label": "_obsolete_vector",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000006",
+    "label": "_obsolete_toxicity",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000114",
+    "label": "_obsolete_phase variation",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/IDO_0000216",
+    "label": "_obsolete_herd immunity",
+    "depth": 3,
+    "stratum": "intermediate",
+    "parents": [
+      "http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"
+    ],
+    "definition": ""
+  }
+]

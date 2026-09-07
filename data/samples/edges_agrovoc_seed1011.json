@@ -1,0 +1,16 @@
+[
+  {
+    "label": "broader",
+    "iri": "http://www.w3.org/2004/02/skos/core#broader",
+    "is_transitive": false,
+    "is_symmetric": false,
+    "semantics_source": "skos:broader is not transitive in SKOS"
+  },
+  {
+    "label": "related",
+    "iri": "http://www.w3.org/2004/02/skos/core#related",
+    "is_transitive": false,
+    "is_symmetric": true,
+    "semantics_source": "skos:related is symmetric by SKOS definition"
+  }
+]

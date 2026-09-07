@@ -8,6 +8,11 @@ llm:
   model: llama3.2:latest
   temperature: 0.0          # 0 for reproducibility; 0.7 for self-consistency sampling
   max_tokens: 2048          # 2048 needed for reasoning models (DeepSeek-R1)
+  # Retry budget when the first call returns nothing. A reasoning model can spend
+  # the whole 2048 thinking and emit no answer -- qwen3:30b-a3b did exactly that,
+  # finish_reason="length" with 7,883 characters of reasoning and empty content.
+  max_tokens_retry: 8192
+  timeout_retry_s: 1800.0
   n_samples: 5              # for self-consistency voting
   timeout_s: 120.0          # HTTP timeout per LLM call (seconds); use 600 for ToT on CPU-only VMs
 

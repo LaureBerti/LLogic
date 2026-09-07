@@ -45,17 +45,46 @@ _NORMALISE = str.maketrans({
 # FOL block extraction
 # ---------------------------------------------------------------------------
 
-def extract_fol_block(text: str) -> str | None:
-    """Extract the FOL expression line from LLM output (first matching line)."""
-    text_n = text.translate(_NORMALISE)
-    for line in text_n.splitlines():
-        line = line.strip()
-        if ("forall" in line.lower() or "for all" in line.lower()
-                or "<->" in line or "->" in line
-                or "exists " in line.lower()):
-            return line
-    return None
+# Lines that merely echo the prompt's own scaffolding, or that still contain an
+# unfilled slot, are not definitions. Chain-of-Thought prompts embed the string
+# "Step 3: State necessary conditions (forall x: {label}(x) -> ...)", which models
+# reproduce verbatim; the original first-match extractor returned that echo and
+# the parser accepted it, so 520 CoT responses were scored as compilable
+# definitions when they contained no definition at all.
+_SCAFFOLD_LINE = re.compile(r"^\s*[*_#\\\[( ]*(step\s*\d|branch\s*[abc])\b", re.IGNORECASE)
+_UNFILLED_SLOT = re.compile(r"\[conditions\]|\{label\}|\.\.\.|…")
 
+def _is_fol_candidate(line: str) -> bool:
+    low = line.lower()
+    return ("forall" in low or "for all" in low or "exists " in low
+            or "<->" in line or "->" in line)
+
+def extract_fol_block(text: str) -> str | None:
+    """Extract the FOL definition from LLM output.
+
+    Preference order, after discarding prompt echoes and lines with unfilled
+    slots: the last biconditional (reasoning strategies build up to their final
+    answer), then the last remaining candidate. Zero-shot replies contain a
+    single candidate, so their behaviour is unchanged.
+    """
+    text_n = text.translate(_NORMALISE)
+    candidates = [ln.strip() for ln in text_n.splitlines() if _is_fol_candidate(ln.strip())]
+    usable = []
+    for line in candidates:
+        # A "Step 5: forall x: C(x) <-> ..." line is a real answer wearing a
+        # scaffold prefix, so strip the prefix rather than discarding the line.
+        stripped = _SCAFFOLD_LINE.sub("", line).lstrip(" :.)-*_#").strip()
+        if not stripped or not _is_fol_candidate(stripped):
+            continue
+        if _UNFILLED_SLOT.search(stripped):
+            continue
+        usable.append(stripped)
+    if not usable:
+        # Nothing definitional survived. Returning None makes this a parse
+        # failure, which is honest: an echoed template is not a definition.
+        return None
+    biconditionals = [ln for ln in usable if "<->" in ln]
+    return biconditionals[-1] if biconditionals else usable[-1]
 
 # ---------------------------------------------------------------------------
 # Pattern-based contradiction / tautology detection
@@ -73,7 +102,6 @@ def _is_self_negation(block: str, concept_name: str) -> bool:
     name = re.escape(_sanitise(concept_name))
     pat = re.compile(rf"\b{name}\s*\(x\)\s*<->\s*not\s+{name}\s*\(x\)", re.IGNORECASE)
     return bool(pat.search(block))
-
 
 # ---------------------------------------------------------------------------
 # Best-effort Z3 compiler for clean single-variable formulas
@@ -94,15 +122,12 @@ def _is_self_negation(block: str, concept_name: str) -> bool:
 # All identifiers that appear as predicate names are auto-created as
 # unary or binary Z3 functions on a single sort "Entity".
 
-
 class _ParseError(Exception):
     pass
-
 
 def _sanitise(name: str) -> str:
     """Convert a multi-word or special-char predicate name to a valid Z3 identifier."""
     return re.sub(r"[^a-zA-Z0-9_]", "_", name.strip()).strip("_") or "Pred"
-
 
 class _Z3Builder:
     """Tokenise and parse a single-line normalised FOL string into a Z3 expression."""
@@ -385,7 +410,6 @@ class _Z3Builder:
         expr = self._parse_formula()
         return expr
 
-
 def _try_z3_compile(block: str, concept_name: str) -> Any | None:
     """Try to compile block to a Z3 expression. Returns None on any failure."""
     if not HAS_Z3:
@@ -395,7 +419,6 @@ def _try_z3_compile(block: str, concept_name: str) -> Any | None:
         return builder.build(block)
     except Exception:
         return None
-
 
 # ---------------------------------------------------------------------------
 # Public API
@@ -437,7 +460,6 @@ def parse_to_z3(fol_text: str, concept_name: str) -> tuple[Any | None, bool]:
 
     # Could not compile to Z3
     return None, False
-
 
 def check_satisfiability(expr: Any, timeout_ms: int = 10_000) -> str:
     """Run Z3 solver. Returns 'sat', 'unsat', 'unknown', or 'error'."""

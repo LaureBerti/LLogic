@@ -1,0 +1,494 @@
+[
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_01000084",
+    "label": "estuarine front",
+    "depth": 13,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_01000071"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_00000490",
+    "label": "consequent stream",
+    "depth": 16,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_00000023"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_2000002",
+    "label": "industrial wastewate treatment plant",
+    "depth": 13,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_00002043"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/CHEBI_51132",
+    "label": "nitroarene",
+    "depth": 20,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/CHEBI_51129"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_00000392",
+    "label": "ice tongue",
+    "depth": 16,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_01001345",
+      "http://purl.obolibrary.org/obo/ENVO_01001547"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/UBERON_0003729",
+    "label": "mouth mucosa",
+    "depth": 13,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/UBERON_0000344"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/PATO_0000407",
+    "label": "flat",
+    "depth": 13,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/PATO_0002254"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/UBERON_0003462",
+    "label": "facial bone",
+    "depth": 18,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/UBERON_0003457",
+      "http://purl.obolibrary.org/obo/UBERON_0010313"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/NCBITaxon_8782",
+    "label": "Aves",
+    "depth": 33,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/NCBITaxon_436492"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/CHEBI_61296",
+    "label": "adenyl ribonucleotide",
+    "depth": 67,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/CHEBI_26400",
+      "http://purl.obolibrary.org/obo/CHEBI_61293"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_01000908",
+    "label": "geothermally heated river",
+    "depth": 17,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_00000022"
+    ],
+    "definition": "A key example is the Boiling River, or Shanay-timpishka, of the Peruvian Amazon. This river is of high cultural significance and is protected by the shaman of the small town Mayantuyacu, a secluded healing center."
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/FOODON_00001283",
+    "label": "poultry food product",
+    "depth": 17,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/FOODON_00001251",
+      "http://purl.obolibrary.org/obo/FOODON_02020686"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_01001676",
+    "label": "marine cline",
+    "depth": 13,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_01000258",
+      "http://purl.obolibrary.org/obo/ENVO_01000813"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/UBERON_0000014",
+    "label": "zone of skin",
+    "depth": 14,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/UBERON_0004121",
+      "http://purl.obolibrary.org/obo/UBERON_0010314",
+      "http://purl.obolibrary.org/obo/UBERON_0034944"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_01000065",
+    "label": "marine oxygen minimum zone",
+    "depth": 14,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_01000686",
+      "http://purl.obolibrary.org/obo/ENVO_01001308"
+    ],
+    "definition": "Low oxygen rates are typically due to the rate of respiration being greater than the rate of oxygen resupply, and are not necessarily due to anthropogenic activity."
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/FOODON_03315150",
+    "label": "mammalian milk product",
+    "depth": 17,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/FOODON_00001257"
+    ],
+    "definition": "SIREN DB annotation:\n* milk (mammary secretion) UBERON:0001913"
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/PO_0000037",
+    "label": "shoot axis apex",
+    "depth": 12,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/PO_0025029"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/UBERON_0000912",
+    "label": "mucus",
+    "depth": 11,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/UBERON_0000456",
+      "http://purl.obolibrary.org/obo/UBERON_0006314"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_00000350",
+    "label": "somma volcano",
+    "depth": 11,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_00000247"
+    ],
+    "definition": "This may be more a subclass of 'caldera'"
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_03600001",
+    "label": "chemically contaminated sediment",
+    "depth": 10,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_00002114"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/PATO_0001509",
+    "label": "functionality",
+    "depth": 9,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/PATO_0001241"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/CHEBI_64709",
+    "label": "organic acid",
+    "depth": 12,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/CHEBI_50860"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_01000466",
+    "label": "boundary wall",
+    "depth": 10,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_01000467"
+    ],
+    "definition": "This is not the same as a wall that is part of a building. use ENVO:01000420 for the latter."
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/PATO_0001708",
+    "label": "1-D extent",
+    "depth": 11,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/PATO_0000117"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_00005745",
+    "label": "allotment garden",
+    "depth": 10,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_00000011"
+    ],
+    "definition": "Allotments gardens are so named as they are typically subdivisions (lots) of a larger piece of land."
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/UBERON_0036017",
+    "label": "regurgitated substance",
+    "depth": 9,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/UBERON_0000463"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_01001260",
+    "label": "waste disposal process",
+    "depth": 11,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_02500027",
+      "http://purl.obolibrary.org/obo/ENVO_02500042"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_00000182",
+    "label": "plateau",
+    "depth": 12,
+    "stratum": "leaf",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_01001491"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_01000786",
+    "label": "fire",
+    "depth": 10,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_01000839"
+    ],
+    "definition": "Not to be confused with a flame - the visible portion of gas released by a fire . Oxidation processes such as rusting or biological digestion are not subsumed here."
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_00000458",
+    "label": "valley glacier",
+    "depth": 10,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_00000133"
+    ],
+    "definition": "These glaciers typically flow down pre-existing valleys and have ice-free slopes overlooking the glacier surface."
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_01000603",
+    "label": "water truck",
+    "depth": 10,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_01000602"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_02000122",
+    "label": "peat drainage",
+    "depth": 10,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_01000982",
+      "http://purl.obolibrary.org/obo/ENVO_01003009"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/CHEBI_78298",
+    "label": "environmental contaminant",
+    "depth": 4,
+    "stratum": "root",
+    "parents": [
+      "http://purl.obolibrary.org/obo/CHEBI_51086"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_00002988",
+    "label": "obsolete Temperate grasslands",
+    "depth": 2,
+    "stratum": "root",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_00002007",
+    "label": "sediment",
+    "depth": 8,
+    "stratum": "root",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_01000060"
+    ],
+    "definition": "Sediment is typically deposited on the bed or bottom of a body of water or other liquid."
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_00002160",
+    "label": "estuarine mud",
+    "depth": 9,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_01000001",
+      "http://purl.obolibrary.org/obo/ENVO_01000813"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_01000661",
+    "label": "tuff",
+    "depth": 9,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_00001995"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_3200025",
+    "label": "concentration of europium in water ice",
+    "depth": 7,
+    "stratum": "root",
+    "parents": [
+      "http://purl.obolibrary.org/obo/PATO_0000033"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_01000538",
+    "label": "stratosphere",
+    "depth": 9,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_01000543"
+    ],
+    "definition": "Definition from GEMET - will be refined."
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_00003067",
+    "label": "obsolete beef",
+    "depth": 2,
+    "stratum": "root",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_00002170",
+    "label": "compost",
+    "depth": 8,
+    "stratum": "root",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_03501300"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_01001198",
+    "label": "intrinsic magnetosphere",
+    "depth": 8,
+    "stratum": "root",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_01001194"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_01001741",
+    "label": "warming of a liquid",
+    "depth": 9,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_01001739"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_01001211",
+    "label": "stellar radiation",
+    "depth": 9,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_01001026"
+    ],
+    "definition": ""
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_01001146",
+    "label": "photoevaporation",
+    "depth": 7,
+    "stratum": "root",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_03000010"
+    ],
+    "definition": "This process is responsible for the stripping away of gases from the atmosphere of planets and related bodies by acceleration on interaction with high energy photons and other electromagnetic radiation."
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_01001854",
+    "label": "hydrothermal field",
+    "depth": 9,
+    "stratum": "intermediate",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_01001851"
+    ],
+    "definition": "Hydrothermal activity in such fields often forming hot springs, geysers or other features at which anomalously hot water is released."
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_01000998",
+    "label": "environmental system determined by a material",
+    "depth": 8,
+    "stratum": "root",
+    "parents": [
+      "http://purl.obolibrary.org/obo/ENVO_01000254"
+    ],
+    "definition": "Organisational class. Not intended for annotation. Subclasses describe environments which are usually permeated by an environmental material. They may also describe environments which are sufficiently close to a material, that their dynamics are strongly influenced by it (e.g. a patch of forest ecosystem neighbouring a uranium dump)."
+  },
+  {
+    "iri": "http://purl.obolibrary.org/obo/ENVO_00002026",
+    "label": "obsolete cold temperature habitat",
+    "depth": 2,
+    "stratum": "root",
+    "parents": [
+      "http://www.w3.org/2002/07/owl#Thing"
+    ],
+    "definition": ""
+  }
+]

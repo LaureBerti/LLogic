@@ -3,16 +3,87 @@
 Reproducibility code for the paper:
 
 > **Measuring Logical Inconsistency of Large Language Models over OWL Ontologies**
-> Laure Berti-Équille (IRD). Submitted to *Knowledge-Based Systems* (Elsevier), 2026.
+> Laure Berti-Équille (IRD). *Knowledge-Based Systems* (Elsevier), 2026.
 
 LLOGIC is a three-phase empirical framework that compiles LLM-generated first-order-logic
 (FOL) statements into a Z3 SMT solver to measure whether large language models stay
 logically consistent when defining and relating concepts in formal OWL/SKOS ontologies.
 
-**Headline finding:** *LLM inconsistency is relational, not definitional.* Across 3,321
-compiled FOL concept definitions the solver finds **zero contradictions** (95% CI < 0.090%),
-yet symmetry-violation rates reach **100%** and `subClassOf` transitivity-violation rates
-span **15–92%** — and these relational failures are impervious to prompting strategy.
+**Headline finding:** *LLM inconsistency is relational, not definitional.* Across 2,574
+compiled FOL concept definitions the solver finds one contradiction (95% one-sided upper
+bound 0.116%), yet symmetry-violation rates reach **100%** and `subClassOf`
+transitivity-violation rates span **15–92%**.
+
+**Two qualifications the numbers require, both measured rather than assumed:**
+
+* The contradiction bound covers responses that *compile*. **31.2% do not**, and their
+  content is characterised rather than treated as benign.
+* Passing the satisfiability check does not mean a definition is usable. Asserting
+  filter-accepted definitions into ontologies that declare disjointness produces **0
+  unsatisfiable of 138**; asserting the same definitions into the same ontology enriched
+  with 170,144 published disjointness axioms makes **43.1% unsatisfiable**. A pass is a
+  property of how constrained the target ontology is. And of 64 accepted definitions
+  audited by hand, **none was adequate**.
+
+Prompting does not repair relational failure. Chain-of-thought lowers the `subClassOf`
+transitivity violation rate by 14.4 pp against zero-shot (p = 0.047), leaving 21.4%.
+Across five independent concept samples no prompting strategy reliably improves format
+compliance; the one contrast that replicates is model-specific.
+
+---
+
+## The LLM calls
+
+`data/llm_calls/` holds **every call made to a language model in this study** — 24,762 rows
+across five stratified concept samples, each giving the concept, the model, the prompting
+strategy, and the model's reply verbatim. That is the part of the record that cannot be
+regenerated deterministically, so it is versioned here.
+
+```
+data/llm_calls/llm_calls_seed{42,123,456,789,1011}.csv
+data/llm_calls/README.md        columns, provenance, and what is incomplete
+data/llm_calls/MANIFEST.json    per-file counts
+```
+
+Derived results — solver verdicts, extracted formulae, timings, per-cell rates — are not
+versioned: `outputs/` is created empty and populated by running the pipeline or the
+analyses. The complete result tree is archived separately on Zenodo.
+
+`ONTOLOGY_VERSIONS.json` gives the SHA-256, size and source URL of each ontology, which
+are excluded from git for size (AGROVOC alone is 1.2 GB).
+
+## Reproducing
+
+Analyses over existing results — no LLM calls, no network, seconds each:
+
+```bash
+python src/analysis/inventory.py        # what result cells exist, computed from the files
+python src/analysis/c1_recompute.py     # concept-level figures over a stated grid
+python src/analysis/stats_tests.py      # blocked tests, Holm-corrected
+python src/analysis/reasoner_validation.py reasoner.arm=arm_a
+```
+
+Generating results needs a local Ollama serving the models named in `conf/jamer.yaml`;
+the pipeline talks to it through an OpenAI-compatible endpoint, so any compatible server
+works.
+
+```bash
+python src/main.py phase=0 ontology.name=book sampling.seed=42
+python src/main.py phase=1 ontology.name=book llm.model=mistral:7b prompting.strategy=cot
+```
+
+Every phase is resume-safe: rerunning a cell fills only the rows that are missing, keyed on
+`(concept_iri, strategy)`, and never rewrites a row that already exists.
+
+## Known limits
+
+* Phase 2b needs a testable `subClassOf` hierarchy. `book` has none — 36 classes, no parent
+  relations — so it cannot be probed for transitivity.
+* The FOL→OWL translator used for reasoner validation accepts only conjunctions of named
+  classes, 6.4% of accepted definitions. Refusal causes are counted per category rather
+  than folded into a denominator.
+* AGROVOC publishes SKOS-XL labels rather than plain `skos:prefLabel`; the loader handles
+  both, and a cache-key version guards against a stale parent map surviving a loader change.
 
 ---
 
@@ -160,10 +231,14 @@ src/
   prompting/               LLM client (OpenAI-compatible / Ollama) + prompt templates
   metrics/                 consistency + similarity metrics
 conf/jamer.yaml            all parameters (Hydra)
-data/samples/              pre-computed stratified samples (seed 42 + 123) — enables exact reproduction
+  analysis/                post-hoc analyses over generated results
+conf/analysis.yaml         parameters for the analyses
+data/samples/              pre-computed stratified samples (5 seeds) — enables exact reproduction
+data/llm_calls/            every LLM call: concept, model, strategy, reply verbatim
 data/ontologies/           download instructions (raw files excluded — see its README)
+ONTOLOGY_VERSIONS.json     SHA-256, size and source URL for each ontology
 scripts/                   batch experiment runners (resume-safe)
-outputs/results/           per-condition CSVs (generated)
+outputs/                   created empty; per-condition CSVs are written here by a run
 ```
 
 ---
