@@ -125,7 +125,7 @@ def run_phase1(cfg: Any, out_dir: Path) -> None:
                 "solver_result": solver_result,
                 "is_tautology": int(is_tautology),
                 "contradiction": contradiction,
-                # R1 fix: earlier runs stored only the first 300 characters.
+                # Earlier runs stored only the first 300 characters of a reply.
                 # A Chain-of-Thought reply spends that budget on Steps 1-3, so the
                 # final biconditional at Step 5 was truncated away and it became
                 # impossible to tell whether an extracted "Step 3: ..." scaffold

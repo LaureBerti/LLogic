@@ -117,9 +117,9 @@ def clopper_pearson(k: int, n: int, conf_level: float,
     """Exact binomial confidence interval, as proportions.
 
     ``one_sided=True`` puts the whole tail mass on the upper side, which is the
-    convention behind the submitted manuscript's bound: with k=0 it reduces to
-    the rule of three, 1 - alpha**(1/n). The two conventions differ materially
-    at these n (see ``bound_pair``), so the manuscript must state which it uses.
+    convention used for the reported bound: with k=0 it reduces to the rule of
+    three, 1 - alpha**(1/n). The two conventions differ materially at these n
+    (see ``bound_pair``), so the paper states which it uses.
     Returns (nan, nan) if scipy is unavailable, so the caller can say so.
     """
     if n == 0:
@@ -348,10 +348,9 @@ def task_parse_audit(cfg: DictConfig, out_dir: str) -> dict[str, Any]:
     # the failures. These are stated as assumptions, not as measurements.
     conf = cfg.stats.conf_level
     scenarios = {
-        "A_compilable_only_as_published": dict(
+        "A_compilable_only": dict(
             assumption=("Failures excluded; the bound conditions on compilable "
-                        "responses only. This is what the submitted manuscript "
-                        "reported, and it is the narrowest reading."),
+                        "responses only. This is the narrowest reading."),
             **bound_pair(n_contra, n_parsed, conf)),
         "B_failures_assumed_consistent": dict(
             assumption=("Every parse failure is assumed non-contradictory "

@@ -47,12 +47,12 @@ from omegaconf import DictConfig
 
 csv.field_size_limit(10 ** 9)
 
-# Domain assignment as used by the submitted manuscript's C6.
+# Domain assignment used for C6.
 DOMAIN = {"book": "general", "agrovoc": "general",
           "anatomy": "technical", "cso": "technical", "mesh": "technical"}
 
-# R1 correction. Phase 2 was run with a hardcoded SKOS
-# relation list applied to every RDF ontology. Counted directly in the source
+# Phase 2 was originally run with a hardcoded SKOS relation list applied to every RDF
+# ontology, which is wrong. Counted directly in the source
 # files, the properties actually present are:
 #
 #   AGROVOC : skos:broader 42,269 ; skos:related 8,907 ; skos:narrower 0
