@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # run_exp_2b_subclassof.sh — Phase 2b: subClassOf transitivity probing
-# Contributions: C4 (reviewer concern: named object-property coverage is too thin)
+# Contributions: C4 (named object-property coverage is thin; subClassOf gives 50 triples per cell)
 #
 # Strategy:
 #   For each sampled concept C, we enumerate (C⊑B, B⊑A) triples from the FULL

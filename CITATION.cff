@@ -13,6 +13,14 @@ authors:
     affiliation: "IRD (Institut de Recherche pour le Développement)"
     email: laure.berti@ird.fr
 license: MIT
+references:
+  - type: data
+    title: "LLogic: results and analysis artifacts"
+    authors:
+      - family-names: "Berti-Équille"
+        given-names: "Laure"
+    doi: "10.5281/zenodo.22643175"
+    year: 2026
 repository-code: "https://github.com/LaureBerti/LLogic"
 keywords:
   - large language models

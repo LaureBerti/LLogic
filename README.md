@@ -47,7 +47,7 @@ data/llm_calls/MANIFEST.json    per-file counts
 
 Derived results — solver verdicts, extracted formulae, timings, per-cell rates — are not
 versioned: `outputs/` is created empty and populated by running the pipeline or the
-analyses. The complete result tree is archived separately on Zenodo.
+analyses. The complete result tree is archived on Zenodo: **doi:10.5281/zenodo.22643175**.
 
 `ONTOLOGY_VERSIONS.json` gives the SHA-256, size and source URL of each ontology, which
 are excluded from git for size (AGROVOC alone is 1.2 GB).
