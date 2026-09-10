@@ -10,6 +10,10 @@ defaults:
 task: counts
 
 paths:
+  # The seed-42 grid: 5 study ontologies x 4 core models x 4 strategies = 3,744 Phase 1 rows,
+  # no duplicates. Unpack the Zenodo results/seed42/ tree here (see README). Run
+  # inventory.py first: any duplicate rows mean two trees have been merged, and every rate
+  # computed downstream will be silently wrong.
   results_dir: outputs/results
   phase1_glob: "**/phase1_results.csv"
   phase2_glob: "**/phase2_results.csv"

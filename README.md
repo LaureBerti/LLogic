@@ -49,6 +49,23 @@ Derived results — solver verdicts, extracted formulae, timings, per-cell rates
 versioned: `outputs/` is created empty and populated by running the pipeline or the
 analyses. The complete result tree is archived on Zenodo: **doi:10.5281/zenodo.22643175**.
 
+To reproduce the reported numbers from the archive rather than by re-running the models,
+unpack the Zenodo `results/seed42/` tree into `outputs/results/`, so that a Phase 1 file
+lands at `outputs/results/<ontology>/<model>/<strategy>/phase1_results.csv`. The other
+seeds (`seed123`, `seed456`, `seed789`, `seed1011`) back the five-sample strategy
+comparison only.
+
+Check the tree before analysing it:
+
+```bash
+python src/analysis/inventory.py
+```
+
+Over the five study ontologies and the four core models this must report **3,744 Phase 1
+rows and 0 duplicate rows**. A larger row count with duplicates means two result trees have
+been merged — unpacking an archive over an existing `outputs/` does this silently — and
+every rate computed from it will be wrong in a way no error message reveals.
+
 `ONTOLOGY_VERSIONS.json` gives the SHA-256, size and source URL of each ontology, which
 are excluded from git for size (AGROVOC alone is 1.2 GB).
 
