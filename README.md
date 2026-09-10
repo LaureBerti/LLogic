@@ -47,7 +47,7 @@ data/llm_calls/MANIFEST.json    per-file counts
 
 Derived results — solver verdicts, extracted formulae, timings, per-cell rates — are not
 versioned: `outputs/` is created empty and populated by running the pipeline or the
-analyses. The complete result tree is archived on Zenodo: **doi:10.5281/zenodo.22643175**.
+analyses. The complete result tree is archived on Zenodo: **doi:10.5281/zenodo.22643174**.
 
 To reproduce the reported numbers from the archive rather than by re-running the models,
 unpack the Zenodo `results/seed42/` tree into `outputs/results/`, so that a Phase 1 file
