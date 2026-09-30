@@ -2,6 +2,7 @@
 from __future__ import annotations
 import csv
 import json
+import re
 import time
 from pathlib import Path
 from typing import Any
@@ -21,6 +22,7 @@ try:
 except ImportError:
     HAS_NX = False
 
+
 RESULT_COLS = [
     "ontology", "llm_model", "strategy", "use_phase1_context",
     "onto_sim_structural", "onto_sim_semantic",
@@ -29,6 +31,7 @@ RESULT_COLS = [
     "reconstruction_text_chars",
     "time_search_s", "time_eval_s", "n_candidates", "time_condition_s",
 ]
+
 
 def _load_gt_graph(ontology_name: str, seed: int = 42) -> tuple[Any, list[str], list[tuple]]:
     """Load ground-truth ontology as networkx graph from the concept sample (proxy)."""
@@ -39,10 +42,27 @@ def _load_gt_graph(ontology_name: str, seed: int = 42) -> tuple[Any, list[str], 
         concepts = json.load(f)
 
     gt_concepts = [c["label"] for c in concepts]
+
+    # Resolve each parent IRI to its label. Truncating the IRI instead -- the original
+    # behaviour, kept below as the fallback -- yields an opaque code (NCI_C12710,
+    # D008660) that a reconstruction naming both endpoints in words can never match, so
+    # edge_coverage measured zero for every cell regardless of model output. The maps are
+    # built by src/analysis/build_parent_labels.py; where none exists the old path is
+    # used so previously published results remain reproducible.
+    labels_path = Path("data/samples") / f"parent_labels_{ontology_name}_seed{seed}.json"
+    parent_labels: dict = {}
+    if labels_path.exists():
+        with open(labels_path) as f:
+            parent_labels = json.load(f)
+
     gt_edges = []
     for c in concepts:
         for parent_iri in c.get("parents", []):
-            parent_label = parent_iri.split("/")[-1].split("#")[-1]
+            if re.search(r"(owl|rdfs|rdf)#(Thing|Resource|Class)$", parent_iri):
+                continue  # builtin parent: not an informative edge
+            parent_label = parent_labels.get(
+                parent_iri, parent_iri.split("/")[-1].split("#")[-1]
+            )
             if parent_label:
                 gt_edges.append((c["label"], parent_label))
 
@@ -53,6 +73,7 @@ def _load_gt_graph(ontology_name: str, seed: int = 42) -> tuple[Any, list[str], 
     for (child, parent) in gt_edges:
         g.add_edge(child, parent, rel="subClassOf")
     return g, gt_concepts, gt_edges
+
 
 def run_phase3(cfg: Any, out_dir: Path) -> None:
     use_ctx: bool = bool(cfg.phase3.use_phase1_context)
