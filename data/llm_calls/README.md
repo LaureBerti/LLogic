@@ -1,15 +1,23 @@
-# LLM calls
+# LLM responses
 
-One row per call to a language model: which concept was asked of which model under which
-prompting strategy, and the reply as it was returned.
+One row per stored response: which concept was asked of which model under which prompting
+strategy, and the reply as it was returned.
+
+**Rows are responses, not calls.** There is one row per (seed, ontology, model, strategy,
+concept). For `zero_shot`, `cot` and `tot` that is also one API call. For
+`self_consistency` it is not: the pipeline issues the zero-shot prompt **five** times at
+temperature 0.7 and retains the reply that wins the majority vote on the solver result, so
+one row stands for five calls and the four losing replies were never written to disk. The
+6,190 self-consistency rows therefore represent 30,950 calls, and the 24,762 rows here cover
+**49,522 calls** in total.
 
 ```
-llm_calls_seed42.csv      9,584 calls
+llm_calls_seed42.csv      9,584 responses
 llm_calls_seed123.csv     6,346
 llm_calls_seed456.csv     2,944
 llm_calls_seed789.csv     2,944
 llm_calls_seed1011.csv    2,944
-                         24,762 total
+                         24,762 total responses
 MANIFEST.json             per-file counts and reply-character totals
 ```
 

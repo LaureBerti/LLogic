@@ -1,5 +1,4 @@
 {
-  "total_calls": 24762,
   "columns": [
     "seed",
     "ontology",
@@ -10,7 +9,7 @@
     "response_text",
     "source"
   ],
-  "note": "One row per LLM call. `response_text` is the model's reply as returned. `source` records which run the reply came from: replies stored truncated in the primary run are taken from a second run that stored them in full.",
+  "note": "One row per stored response, not per call. `response_text` is the model's reply as returned. `source` records which run the reply came from: replies stored truncated in the primary run are taken from a second run that stored them in full. self_consistency issues five samples per concept at temperature 0.7 and retains only the majority-vote reply, so its 6,190 rows stand for 30,950 calls; the 24,762 rows cover 49,522 calls in total.",
   "files": [
     {
       "file": "llm_calls_seed42.csv",
@@ -57,5 +56,7 @@
       "reply_characters": 3115487,
       "bytes": 3529198
     }
-  ]
+  ],
+  "total_responses": 24762,
+  "total_calls_represented": 49522
 }

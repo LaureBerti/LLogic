@@ -34,7 +34,8 @@ compliance; the one contrast that replicates is model-specific.
 
 ## The LLM calls
 
-`data/llm_calls/` holds **every call made to a language model in this study** — 24,762 rows
+`data/llm_calls/` holds **every response stored in this study** — 24,762 rows, one per
+(ontology, model, strategy, concept), covering 49,522 calls
 across five stratified concept samples, each giving the concept, the model, the prompting
 strategy, and the model's reply verbatim. That is the part of the record that cannot be
 regenerated deterministically, so it is versioned here.
@@ -251,7 +252,7 @@ conf/jamer.yaml            all parameters (Hydra)
   analysis/                post-hoc analyses over generated results
 conf/analysis.yaml         parameters for the analyses
 data/samples/              pre-computed stratified samples (5 seeds) — enables exact reproduction
-data/llm_calls/            every LLM call: concept, model, strategy, reply verbatim
+data/llm_calls/            every stored response: concept, model, strategy, reply verbatim
 data/ontologies/           download instructions (raw files excluded — see its README)
 ONTOLOGY_VERSIONS.json     SHA-256, size and source URL for each ontology
 scripts/                   batch experiment runners (resume-safe)
