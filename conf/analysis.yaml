@@ -145,3 +145,23 @@ base_tuned:
     - {family: qwen05b,    base: "qwen2.5:0.5b-base",   tuned: "qwen2.5:0.5b-instruct"}
   out_csv: outputs/analysis/r1_8_base_vs_tuned.csv
 
+parent_labels:
+  # Resolve each sampled concept's parent IRIs to human-readable labels, so Phase 3
+  # edge_coverage compares label-to-label instead of label-to-IRI-fragment.
+  seed: 42
+  samples_dir: data/samples
+  ontologies_dir: data/ontologies
+  out_pattern: "parent_labels_{ontology}_seed{seed}.json"
+  # owl:Thing and friends are not informative parents.
+  builtin_pattern: "(owl|rdfs|rdf)#(Thing|Resource|Class)$"
+  sources:
+    anatomy:
+      file: anatomy.owl
+      format: rdfxml          # rdfs:label inside owl:Class blocks
+      base: "http://human.owl"
+    mesh:
+      file: mesh.ttl
+      format: turtle          # skos:prefLabel, streamed: the file is 803 MB
+      iri_prefix: "http://purl.bioontology.org/ontology/MESH/"
+  # No non-builtin parents in their samples, so nothing to resolve.
+  skip: ["book", "agrovoc", "cso"]
