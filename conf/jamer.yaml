@@ -44,6 +44,9 @@ output:
 
 phase3:
   use_phase1_context: true  # set false for no-context control experiment
+  # Conversation turns of Phase 1 context fed to the reconstruction prompt.
+  # 30 reproduces the published runs (two turns per concept = 15 concepts); 0 = all.
+  context_turns: 30
 
 phase: 1          # 0=sample, 1=concepts (FOL+Z3), 2=edges, 3=reconstruct
 phase_2b: false   # set true to run Phase 2b (subClassOf transitivity probing)

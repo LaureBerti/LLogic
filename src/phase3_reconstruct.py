@@ -90,9 +90,17 @@ def run_phase3(cfg: Any, out_dir: Path) -> None:
                 fol_block = row.get("fol_block", "")
                 conversation_history.append({"role": "user", "content": f"Define '{concept_label}' in FOL."})
                 conversation_history.append({"role": "assistant", "content": fol_block or "[no FOL block]"})
-        # Truncate to last 30 turns to stay within context window
-        if len(conversation_history) > 30:
-            conversation_history = conversation_history[-30:]
+        # Truncate to the last `context_turns` turns to stay within the context window.
+        # Default 30 reproduces the published runs. Setting it to 0 supplies every stored
+        # definition instead, so the reconstruction target and the supplied context coincide
+        # -- the arm reported in the paper's Appendix C.
+        # Turns, not concepts: there are two turns per concept, so 30 turns is 15 concepts.
+        context_turns = int(getattr(cfg.phase3, "context_turns", 30))
+        if context_turns and len(conversation_history) > context_turns:
+            conversation_history = conversation_history[-context_turns:]
+        print(f"  Phase 3 context: {len(conversation_history)} turns "
+              f"({len(conversation_history) // 2} concepts)"
+              f"{' — full history' if not context_turns else ''}")
     else:
         print("  Phase 3 control mode: no Phase 1 context injected.")
 

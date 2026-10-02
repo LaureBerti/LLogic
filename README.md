@@ -79,6 +79,7 @@ python src/analysis/inventory.py        # what result cells exist, computed from
 python src/analysis/c1_recompute.py     # concept-level figures over a stated grid
 python src/analysis/stats_tests.py      # blocked tests, Holm-corrected
 python src/analysis/reasoner_validation.py reasoner.arm=arm_a
+python src/analysis/context_recall.py   # Phase 3 recall against the context actually supplied
 ```
 
 Generating results needs a local Ollama serving the models named in `conf/jamer.yaml`;
@@ -201,6 +202,28 @@ for ONTO in book anatomy agrovoc cso mesh; do
 done
 ```
 
+How much Phase 1 history the reconstruction prompt carries is set by
+`phase3.context_turns` in `conf/jamer.yaml` (default 30). It counts **conversation turns**,
+and there are two per concept, so 30 turns is the last 15 concepts — while recall is scored
+against the whole 36–50-concept sample. Set it to `0` to supply the entire stored history, so
+that target and context coincide:
+
+```bash
+python src/main.py phase=3 ontology.name=book llm.model=mistral:7b     prompting.strategy=cot phase3.context_turns=0 output.dir=outputs/results_fullctx
+```
+
+To score the recall of an existing run against the concepts its prompt actually carried
+rather than against the full sample, run `src/analysis/context_recall.py` with
+`context_recall.context_turns` matching the run:
+
+```bash
+python src/analysis/context_recall.py context_recall.results_dir=outputs/results
+```
+
+It rescores the stored `reconstruction.txt` files with the pipeline's own
+`compute_coverage`, so only the denominator changes, and makes no LLM calls. A cell with no
+`reconstruction.txt` can never be rescored — `inventory.py` reports which trees have them.
+
 **All runs are resume-safe** — re-running skips conditions already recorded in the output
 CSV (resume key: `(concept_iri, strategy)` for Phase 1; `relation_label` for Phase 2).
 
@@ -230,6 +253,7 @@ python src/main.py --cfg job            # print the resolved config without runn
 ```
 
 Key fields: `phase`, `phase_2b`, `llm.{model,temperature,timeout_s,n_samples}`,
+`phase3.context_turns`,
 `ontology.{name,path}`, `sampling.{n_concepts,n_relations,seed}`,
 `prompting.strategy ∈ {zero_shot, cot, tot, self_consistency}`.
 

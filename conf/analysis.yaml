@@ -165,3 +165,13 @@ parent_labels:
       iri_prefix: "http://purl.bioontology.org/ontology/MESH/"
   # No non-builtin parents in their samples, so nothing to resolve.
   skip: ["book", "agrovoc", "cso"]
+
+context_recall:
+  # Phase 3 recall scored against the concepts the prompt actually carried, rather than
+  # against the whole sampled ontology (see context_recall.py). Reanalysis of the stored
+  # reconstruction.txt files; makes no LLM calls.
+  results_dir: outputs/results
+  # Must match phase3.context_turns in conf/jamer.yaml for the run being rescored:
+  # the denominator is context_turns // 2 concepts.
+  context_turns: 30
+  out_json: outputs/analysis/context_recall.json

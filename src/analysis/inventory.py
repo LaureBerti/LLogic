@@ -97,6 +97,46 @@ def scan_phase2b(root: Path) -> list[dict]:
                          "model": parts[-3], "strategy": parts[-2], "rows": len(data)})
     return rows
 
+def scan_phase3(root: Path) -> list[dict]:
+    """Phase 3 cells across every results tree, with the context size each one carried.
+
+    Reported per tree, because the published arm and the full-context arm live in different
+    trees by design, and because a cell is only scorable if its reconstruction.txt survived:
+    a cell without one can never be rescored against a different denominator.
+    """
+    rows = []
+    for results_dir in sorted(glob.glob(str(root / "outputs/results*"))):
+        if not os.path.isdir(results_dir):
+            continue
+        for path in sorted(glob.glob(results_dir + "/*/*/*/phase3_results.csv")):
+            parts = path.split("/")
+            cell = os.path.dirname(path)
+            data = list(csv.DictReader(open(path, errors="replace")))
+            with_ctx = [r for r in data
+                        if (r.get("use_phase1_context") or "True").strip().lower()
+                        not in ("false", "0", "")]
+            p1 = os.path.join(cell, "phase1_results.csv")
+            turns = 0
+            if os.path.exists(p1):
+                turns = 2 * sum(1 for _ in csv.DictReader(open(p1, newline="", errors="replace")))
+            ccs = []
+            for r in with_ctx:
+                try:
+                    ccs.append(float(r.get("concept_coverage") or "nan"))
+                except ValueError:
+                    pass
+            rows.append({
+                "tree": os.path.basename(results_dir),
+                "ontology": parts[-4], "model": parts[-3], "strategy": parts[-2],
+                "rows": len(data), "with_context": len(with_ctx),
+                "duplicate_rows": max(len(data) - len(set(
+                    (r.get("use_phase1_context") or "") for r in data)), 0) if len(data) > 1 else 0,
+                "has_reconstruction": os.path.exists(os.path.join(cell, "reconstruction.txt")),
+                "available_context_turns": turns,
+                "concept_coverage": ccs[0] if len(ccs) == 1 else ccs,
+            })
+    return rows
+
 def scan_arms(root: Path) -> dict:
     out = {}
     for path in sorted(glob.glob(str(root / "outputs/analysis/reasoner_arm_*.json"))):
@@ -150,6 +190,30 @@ def main(cfg: DictConfig) -> None:
         print(f"\n  ontologies covered: {covered}")
 
     print("\n" + "=" * 78)
+    print("PHASE 3 — cells on disk, by tree")
+    print("=" * 78)
+    p3 = scan_phase3(root)
+    if not p3:
+        print("  none")
+    bytree: dict[str, list[dict]] = defaultdict(list)
+    for r in p3:
+        bytree[r["tree"]].append(r)
+    for tree, rs in sorted(bytree.items()):
+        scorable = [r for r in rs if r["has_reconstruction"]]
+        norec = len(rs) - len(scorable)
+        ccs = [r["concept_coverage"] for r in rs
+               if isinstance(r["concept_coverage"], float)
+               and r["concept_coverage"] == r["concept_coverage"]]
+        mean = f"{sum(ccs)/len(ccs):.3f}" if ccs else "n/a"
+        turns = sorted({r["available_context_turns"] for r in rs})
+        print(f"  {tree:<22s} {len(rs):3d} cells, {len(scorable):3d} with reconstruction.txt"
+              f"{f', {norec} without' if norec else ''}, mean concept_coverage {mean}")
+        print(f"  {'':<22s} available context turns: {turns}")
+        dups = [r for r in rs if r["rows"] > 1]
+        if dups:
+            print(f"  {'':<22s} !! {len(dups)} cell(s) with >1 row -- check for duplicate appends")
+
+    print("\n" + "=" * 78)
     print("the reasoner validation ARMS — results files present")
     print("=" * 78)
     arms = scan_arms(root)
@@ -170,7 +234,7 @@ def main(cfg: DictConfig) -> None:
     out_path = root / cfg.paths.out_dir / "experiment_inventory.json"
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(
-        {"phase1": p1, "phase2b": p2, "reasoner_arms": list(arms)}, indent=2, default=str))
+        {"phase1": p1, "phase2b": p2, "phase3": p3, "reasoner_arms": list(arms)}, indent=2, default=str))
     print(f"\nwritten: {out_path.relative_to(root)}")
 
 if __name__ == "__main__":
