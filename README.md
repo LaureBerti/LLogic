@@ -9,21 +9,22 @@ LLOGIC is a three-phase empirical framework that compiles LLM-generated first-or
 (FOL) statements into a Z3 SMT solver to measure whether large language models stay
 logically consistent when defining and relating concepts in formal OWL/SKOS ontologies.
 
-**Headline finding:** *LLM inconsistency is relational, not definitional.* Across 2,574
-compiled FOL concept definitions the solver finds one contradiction (95% one-sided upper
-bound 0.116%), yet symmetry-violation rates reach **100%** and `subClassOf`
-transitivity-violation rates span **15–92%**.
+**Headline finding:** *LLM inconsistency is relational, not definitional.* Across the 2,248
+responses that reach a checkable formula the solver finds two contradictions (0.089%, 95% CI
+[0.011, 0.32]%), yet symmetry-violation rates reach **100%** and `subClassOf`
+transitivity-violation rates span **14–74%** across ontologies, reaching **92%** in the worst
+cell.
 
 **Two qualifications the numbers require, both measured rather than assumed:**
 
-* The contradiction bound covers responses that *compile*. **31.2% do not**, and their
-  content is characterised rather than treated as benign.
+* The bound covers only the responses the solver can reach. **40.0% of the 3,744 it cannot**,
+  and their content is characterised rather than treated as benign.
 * Passing the satisfiability check does not mean a definition is usable. Asserting
   filter-accepted definitions into ontologies that declare disjointness produces **0
   unsatisfiable of 138**; asserting the same definitions into the same ontology enriched
   with 170,144 published disjointness axioms makes **43.1% unsatisfiable**. A pass is a
-  property of how constrained the target ontology is. And of 64 accepted definitions
-  audited by hand, **none was adequate**.
+  property of how constrained the target ontology is. And of 96 accepted definitions
+  audited by hand — 76 of them positively certified by the solver — **none was adequate**.
 
 Prompting does not repair relational failure. Chain-of-thought lowers the `subClassOf`
 transitivity violation rate by 14.4 pp against zero-shot (p = 0.047), leaving 21.4%.
