@@ -27,7 +27,10 @@ cell.
   audited by hand — 76 of them positively certified by the solver — **none was adequate**.
 
 Prompting does not repair relational failure. Chain-of-thought lowers the `subClassOf`
-transitivity violation rate by 14.4 pp against zero-shot (p = 0.047), leaving 21.4%.
+transitivity violation rate by 14.4 pp against zero-shot, leaving 21.4% (exact McNemar on the 178
+discordant triples, p = 8.0e-11; the conservative cell-level Wilcoxon over 12 blocks gives
+p = 0.19). The strategies are also no longer interchangeable: 11 of 12 blocks differ across the
+four, where the original fixed-prompt probe made them identical by construction.
 Across five independent concept samples no prompting strategy reliably improves format
 compliance; the one contrast that replicates is model-specific.
 
