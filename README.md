@@ -3,7 +3,7 @@
 Reproducibility code for the paper:
 
 > **Measuring Logical Inconsistency of Large Language Models over OWL Ontologies**
-> Laure Berti-Équille (IRD). *Knowledge-Based Systems* (Elsevier), 2026.
+> Laure Berti-Equille (IRD). *Knowledge-Based Systems* (Elsevier), 2026.
 
 LLOGIC is a three-phase empirical framework that compiles LLM-generated first-order-logic
 (FOL) statements into a Z3 SMT solver to measure whether large language models stay

@@ -8,7 +8,7 @@ abstract: >-
   ontologies. Central finding: LLM inconsistency is relational, not definitional.
 type: software
 authors:
-  - family-names: "Berti-Équille"
+  - family-names: "Berti-Equille"
     given-names: "Laure"
     affiliation: "IRD (Institut de Recherche pour le Développement)"
     email: laure.berti@ird.fr
@@ -17,7 +17,7 @@ references:
   - type: data
     title: "LLogic: results and analysis artifacts"
     authors:
-      - family-names: "Berti-Équille"
+      - family-names: "Berti-Equille"
         given-names: "Laure"
     doi: "10.5281/zenodo.22643174"
     year: 2026
@@ -33,7 +33,7 @@ preferred-citation:
   type: article
   title: "Measuring Logical Inconsistency of Large Language Models over OWL Ontologies"
   authors:
-    - family-names: "Berti-Équille"
+    - family-names: "Berti-Equille"
       given-names: "Laure"
       affiliation: "IRD (Institut de Recherche pour le Développement)"
   journal: "Knowledge-Based Systems"
