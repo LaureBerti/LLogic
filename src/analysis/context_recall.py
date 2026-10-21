@@ -1,33 +1,3 @@
-"""Score Phase 3 concept recall against the concepts the model was actually shown.
-
-Why. Phase 3 scores recall against the whole sampled ontology (36-50 concepts), while the
-prompt carries only the last ``context_turns`` conversation turns -- two per concept, so
-fifteen concepts at the default of 30. Recall against the full sample therefore conflates
-what the model failed to recall with what it was never shown, and is a lower bound rather
-than an estimate. The reconstruction target should correspond to information actually
-available in the supplied context; this script computes that other denominator.
-
-The context is deterministic: Phase 3 builds it by walking ``phase1_results.csv`` in order,
-appending two turns per row, then truncating to the last ``context_turns``. The
-reconstructions are stored as ``reconstruction.txt``. So no LLM call is needed -- this is a
-reanalysis of files already on disk, which is precisely why it can be run at all.
-
-Normalisation is not reimplemented: the same ``compute_coverage`` the pipeline uses is
-called with the context concepts in place of the ground-truth set, so the two numbers differ
-only in their denominator. (It deduplicates after normalising, so the denominator is the
-distinct normalised label count, not the raw row count.)
-
-The comparison is within-cell -- every cell yields both numbers from the same
-reconstruction -- so the test is a paired Wilcoxon signed-rank, not an unpaired one.
-
-Compute: CPU only, local, no network, no LLM calls. Seconds.
-
-Run:
-    python src/analysis/context_recall.py
-    python src/analysis/context_recall.py context_recall.results_dir=outputs/results_seed123
-    python src/analysis/context_recall.py --cfg job
-"""
-
 from __future__ import annotations
 
 import csv
@@ -41,21 +11,16 @@ from omegaconf import DictConfig
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
 
-from src.metrics.ontology_similarity import (  # noqa: E402
+from src.metrics.ontology_similarity import (
     compute_coverage,
     parse_manchester_to_graph,
 )
+from src.phase3_reconstruct import _load_gt_graph
 
 csv.field_size_limit(10 ** 9)
 
 
 def context_concepts(phase1_csv: Path, context_turns: int) -> list[str]:
-    """The concept labels the Phase 3 prompt actually carried.
-
-    Mirrors ``run_phase3``: two turns per Phase 1 row in file order, truncated to the last
-    ``context_turns``. Truncating turns rather than rows is what makes the count
-    ``context_turns // 2``, and getting that wrong silently changes every denominator.
-    """
     labels: list[str] = []
     with open(phase1_csv, newline="", errors="replace") as f:
         for row in csv.DictReader(f):
@@ -91,10 +56,9 @@ def main(cfg: DictConfig) -> None:
         graph = parse_manchester_to_graph(rec.read_text(errors="replace"))
         llm = list(graph.nodes()) if graph else []
         cov = compute_coverage(ctx, llm, [], [])
-        try:
-            reported = float(row.get("concept_coverage") or "nan")
-        except ValueError:
-            reported = float("nan")
+        ontology = row.get("ontology", d.parts[-3])
+        _, gt_concepts, _ = _load_gt_graph(ontology, seed=int(cr.seed))
+        reported = compute_coverage(gt_concepts, llm, [], [])["concept_coverage"]
         cells.append({
             "ontology": row.get("ontology", d.parts[-3]),
             "model": row.get("llm_model", d.parts[-2]),
@@ -144,7 +108,6 @@ def main(cfg: DictConfig) -> None:
             "cc_context": round(statistics.mean(x["cc_context"] for x in sub), 4),
         }
 
-    # Within-cell comparison: both numbers come from the same reconstruction.
     try:
         from scipy.stats import wilcoxon
         diffs = [b - a for a, b in zip(full, ctxv)]

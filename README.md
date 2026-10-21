@@ -107,6 +107,16 @@ Every phase is resume-safe: rerunning a cell fills only the rows that are missin
   than folded into a denominator.
 * AGROVOC publishes SKOS-XL labels rather than plain `skos:prefLabel`; the loader handles
   both, and a cache-key version guards against a stale parent map surviving a loader change.
+* Qwen 3 is a hybrid-reasoning family. From Ollama 0.40 the server generates a reasoning
+  trace by default and returns it in a separate field, which the OpenAI-compatible client
+  discards while the generation time is still paid. `llm.think` controls it: leave it `null`
+  to use the OpenAI-compatible endpoint unchanged, or set it to `false`/`true` to route the
+  call to Ollama's native `/api/chat`, the only endpoint that honours the flag. Runs made
+  under different settings are different inference conditions and must not be pooled.
+* With `think=false`, Qwen 3-8B occasionally enters a token-repetition loop and Ollama aborts
+  the generation (`prediction aborted, token repeat limit reached`). The client records that
+  specific abort as an empty response rather than raising, so the concept is scored as a
+  non-response and the rest of the cell still runs.
 
 ---
 
@@ -228,6 +238,29 @@ It rescores the stored `reconstruction.txt` files with the pipeline's own
 `compute_coverage`, so only the denominator changes, and makes no LLM calls. A cell with no
 `reconstruction.txt` can never be rescored — `inventory.py` reports which trees have them.
 
+Three further re-analyses run off the same stored reconstructions and make no LLM calls:
+
+```bash
+python src/analysis/phase3_recompute.py           # similarity + coverage, after an extractor change
+python src/analysis/phase3_precision_recall.py    # per-cell precision, recall, F1, invented concepts
+python src/analysis/phase3_fullctx.py             # 30-turn window against the full stored history
+```
+
+Each is a dry run by default and reports what would change; add `<group>.write=true` to
+persist. `phase3_recompute.py` unions its extractors, so recovered concepts can only
+increase — a reported regression means a real defect was introduced and the run should not
+be persisted. `edge_coverage` is `nan`, not `0.0`, where a sample has no ground-truth edges,
+so it must not be averaged without excluding those cells: the `book` samples legitimately
+have none, because every sampled concept's only parent is `owl:Thing`.
+
+Phase 3 generates with `max_tokens=2048` and most reconstructions stop mid-statement as a
+result. `src/analysis/phase3_untruncate.py` re-runs only the affected cells at a larger
+budget and records Ollama's `done_reason` per cell, so truncation is observed rather than
+inferred from how the text ends. It needs a local Ollama serving the same models, and the
+re-run is a fresh sample rather than a continuation of the stored text: CPU inference is not
+bit-reproducible across machines, so a re-run at identical settings diverges from the saved
+reconstruction within a few tokens.
+
 **All runs are resume-safe** — re-running skips conditions already recorded in the output
 CSV (resume key: `(concept_iri, strategy)` for Phase 1; `relation_label` for Phase 2).
 
@@ -256,7 +289,7 @@ python src/main.py phase=1 ontology.name=anatomy \
 python src/main.py --cfg job            # print the resolved config without running
 ```
 
-Key fields: `phase`, `phase_2b`, `llm.{model,temperature,timeout_s,n_samples}`,
+Key fields: `phase`, `phase_2b`, `llm.{model,temperature,timeout_s,n_samples,think}`,
 `phase3.context_turns`,
 `ontology.{name,path}`, `sampling.{n_concepts,n_relations,seed}`,
 `prompting.strategy ∈ {zero_shot, cot, tot, self_consistency}`.
@@ -276,8 +309,8 @@ src/
   parsing/fol_parser.py    FOL → Z3 compiler (unary/binary preds, connectives, quantifiers)
   prompting/               LLM client (OpenAI-compatible / Ollama) + prompt templates
   metrics/                 consistency + similarity metrics
-conf/jamer.yaml            all parameters (Hydra)
   analysis/                post-hoc analyses over generated results
+conf/jamer.yaml            all parameters (Hydra)
 conf/analysis.yaml         parameters for the analyses
 data/samples/              pre-computed stratified samples (5 seeds) — enables exact reproduction
 data/llm_calls/            every stored response: concept, model, strategy, reply verbatim

@@ -1,4 +1,3 @@
-"""Phase 3: LLM-driven ontology reconstruction + similarity metrics."""
 from __future__ import annotations
 import csv
 import json
@@ -34,7 +33,6 @@ RESULT_COLS = [
 
 
 def _load_gt_graph(ontology_name: str, seed: int = 42) -> tuple[Any, list[str], list[tuple]]:
-    """Load ground-truth ontology as networkx graph from the concept sample (proxy)."""
     samples_path = Path("data/samples") / f"concepts_{ontology_name}_seed{seed}.json"
     edges_path = Path("data/samples") / f"edges_{ontology_name}_seed{seed}.json"
 
@@ -43,12 +41,6 @@ def _load_gt_graph(ontology_name: str, seed: int = 42) -> tuple[Any, list[str], 
 
     gt_concepts = [c["label"] for c in concepts]
 
-    # Resolve each parent IRI to its label. Truncating the IRI instead -- the original
-    # behaviour, kept below as the fallback -- yields an opaque code (NCI_C12710,
-    # D008660) that a reconstruction naming both endpoints in words can never match, so
-    # edge_coverage measured zero for every cell regardless of model output. The maps are
-    # built by src/analysis/build_parent_labels.py; where none exists the old path is
-    # used so previously published results remain reproducible.
     labels_path = Path("data/samples") / f"parent_labels_{ontology_name}_seed{seed}.json"
     parent_labels: dict = {}
     if labels_path.exists():
@@ -59,7 +51,7 @@ def _load_gt_graph(ontology_name: str, seed: int = 42) -> tuple[Any, list[str], 
     for c in concepts:
         for parent_iri in c.get("parents", []):
             if re.search(r"(owl|rdfs|rdf)#(Thing|Resource|Class)$", parent_iri):
-                continue  # builtin parent: not an informative edge
+                continue
             parent_label = parent_labels.get(
                 parent_iri, parent_iri.split("/")[-1].split("#")[-1]
             )
@@ -78,7 +70,6 @@ def _load_gt_graph(ontology_name: str, seed: int = 42) -> tuple[Any, list[str], 
 def run_phase3(cfg: Any, out_dir: Path) -> None:
     use_ctx: bool = bool(cfg.phase3.use_phase1_context)
 
-    # Build conversation history from phase 1 results (or leave empty for control)
     conversation_history: list[dict] = []
     if use_ctx:
         phase1_path = out_dir / "phase1_results.csv"
@@ -90,11 +81,6 @@ def run_phase3(cfg: Any, out_dir: Path) -> None:
                 fol_block = row.get("fol_block", "")
                 conversation_history.append({"role": "user", "content": f"Define '{concept_label}' in FOL."})
                 conversation_history.append({"role": "assistant", "content": fol_block or "[no FOL block]"})
-        # Truncate to the last `context_turns` turns to stay within the context window.
-        # Default 30 reproduces the published runs. Setting it to 0 supplies every stored
-        # definition instead, so the reconstruction target and the supplied context coincide
-        # -- the arm reported in the paper's Appendix C.
-        # Turns, not concepts: there are two turns per concept, so 30 turns is 15 concepts.
         context_turns = int(getattr(cfg.phase3, "context_turns", 30))
         if context_turns and len(conversation_history) > context_turns:
             conversation_history = conversation_history[-context_turns:]
@@ -109,14 +95,12 @@ def run_phase3(cfg: Any, out_dir: Path) -> None:
     ontology = cfg.ontology.name
     strategy = cfg.prompting.strategy
 
-    # Resume: skip if a row with the same use_phase1_context value already exists
     results_path = out_dir / "phase3_results.csv"
     if results_path.exists() and results_path.stat().st_size > 0:
         with open(results_path) as f:
             existing = list(csv.DictReader(f))
         for existing_row in existing:
             row_ctx = existing_row.get("use_phase1_context", "True")
-            # Normalise string booleans from CSV
             row_ctx_bool = row_ctx.strip().lower() not in ("false", "0", "")
             if row_ctx_bool == use_ctx:
                 ctx_label = "with-context" if use_ctx else "no-context"
@@ -130,10 +114,10 @@ def run_phase3(cfg: Any, out_dir: Path) -> None:
     reconstruction_text = call_llm(client, model, messages,
                                    temperature=cfg.llm.temperature,
                                    max_tokens=2048,
-                                   timeout=float(getattr(cfg.llm, "timeout_s", 120.0)))
+                                   timeout=float(getattr(cfg.llm, "timeout_s", 120.0)),
+                                   think=getattr(cfg.llm, "think", None))
     t_search = round(time.time() - t_search_start, 3)
 
-    # Save raw reconstruction
     (out_dir / "reconstruction.txt").write_text(reconstruction_text)
 
     t_eval_start = time.time()

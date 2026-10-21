@@ -1,11 +1,3 @@
-"""
-Compute structural and semantic similarity between two ontology graphs.
-
-onto_sim_structural: normalised graph edit distance (GED) ∈ [0,1], higher = more similar.
-onto_sim_semantic:   mean cosine similarity of concept label embeddings (matched pairs).
-concept_coverage:    |LLM ∩ GT| / |GT|  (label-normalised)
-edge_coverage:       |LLM_edges ∩ GT_edges| / |GT_edges|
-"""
 from __future__ import annotations
 import re
 from typing import Any
@@ -23,37 +15,140 @@ try:
 except ImportError:
     HAS_ST = False
 
+try:
+    import rdflib
+    from rdflib.namespace import OWL, RDF, RDFS
+    HAS_RDFLIB = True
+except ImportError:
+    HAS_RDFLIB = False
+
+
 _OWL_BUILTINS = frozenset({"owl", "rdfs", "rdf", "xsd", "thing", "class", "nothing"})
 
+
 def _norm_label(s: str) -> str:
-    """Lowercase + collapse underscores/hyphens to spaces for fuzzy label matching."""
     s = s.lower()
     s = re.sub(r"[_\-]+", " ", s)
     return re.sub(r"\s+", " ", s).strip()
 
+
+def _local_name(term: Any) -> str:
+    if not isinstance(term, rdflib.URIRef):
+        return ""
+    s = str(term)
+    for sep in ("#", "/", ":"):
+        if sep in s:
+            s = s.rsplit(sep, 1)[-1]
+    return s.strip()
+
+
+def _rdf_graph(text: str) -> Any | None:
+    if not (HAS_RDFLIB and HAS_NX):
+        return None
+
+    blocks = re.findall(r"```[A-Za-z0-9_-]*\n(.*?)```", text, re.DOTALL) or [text]
+    g = nx.DiGraph()
+    found = False
+
+    for block in blocks:
+        for fmt in ("turtle", "xml"):
+            rg = rdflib.Graph()
+            try:
+                rg.parse(data=block, format=fmt)
+            except Exception:
+                continue
+            for subject in rg.subjects(RDF.type, OWL.Class):
+                name = _local_name(subject)
+                if name and name.lower() not in _OWL_BUILTINS:
+                    g.add_node(name)
+                    found = True
+            for child, parent in rg.subject_objects(RDFS.subClassOf):
+                cn, pn = _local_name(child), _local_name(parent)
+                if (cn and pn and cn.lower() not in _OWL_BUILTINS
+                        and pn.lower() not in _OWL_BUILTINS):
+                    g.add_edge(cn, pn, rel="subClassOf")
+                    found = True
+            break
+
+    return g if found else None
+
+
+_TTL_CLASS = re.compile(
+    r"^\s*(?:[\w.-]*:)?([A-Za-z_][\w.-]*)\s+(?:a|rdf:type)\s+(?:owl|rdfs):Class",
+    re.IGNORECASE,
+)
+_TTL_SUBJECT = re.compile(
+    r"^\s*(?:[\w.-]*:)?([A-Za-z_][\w.-]*)\s+(?:rdfs:)?subClassOf", re.IGNORECASE
+)
+_TTL_SUBCLASS = re.compile(
+    r"(?:rdfs:)?subClassOf\s+(?:<[^>]*[/#])?(?:[\w.-]*:)?([A-Za-z_][\w.-]*)",
+    re.IGNORECASE,
+)
+
+
+def _add_prefixed_turtle(g: Any, text: str) -> None:
+    subject = None
+    for line in text.split("\n"):
+        declared = _TTL_CLASS.match(line)
+        if declared:
+            subject = declared.group(1)
+            if subject.lower() not in _OWL_BUILTINS:
+                g.add_node(subject)
+        else:
+            implied = _TTL_SUBJECT.match(line)
+            if implied:
+                subject = implied.group(1)
+        for found in _TTL_SUBCLASS.finditer(line):
+            parent = found.group(1)
+            if (subject and parent.lower() not in _OWL_BUILTINS
+                    and subject.lower() not in _OWL_BUILTINS):
+                g.add_edge(subject, parent, rel="subClassOf")
+        if line.rstrip().endswith("."):
+            subject = None
+
+
+_BLOCK_HEADER = re.compile(r"^\s*(SubClassOf|EquivalentTo|Equivalent|Disjoint\w*)\s*:\s*$",
+                           re.IGNORECASE)
+_BLOCK_PAIR = re.compile(
+    r"^\s+<?(?:[\w.-]*:)?([A-Za-z_][\w.-]*)>?\s+<?(?:[\w.-]*:)?([A-Za-z_][\w.-]*)>?\s*$"
+)
+
+
+def _add_block_subclass(g: Any, text: str) -> None:
+    in_subclass = False
+    for line in text.split("\n"):
+        header = _BLOCK_HEADER.match(line)
+        if header:
+            in_subclass = header.group(1).lower() == "subclassof"
+            continue
+        if not line.strip():
+            in_subclass = False
+            continue
+        if not in_subclass:
+            continue
+        pair = _BLOCK_PAIR.match(line)
+        if not pair:
+            continue
+        child, parent = pair.group(1), pair.group(2)
+        if (child.lower() not in _OWL_BUILTINS
+                and parent.lower() not in _OWL_BUILTINS):
+            g.add_edge(child, parent, rel="subClassOf")
+
+
 def parse_manchester_to_graph(manchester_text: str) -> Any | None:
-    """
-    Multi-format parser for LLM-generated ontology text.
-
-    Handles surface forms observed across LLMs:
-      1. Manchester OWL SubClassOf  — Mistral, Qwen (with optional [.;] terminators)
-      2. Turtle  "ClassName a owl:Class"  — Gemma
-      3. LLaMA hybrid "Class:\\n  Name" + "rdfs:subClassOf [ X ]"
-      4. RDF/XML <Class rdf:ID="Name"> + <rdfs:subClassOf rdf:resource="#Parent"/>
-      5. URI Turtle  <URI> a rdfs:Class/owl:Class  — Gemma cso
-      6. Prefixed  prefix:Name owl:Class .  — LLaMA cso
-      7. rdf:type  X rdf:type owl:Class .  — Mistral anatomy
-      8. Arrow  X |-> Y  — Qwen cso CoT
-      9. rdfs:subClassOf prefix:Parent ;  — linked to nearest class
-
-    Returns a DiGraph of (child, parent, rel=subClassOf) edges, or None on failure.
-    """
     if not HAS_NX:
         return None
 
     g = nx.DiGraph()
+    _add_block_subclass(g, manchester_text)
 
-    # ── 1: Manchester OWL SubClassOf — allows optional [.;] terminators ───────
+    parsed = _rdf_graph(manchester_text)
+    if parsed is not None:
+        g.add_nodes_from(parsed.nodes())
+        g.add_edges_from(parsed.edges(data=True))
+
+    _add_prefixed_turtle(g, manchester_text)
+
     subclass_re = re.compile(
         r"(\w[\w\s]*?)\s+SubClassOf[:\s]+(\w[\w\s]*?)\s*[.;]?\s*(?:\n|$)",
         re.MULTILINE | re.IGNORECASE,
@@ -63,14 +158,12 @@ def parse_manchester_to_graph(manchester_text: str) -> Any | None:
         parent = m.group(2).strip()
         g.add_edge(child, parent, rel="subClassOf")
 
-    # ── 2: Turtle "ClassName a owl:Class" ─────────────────────────────────────
     turtle_class_re = re.compile(r"^\s*(\w+)\s+a\s+owl:Class", re.MULTILINE)
     for m in turtle_class_re.finditer(manchester_text):
         cls = m.group(1).strip()
         if cls.lower() not in _OWL_BUILTINS:
             g.add_node(cls)
 
-    # ── 3: Manchester "Class: ClassName" or LLaMA "Class:\n  ClassName" ───────
     class_decl_re = re.compile(
         r"Class:\s*(?:(\w[\w]*)[ \t]*\n|\n[ \t]+(\w[\w]*))",
         re.MULTILINE,
@@ -82,7 +175,6 @@ def parse_manchester_to_graph(manchester_text: str) -> Any | None:
             g.add_node(cls)
             class_positions[m.start()] = cls
 
-    # ── 4: LLaMA "rdfs:subClassOf [ ClassName ]" → link to nearest class ─────
     rdf_subclass_re = re.compile(r"rdfs:subClassOf\s*\[\s*(\w[\w\s]*?)\s*\]", re.MULTILINE)
     for m in rdf_subclass_re.finditer(manchester_text):
         parent = m.group(1).strip()
@@ -99,7 +191,6 @@ def parse_manchester_to_graph(manchester_text: str) -> Any | None:
         else:
             g.add_node(parent)
 
-    # ── 5: "X sub Y" or "X sub Y;" ───────────────────────────────────────────
     sub_keyword_re = re.compile(r"(\w[\w]*)\s+sub\s+(\w[\w]*)\s*[;,]?", re.MULTILINE)
     for m in sub_keyword_re.finditer(manchester_text):
         child = m.group(1).strip()
@@ -107,14 +198,12 @@ def parse_manchester_to_graph(manchester_text: str) -> Any | None:
         if child.lower() not in _OWL_BUILTINS and parent.lower() not in _OWL_BUILTINS:
             g.add_edge(child, parent, rel="subClassOf")
 
-    # ── 6: "X ⊃ Y" description-logic notation ────────────────────────────────
     dl_subclass_re = re.compile(r"(\w[\w]*)\s+[⊃⊂]\s+(\w[\w]*)", re.MULTILINE)
     for m in dl_subclass_re.finditer(manchester_text):
         child, parent = m.group(1).strip(), m.group(2).strip()
         if child.lower() not in _OWL_BUILTINS and parent.lower() not in _OWL_BUILTINS:
             g.add_edge(child, parent, rel="subClassOf")
 
-    # ── 7: rdfs:subClassOf <URI/ClassName> (Gemma CoT URI style) ─────────────
     uri_subclass_re = re.compile(
         r"rdfs:subClassOf\s+<[^>]*/(\w[\w]*)>", re.MULTILINE
     )
@@ -133,14 +222,12 @@ def parse_manchester_to_graph(manchester_text: str) -> Any | None:
         else:
             g.add_node(parent)
 
-    # ── 8: Markdown "**ClassName:**" standalone declarations ──────────────────
     md_class_re = re.compile(r"\*\*(\w[\w]*):\*\*")
     for m in md_class_re.finditer(manchester_text):
         cls = m.group(1).strip()
         if cls.lower() not in _OWL_BUILTINS:
             g.add_node(cls)
 
-    # ── 9: RDF/XML <Class rdf:ID="Name"> + <rdfs:subClassOf rdf:resource="#Parent"/> ──
     rdfxml_block_re = re.compile(
         r'<Class\s+rdf:ID="(\w[\w]*)"\s*>.*?<rdfs:subClassOf\s+rdf:resource="#(\w[\w]*)"\s*/>',
         re.DOTALL,
@@ -156,7 +243,6 @@ def parse_manchester_to_graph(manchester_text: str) -> Any | None:
             g.add_node(cls)
             class_positions[m.start()] = cls
 
-    # ── 10: <URI> a rdfs:Class or owl:Class — extract local name from URI ─────
     uri_a_class_re = re.compile(
         r"<[^>]*?(\w[\w]*)>\s+a\s+(?:owl|rdfs):Class\s*[.;,]?", re.MULTILINE
     )
@@ -167,7 +253,6 @@ def parse_manchester_to_graph(manchester_text: str) -> Any | None:
             g.add_node(cls)
             uri_class_positions[m.start()] = cls
 
-    # ── 11: prefix:Name owl:Class . (e.g. cso:BuildingModel owl:Class .) ──────
     prefix_class_re = re.compile(
         r"(?:\w+:)(\w[\w]*)\s+owl:Class\s*[.;]?", re.MULTILINE
     )
@@ -177,7 +262,6 @@ def parse_manchester_to_graph(manchester_text: str) -> Any | None:
             g.add_node(cls)
             class_positions[m.start()] = cls
 
-    # ── 12: X rdf:type owl:Class . (e.g. AnatomicalRegion rdf:type owl:Class .) ──
     rdf_type_class_re = re.compile(
         r"^(\w[\w]*)\s+rdf:type\s+owl:Class\s*[.;]?", re.MULTILINE
     )
@@ -187,10 +271,8 @@ def parse_manchester_to_graph(manchester_text: str) -> Any | None:
             g.add_node(cls)
             class_positions[m.start()] = cls
 
-    # Build merged position map for linking patterns below
     all_class_positions = {**class_positions, **uri_class_positions}
 
-    # ── 13: rdfs:subClassOf <URI> (any form) — link to nearest preceding class ─
     uri_subclass_any_re = re.compile(
         r"rdfs:subClassOf\s+<[^>]*?(\w[\w]*)>", re.MULTILINE
     )
@@ -209,7 +291,6 @@ def parse_manchester_to_graph(manchester_text: str) -> Any | None:
         else:
             g.add_node(parent)
 
-    # ── 14: rdfs:subClassOf prefix:Parent ; — link to nearest preceding class ──
     prefixed_parent_re = re.compile(
         r"rdfs:subClassOf\s+\w+:(\w[\w]*)\s*[.;]?", re.MULTILINE
     )
@@ -228,7 +309,6 @@ def parse_manchester_to_graph(manchester_text: str) -> Any | None:
         else:
             g.add_node(parent)
 
-    # ── 15: Arrow format prefix:X |-> prefix:Y (Qwen cso CoT) ───────────────
     arrow_subclass_re = re.compile(
         r"(?:\w+:)?(\w[\w]*)\s*\|->\s*(?:\w+:)?(\w[\w]*)", re.MULTILINE
     )
@@ -237,15 +317,12 @@ def parse_manchester_to_graph(manchester_text: str) -> Any | None:
         if child.lower() not in _OWL_BUILTINS and parent.lower() not in _OWL_BUILTINS:
             g.add_edge(child, parent, rel="subClassOf")
 
-    # ── 16: rdfs:label "name" — treat label values as class node candidates ───
     rdfs_label_re = re.compile(r'rdfs:label\s+"([^"]+)"', re.MULTILINE)
     for m in rdfs_label_re.finditer(manchester_text):
         cls = m.group(1).strip()
         if cls.lower() not in _OWL_BUILTINS and len(cls) > 1:
             g.add_node(cls)
 
-    # ── 17: Concept/Class: <URI> — extract local name from angle-bracket URI ─
-    # Handles Gemma ZS "Concept: <http://...#disease>" and "SubClassOf: <URI>"
     concept_uri_re = re.compile(
         r"(?:Concept|Class):\s*<[^>]*?(\w[\w]*)>", re.MULTILINE | re.IGNORECASE
     )
@@ -254,8 +331,6 @@ def parse_manchester_to_graph(manchester_text: str) -> Any | None:
         if cls.lower() not in _OWL_BUILTINS:
             g.add_node(cls)
 
-    # ── 18: Class: name(args) — FOL-style class declaration (Qwen ZS) ─────────
-    # Handles "Class: sawfish(x)\n" → "sawfish"
     class_fol_re = re.compile(
         r"Class:\s+(\w[\w\s]*?)\s*\([^)]*\)\s*\n", re.MULTILINE
     )
@@ -268,11 +343,8 @@ def parse_manchester_to_graph(manchester_text: str) -> Any | None:
         return None
     return g
 
+
 def structural_similarity(gt_graph: Any, llm_graph: Any) -> float:
-    """
-    Approximate normalised GED via node/edge overlap (exact GED is NP-hard).
-    Returns value ∈ [0, 1]. Higher = more similar.
-    """
     if not HAS_NX or gt_graph is None or llm_graph is None:
         return float("nan")
 
@@ -288,11 +360,8 @@ def structural_similarity(gt_graph: Any, llm_graph: Any) -> float:
         return 0.0
     return round(2 * node_overlap * edge_overlap / (node_overlap + edge_overlap), 4)
 
+
 def semantic_similarity(gt_concepts: list[str], llm_concepts: list[str], model_name: str = "all-MiniLM-L6-v2") -> float:
-    """
-    Average cosine similarity between GT concept labels and their nearest LLM concept match.
-    Requires sentence-transformers.
-    """
     if not HAS_ST or not gt_concepts or not llm_concepts:
         return float("nan")
 
@@ -303,6 +372,7 @@ def semantic_similarity(gt_concepts: list[str], llm_concepts: list[str], model_n
     sims = (gt_embs @ llm_embs.T).max(axis=1)
     return round(float(np.mean(sims)), 4)
 
+
 def compute_coverage(gt_concepts: list[str], llm_concepts: list[str],
                      gt_edges: list[tuple], llm_edges: list[tuple]) -> dict:
     gt_set = set(_norm_label(c) for c in gt_concepts)
@@ -311,7 +381,8 @@ def compute_coverage(gt_concepts: list[str], llm_concepts: list[str],
     llm_edge_set = {(_norm_label(a), _norm_label(b)) for a, b in llm_edges}
 
     concept_cov = round(len(gt_set & llm_set) / max(len(gt_set), 1), 4)
-    edge_cov = round(len(gt_edge_set & llm_edge_set) / max(len(gt_edge_set), 1), 4)
+    edge_cov = (round(len(gt_edge_set & llm_edge_set) / len(gt_edge_set), 4)
+                if gt_edge_set else float("nan"))
 
     return {
         "concept_coverage": concept_cov,

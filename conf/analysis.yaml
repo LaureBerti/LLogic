@@ -163,15 +163,67 @@ parent_labels:
       file: mesh.ttl
       format: turtle          # skos:prefLabel, streamed: the file is 803 MB
       iri_prefix: "http://purl.bioontology.org/ontology/MESH/"
-  # No non-builtin parents in their samples, so nothing to resolve.
-  skip: ["book", "agrovoc", "cso"]
+    agrovoc:
+      file: agrovoc_core.rdf
+      format: skosxl          # labels are indirect: concept -> skosxl:prefLabel -> literalForm
+      lang: en
+  # book has only owl:Thing parents. cso parent IRIs are label slugs, so the
+  # IRI-fragment fallback already resolves them.
+  skip: ["book", "cso"]
 
 context_recall:
   # Phase 3 recall scored against the concepts the prompt actually carried, rather than
   # against the whole sampled ontology (see context_recall.py). Reanalysis of the stored
   # reconstruction.txt files; makes no LLM calls.
   results_dir: outputs/results
+  # Sample whose concepts form the full-sample denominator.
+  seed: 42
   # Must match phase3.context_turns in conf/jamer.yaml for the run being rescored:
   # the denominator is context_turns // 2 concepts.
   context_turns: 30
   out_json: outputs/analysis/context_recall.json
+
+phase3_recompute:
+  # Recompute Phase 3 similarity and coverage from each cell's stored reconstruction.txt,
+  # so a change to the extractor or to a sample's hierarchy can be applied without
+  # calling any model. Extractors are unioned, so recovered concepts can only increase.
+  results_dirs: [outputs/results]
+  default_seed: 42
+  exclude: [archive]
+  semantic: false
+  report_json: outputs/analysis/phase3_recompute.json
+  write: false
+
+phase3_pr:
+  # Per-cell concept precision, recall, F1 and invented-concept counts for Phase 3.
+  results_dir: outputs/results
+  seed: 42
+  models: [gemma2_2b, llama3.2_latest, mistral_7b, qwen2.5_7b]
+  out_csv: outputs/analysis/phase3_precision_recall.csv
+  write: false
+
+phase3_fullctx:
+  # Paired comparison of Phase 3 recall under the 30-turn window against the full stored
+  # history, reporting both the full-grid aggregate and the subset both arms parse.
+  published_dir: outputs/results
+  fullctx_dir: outputs/results_fullctx
+  seed: 42
+  models: [gemma2_2b, llama3.2_latest, mistral_7b, qwen2.5_7b]
+  out_json: outputs/analysis/fullctx_comparison.json
+  write: false
+
+phase3_untruncate:
+  # Phase 3 generates with max_tokens=2048 and most reconstructions stop mid-statement.
+  # Re-runs only those cells at a larger budget, recording Ollama's done_reason so
+  # truncation is observed rather than inferred. Needs a local Ollama with the models.
+  source_dir: outputs/results
+  target_dir: outputs/results_untruncated
+  report_json: outputs/analysis/phase3_untruncate.json
+  api_base: http://localhost:11434
+  num_predict: 8192
+  num_ctx: 16384
+  context_turns: 30
+  timeout_s: 7200.0
+  only_truncated: true
+  limit: 0
+  write: false

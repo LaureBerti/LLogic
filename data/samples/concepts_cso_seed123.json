@@ -2,351 +2,600 @@
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/haptic_interfaces",
     "label": "haptic interfaces",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/virtual_reality",
+      "https://cso.kmi.open.ac.uk/topics/user_interfaces",
+      "https://cso.kmi.open.ac.uk/topics/user_interface"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/thermal_images",
     "label": "thermal images",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 7,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/thermography_%28imaging%29",
+      "https://cso.kmi.open.ac.uk/topics/thermography_%28temperature_measurement%29"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/key_management",
     "label": "key management",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/sensor_networks",
+      "https://cso.kmi.open.ac.uk/topics/wsn",
+      "https://cso.kmi.open.ac.uk/topics/sensor_network",
+      "https://cso.kmi.open.ac.uk/topics/wireless_sensor_network_%28wsns%29",
+      "https://cso.kmi.open.ac.uk/topics/wireless_sensor_networks_%28wsns%29",
+      "https://cso.kmi.open.ac.uk/topics/wireless_sensor_network_%28wsn%29",
+      "https://cso.kmi.open.ac.uk/topics/wireless_sensor_networks",
+      "https://cso.kmi.open.ac.uk/topics/wireless_sensor_network",
+      "https://cso.kmi.open.ac.uk/topics/access_control",
+      "https://cso.kmi.open.ac.uk/topics/public_key_cryptography",
+      "https://cso.kmi.open.ac.uk/topics/public-key_cryptography"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/head_up_displays",
     "label": "head up displays",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 5,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/helmet_mounted_displays"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/acoustic_emissions",
     "label": "acoustic emissions",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/acoustics",
+      "https://cso.kmi.open.ac.uk/topics/acoustic"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/local_features",
     "label": "local features",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/face_recognition",
+      "https://cso.kmi.open.ac.uk/topics/object_recognition",
+      "https://cso.kmi.open.ac.uk/topics/facial_recognition"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/data_warehouses",
     "label": "data warehouses",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/data_mining",
+      "https://cso.kmi.open.ac.uk/topics/information_management"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/structural_systems",
     "label": "structural systems",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/structural_optimization"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/tactics_for_cyber_foraging",
     "label": "tactics for cyber foraging",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 5,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/tactics",
+      "https://cso.kmi.open.ac.uk/topics/architectural_tactics",
+      "https://cso.kmi.open.ac.uk/topics/architectural_tactic",
+      "https://cso.kmi.open.ac.uk/topics/architecture_tactic",
+      "https://cso.kmi.open.ac.uk/topics/architecture_tactics"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/non-coherent",
     "label": "non-coherent",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/broadband_networks",
+      "https://cso.kmi.open.ac.uk/topics/fading_%28radio%29",
+      "https://cso.kmi.open.ac.uk/topics/rayleigh_fading",
+      "https://cso.kmi.open.ac.uk/topics/signal_receivers",
+      "https://cso.kmi.open.ac.uk/topics/mimo_systems"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/online_community",
     "label": "online community",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/online_systems",
+      "https://cso.kmi.open.ac.uk/topics/online_system"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/correlated_sources",
     "label": "correlated sources",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/channel_coding"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/reference_nodes",
     "label": "reference nodes",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/sensor_networks",
+      "https://cso.kmi.open.ac.uk/topics/sensor_network",
+      "https://cso.kmi.open.ac.uk/topics/localization_method",
+      "https://cso.kmi.open.ac.uk/topics/localization_problems",
+      "https://cso.kmi.open.ac.uk/topics/localization_errors",
+      "https://cso.kmi.open.ac.uk/topics/localization_accuracy",
+      "https://cso.kmi.open.ac.uk/topics/localization_algorithm",
+      "https://cso.kmi.open.ac.uk/topics/localization_algorithms"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/random_number_generator",
     "label": "random number generator",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/random_number_generation"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/differentiated_services",
     "label": "differentiated services",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/routers",
+      "https://cso.kmi.open.ac.uk/topics/router",
+      "https://cso.kmi.open.ac.uk/topics/telecommunication_services",
+      "https://cso.kmi.open.ac.uk/topics/quality_of_service",
+      "https://cso.kmi.open.ac.uk/topics/quality_of_service_%28qos%29"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/rapid_manufacturing",
     "label": "rapid manufacturing",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/rapid_prototyping"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/initial_alignment",
     "label": "initial alignment",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/strap-down_inertial_navigation_systems"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/naive_bayes_classifiers",
     "label": "naive bayes classifiers",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/classifiers",
+      "https://cso.kmi.open.ac.uk/topics/classifier"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/takagi-sugeno_fuzzy_models",
     "label": "takagi-sugeno fuzzy models",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/nonlinear_control_systems",
+      "https://cso.kmi.open.ac.uk/topics/control_system_synthesis",
+      "https://cso.kmi.open.ac.uk/topics/feedback_control",
+      "https://cso.kmi.open.ac.uk/topics/lyapunov_functional",
+      "https://cso.kmi.open.ac.uk/topics/lyapunov_functions",
+      "https://cso.kmi.open.ac.uk/topics/lyapunov_function",
+      "https://cso.kmi.open.ac.uk/topics/linear_matrix_inequalities",
+      "https://cso.kmi.open.ac.uk/topics/linear_matrix_inequalities_%28lmis%29",
+      "https://cso.kmi.open.ac.uk/topics/linear_matrix_inequality%28lmi%29",
+      "https://cso.kmi.open.ac.uk/topics/linear_matrix_inequality",
+      "https://cso.kmi.open.ac.uk/topics/linear_matrix_inequality_%28lmi%29",
+      "https://cso.kmi.open.ac.uk/topics/lyapunov_functionals",
+      "https://cso.kmi.open.ac.uk/topics/linear_matrix_inequality_%28lmis%29"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/mobile_computing",
     "label": "mobile computing",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/wireless_telecommunication_systems",
+      "https://cso.kmi.open.ac.uk/topics/telecommunication_networks",
+      "https://cso.kmi.open.ac.uk/topics/data_communication_systems"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/wearable_sensors",
     "label": "wearable sensors",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/sensor_networks",
+      "https://cso.kmi.open.ac.uk/topics/sensor_network"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/vlsi_circuits",
     "label": "vlsi circuits",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/hardware",
+      "https://cso.kmi.open.ac.uk/topics/computer_hardware"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/advanced_pharmacy_practice_experience",
     "label": "advanced pharmacy practice experience",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/students%2C_pharmacy"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/image_search",
     "label": "image search",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/search_engines",
+      "https://cso.kmi.open.ac.uk/topics/search_engine",
+      "https://cso.kmi.open.ac.uk/topics/image_retrieval"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/trellis_coded_modulation",
     "label": "trellis coded modulation",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/trellis_codes"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/extreme_learning_machine_%28elm%29",
     "label": "extreme learning machine (elm)",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/back_propagation_neural_networks",
+      "https://cso.kmi.open.ac.uk/topics/knowledge_acquisition",
+      "https://cso.kmi.open.ac.uk/topics/neural_network_model",
+      "https://cso.kmi.open.ac.uk/topics/neural_network",
+      "https://cso.kmi.open.ac.uk/topics/artificial_neural_networks",
+      "https://cso.kmi.open.ac.uk/topics/neural_networks",
+      "https://cso.kmi.open.ac.uk/topics/artificial_neural_network",
+      "https://cso.kmi.open.ac.uk/topics/back-propagation_neural_networks",
+      "https://cso.kmi.open.ac.uk/topics/back-propagation_neural_network"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/fourier_analysis",
     "label": "fourier analysis",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/signal_processing"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/image_reconstruction_algorithm",
     "label": "image reconstruction algorithm",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 5,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/reconstruction_algorithms",
+      "https://cso.kmi.open.ac.uk/topics/reconstruction_algorithm"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/group_key_agreement",
     "label": "group key agreement",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 5,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/group_key",
+      "https://cso.kmi.open.ac.uk/topics/group_key_management",
+      "https://cso.kmi.open.ac.uk/topics/key_agreement"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/smart_transport",
     "label": "smart transport",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 5,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/smart_cities",
+      "https://cso.kmi.open.ac.uk/topics/smart_city"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/submodularity",
     "label": "submodularity",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/submodular"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/rfid_technology",
     "label": "rfid technology",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/rfid",
+      "https://cso.kmi.open.ac.uk/topics/radio_frequency_identification_technology",
+      "https://cso.kmi.open.ac.uk/topics/radio_frequency_identification_%28rfid%29",
+      "https://cso.kmi.open.ac.uk/topics/radio_frequency_identification",
+      "https://cso.kmi.open.ac.uk/topics/radiofrequency_identification"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/delay_tolerant_network",
     "label": "delay tolerant network",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/wireless_networks",
+      "https://cso.kmi.open.ac.uk/topics/wireless_network",
+      "https://cso.kmi.open.ac.uk/topics/ad-hoc_networks",
+      "https://cso.kmi.open.ac.uk/topics/ad_hoc_networks",
+      "https://cso.kmi.open.ac.uk/topics/ad_hoc_network",
+      "https://cso.kmi.open.ac.uk/topics/routing_protocols",
+      "https://cso.kmi.open.ac.uk/topics/routing_protocol"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/ensemble_methods",
     "label": "ensemble methods",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/machine_learning",
+      "https://cso.kmi.open.ac.uk/topics/machine-learning",
+      "https://cso.kmi.open.ac.uk/topics/machine_learning_algorithms",
+      "https://cso.kmi.open.ac.uk/topics/machine_learning_techniques",
+      "https://cso.kmi.open.ac.uk/topics/machine_learning_methods",
+      "https://cso.kmi.open.ac.uk/topics/machine_learnings"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/reconstruction_algorithm",
     "label": "reconstruction algorithm",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/image_reconstruction"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/pulse_compression",
     "label": "pulse compression",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 5,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/laser_produced_plasmas",
+      "https://cso.kmi.open.ac.uk/topics/radar_systems"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/explicit_knowledge",
     "label": "explicit knowledge",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/knowledge_management"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/constraint_programming",
     "label": "constraint programming",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/computer_programming"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/self_reconfiguration",
     "label": "self reconfiguration",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/modular_robots"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/internet_of_things_%28iot%29",
     "label": "internet of things (iot)",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/architecture_types",
+      "https://cso.kmi.open.ac.uk/topics/internet"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/circuit_analysis",
     "label": "circuit analysis",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 5,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/electric_network_analysis"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/knowledge_representation",
     "label": "knowledge representation",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 1,
+    "stratum": "intermediate",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/knowledge_based_systems",
+      "https://cso.kmi.open.ac.uk/topics/knowledge-based_systems",
+      "https://cso.kmi.open.ac.uk/topics/semantics"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/wave-front_sensing",
     "label": "wave-front sensing",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/sensors",
+      "https://cso.kmi.open.ac.uk/topics/sensor"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/graph_visualization",
     "label": "graph visualization",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/information_visualization",
+      "https://cso.kmi.open.ac.uk/topics/graphic_methods"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/fault_coverage",
     "label": "fault coverage",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/built-in_self-test_%28bist%29",
+      "https://cso.kmi.open.ac.uk/topics/built-in_self_test",
+      "https://cso.kmi.open.ac.uk/topics/built-in_self-test",
+      "https://cso.kmi.open.ac.uk/topics/fault_detection",
+      "https://cso.kmi.open.ac.uk/topics/built_in_self_test"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/gan_hemt",
     "label": "gan hemt",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/gan",
+      "https://cso.kmi.open.ac.uk/topics/high_electron_mobility_transistors",
+      "https://cso.kmi.open.ac.uk/topics/microwave_integrated_circuits"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/microprocessor_chips",
     "label": "microprocessor chips",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/hardware",
+      "https://cso.kmi.open.ac.uk/topics/computer_hardware"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/motion_estimation_algorithm",
     "label": "motion estimation algorithm",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 5,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/motion_compensation"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/lexical_database",
     "label": "lexical database",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/natural_language_processing_systems",
+      "https://cso.kmi.open.ac.uk/topics/natural_language_processing",
+      "https://cso.kmi.open.ac.uk/topics/nlp"
+    ]
   },
   {
     "iri": "https://cso.kmi.open.ac.uk/topics/gabor_filters",
     "label": "gabor filters",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "https://cso.kmi.open.ac.uk/topics/face_recognition",
+      "https://cso.kmi.open.ac.uk/topics/facial_recognition"
+    ]
   }
 ]

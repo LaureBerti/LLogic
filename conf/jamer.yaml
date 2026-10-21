@@ -1,52 +1,44 @@
-# JAMER — LLM Ontology Consistency — Hydra config
-# Run: python src/main.py [overrides]
-# Example: python src/main.py llm.model=deepseek-r1:latest ontology.name=anatomy
-
 llm:
-  provider: ollama          # ollama | openai | anthropic
+  provider: ollama
   api_base: http://localhost:11434/v1
   model: llama3.2:latest
-  temperature: 0.0          # 0 for reproducibility; 0.7 for self-consistency sampling
-  max_tokens: 2048          # 2048 needed for reasoning models (DeepSeek-R1)
-  # Retry budget when the first call returns nothing. A reasoning model can spend
-  # the whole 2048 thinking and emit no answer -- qwen3:30b-a3b did exactly that,
-  # finish_reason="length" with 7,883 characters of reasoning and empty content.
+  temperature: 0.0
+  max_tokens: 2048
   max_tokens_retry: 8192
   timeout_retry_s: 1800.0
-  n_samples: 5              # for self-consistency voting
-  timeout_s: 120.0          # HTTP timeout per LLM call (seconds); use 600 for ToT on CPU-only VMs
+  n_samples: 5
+  timeout_s: 120.0
+  think: null
 
 ontology:
-  name: book                # book | anatomy | agrovoc | gemet | cso | snomed | mesh
-  path: data/ontologies/    # directory; file resolved as <path>/<name>.*
+  name: book
+  path: data/ontologies/
 
 sampling:
   n_concepts: 50
   n_relations: 30
   seed: 42
-  stratify_depth: true      # sample ~1/3 leaf, ~1/3 intermediate, ~1/3 root
+  stratify_depth: true
 
 prompting:
-  strategy: zero_shot       # zero_shot | cot | tot | self_consistency
-  fol_format: strict        # strict | relaxed — how tightly to enforce FOL syntax
+  strategy: zero_shot
+  fol_format: strict
 
 solver:
-  endpoint: local           # local (Z3 Python) | remote (formallogic.com API)
-  timeout_s: 10             # per-concept solver timeout
+  endpoint: local
+  timeout_s: 10
 
 metrics:
-  embed_model: all-MiniLM-L6-v2   # sentence-transformers model for semantic sim
-  ged_method: nx_optimize          # graph edit distance method
+  embed_model: all-MiniLM-L6-v2
+  ged_method: nx_optimize
 
 output:
   dir: outputs/results
   paper_ready: outputs/paper_ready
 
 phase3:
-  use_phase1_context: true  # set false for no-context control experiment
-  # Conversation turns of Phase 1 context fed to the reconstruction prompt.
-  # 30 reproduces the published runs (two turns per concept = 15 concepts); 0 = all.
+  use_phase1_context: true
   context_turns: 30
 
-phase: 1          # 0=sample, 1=concepts (FOL+Z3), 2=edges, 3=reconstruct
-phase_2b: false   # set true to run Phase 2b (subClassOf transitivity probing)
+phase: 1
+phase_2b: false

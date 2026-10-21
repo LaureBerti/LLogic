@@ -2,351 +2,502 @@
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_3757",
     "label": "Hyparrhenia rufa",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 11,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_3756"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_1375432196418",
     "label": "crop calendar",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_7779"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_44215",
     "label": "Allolumpenus hypochromus",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 8,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_44211"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_39636",
     "label": "Alepisaurus brevirostris",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 8,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_39633"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_6265",
     "label": "Protostrongylus",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 6,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_31112"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_32189",
     "label": "Oenothera biennis",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 11,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_32188"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_49633",
     "label": "Hypnea valentiae",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 5,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_49769"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_cb1f5fd4",
     "label": "Pantoea",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_2580"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_8331",
     "label": "waterfowl",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": "http://aims.fao.org/aos/agrovoc/xDef_01602895"
+    "depth": 5,
+    "stratum": "leaf",
+    "definition": "http://aims.fao.org/aos/agrovoc/xDef_01602895",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_34154004"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_ce1ba42b",
     "label": "silicon isotopes",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_11852"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_8148",
     "label": "Valle d'Aosta",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": "http://aims.fao.org/aos/agrovoc/xDef_9e9cfbb2"
+    "depth": 6,
+    "stratum": "leaf",
+    "definition": "http://aims.fao.org/aos/agrovoc/xDef_9e9cfbb2",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_4026"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_14213",
     "label": "serum albumin",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_970",
+      "http://aims.fao.org/aos/agrovoc/c_247"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_28727",
     "label": "marginal utility",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": "http://aims.fao.org/aos/agrovoc/xDef_c6600a25"
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "http://aims.fao.org/aos/agrovoc/xDef_c6600a25",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_6210"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_11449",
     "label": "Haemobartonella",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 6,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_5020"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_30937",
     "label": "Psorergatidae",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 8,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_6239"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_38151",
     "label": "Haploblepharus fuscus",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 8,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_38112"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_f678e199",
     "label": "Orobanche purpurea",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": "http://aims.fao.org/aos/agrovoc/xDef_1ec8e0c9"
+    "depth": 11,
+    "stratum": "leaf",
+    "definition": "http://aims.fao.org/aos/agrovoc/xDef_1ec8e0c9",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_5427"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_8476dd49",
     "label": "soluble concentrates",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": "http://aims.fao.org/aos/agrovoc/xDef_5828dc3b"
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "http://aims.fao.org/aos/agrovoc/xDef_5828dc3b",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_13263"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_2636",
     "label": "erect habit",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_5969"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_705cfc43",
     "label": "floating structures",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": "http://aims.fao.org/aos/agrovoc/xDef_f5ce3669"
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "http://aims.fao.org/aos/agrovoc/xDef_f5ce3669",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_92342"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_30644",
     "label": "Xylocoris flavipes",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 10,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_30643"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_5ff9ce03",
     "label": "Crassocephalum crepidioides",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 11,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_45e8126b"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_6783",
     "label": "Santa Catarina",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 7,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_1070"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_1149",
     "label": "Bunostomum",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 6,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_30973"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_26827",
     "label": "soil micromorphological features",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_7179"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_a6881706",
     "label": "fossilized tracks",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": "http://aims.fao.org/aos/agrovoc/xDef_08b12262"
+    "depth": 5,
+    "stratum": "leaf",
+    "definition": "http://aims.fao.org/aos/agrovoc/xDef_08b12262",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_dd34eea6"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_44498",
     "label": "Callogobius amikami",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 8,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_44428"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_6744",
     "label": "sales promotion",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_4625"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_2036",
     "label": "Curcuma xanthorrhiza",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 11,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_2029"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_1358262149742",
     "label": "Yalova Province",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": "http://aims.fao.org/aos/agrovoc/xDef_1358262151282"
+    "depth": 7,
+    "stratum": "leaf",
+    "definition": "http://aims.fao.org/aos/agrovoc/xDef_1358262151282",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_1357288224236"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_7285",
     "label": "spermatogenesis",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": "http://aims.fao.org/aos/agrovoc/xDef_7b9a6cc8"
+    "depth": 6,
+    "stratum": "leaf",
+    "definition": "http://aims.fao.org/aos/agrovoc/xDef_7b9a6cc8",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_27931"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_44477",
     "label": "Astrabe lactisella",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 8,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_44428"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_32313",
     "label": "Argemone mexicana",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 11,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_32312"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_3405",
     "label": "Gryllus",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 8,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_1958"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_33255",
     "label": "commensalism",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": "http://aims.fao.org/aos/agrovoc/xDef_5307e305"
+    "depth": 5,
+    "stratum": "leaf",
+    "definition": "http://aims.fao.org/aos/agrovoc/xDef_5307e305",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_7563"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_49622",
     "label": "Turbinaria conoides",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 5,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_49767"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_36247",
     "label": "Salmonella pullorum",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 5,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_6757"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_13318",
     "label": "phosphotransferases",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 5,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_7865"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_36450",
     "label": "Lawsonia intracellularis",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_36448"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_10470",
     "label": "drug residues",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_6518"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_10594",
     "label": "encephalitis",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": "http://aims.fao.org/aos/agrovoc/xDef_1e4d52e5"
+    "depth": 5,
+    "stratum": "leaf",
+    "definition": "http://aims.fao.org/aos/agrovoc/xDef_1e4d52e5",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_5139"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_2113dd9f",
     "label": "milk processing",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": "http://aims.fao.org/aos/agrovoc/xDef_214ee505"
+    "depth": 3,
+    "stratum": "leaf",
+    "definition": "http://aims.fao.org/aos/agrovoc/xDef_214ee505",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_37969"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_40990",
     "label": "Helogenes castaneus",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 8,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_40989"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_43590",
     "label": "Tilapia bemini",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 10,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_36128"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_7799",
     "label": "Todarodes",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 5,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_1456"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_a527b0a9",
     "label": "marbling",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": "http://aims.fao.org/aos/agrovoc/xDef_154ea739"
+    "depth": 4,
+    "stratum": "leaf",
+    "definition": "http://aims.fao.org/aos/agrovoc/xDef_154ea739",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_12459"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_26562",
     "label": "Marasmiellus",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 7,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_31637"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_36882",
     "label": "trehalase",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 6,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_3308"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_6828",
     "label": "sawfish",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": ""
+    "depth": 5,
+    "stratum": "leaf",
+    "definition": "",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_b89db8ea"
+    ]
   },
   {
     "iri": "http://aims.fao.org/aos/agrovoc/c_1afc194b",
     "label": "water conservation zones",
-    "depth": -1,
-    "stratum": "unknown",
-    "definition": "http://aims.fao.org/aos/agrovoc/xDef_df669b0c"
+    "depth": 2,
+    "stratum": "intermediate",
+    "definition": "http://aims.fao.org/aos/agrovoc/xDef_df669b0c",
+    "parents": [
+      "http://aims.fao.org/aos/agrovoc/c_37952"
+    ]
   }
 ]

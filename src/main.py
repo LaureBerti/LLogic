@@ -1,13 +1,13 @@
-"""JAMER — entry point. Run phases via Hydra config."""
 from __future__ import annotations
 import sys
 from pathlib import Path
-# Add project root so `from src.X import Y` works when run as `python src/main.py`
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import hydra
 from omegaconf import DictConfig
 from dataclasses import dataclass, field
+from typing import Optional
+
 
 @dataclass
 class LLMConfig:
@@ -19,12 +19,15 @@ class LLMConfig:
     max_tokens_retry: int = 8192
     timeout_retry_s: float = 1800.0
     n_samples: int = 5
-    timeout_s: float = 120.0  # HTTP timeout per LLM call; increase for ToT on CPU
+    timeout_s: float = 120.0
+    think: Optional[bool] = None
+
 
 @dataclass
 class OntologyConfig:
     name: str = "book"
     path: str = "data/ontologies/"
+
 
 @dataclass
 class SamplingConfig:
@@ -33,29 +36,35 @@ class SamplingConfig:
     seed: int = 42
     stratify_depth: bool = True
 
+
 @dataclass
 class PromptingConfig:
     strategy: str = "zero_shot"
     fol_format: str = "strict"
+
 
 @dataclass
 class SolverConfig:
     endpoint: str = "local"
     timeout_s: int = 10
 
+
 @dataclass
 class MetricsConfig:
     embed_model: str = "all-MiniLM-L6-v2"
     ged_method: str = "nx_optimize"
+
 
 @dataclass
 class OutputConfig:
     dir: str = "outputs/results"
     paper_ready: str = "outputs/paper_ready"
 
+
 @dataclass
 class Phase3Config:
-    use_phase1_context: bool = True  # set False for no-context control
+    use_phase1_context: bool = True
+
 
 @dataclass
 class JamerConfig:
@@ -67,8 +76,9 @@ class JamerConfig:
     metrics: MetricsConfig = field(default_factory=MetricsConfig)
     output: OutputConfig = field(default_factory=OutputConfig)
     phase3: Phase3Config = field(default_factory=Phase3Config)
-    phase: int = 1          # 0=setup, 1=concepts, 2=edges, 3=reconstruct
-    phase_2b: bool = False  # set True to run Phase 2b (subClassOf transitivity)
+    phase: int = 1
+    phase_2b: bool = False
+
 
 @hydra.main(config_path="../conf", config_name="jamer", version_base=None)
 def main(cfg: DictConfig) -> None:
@@ -102,6 +112,7 @@ def main(cfg: DictConfig) -> None:
 
     elapsed = time.time() - t0
     print(f"[JAMER] Done in {elapsed:.1f}s ({elapsed/60:.1f} min)")
+
 
 if __name__ == "__main__":
     main()
