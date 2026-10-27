@@ -1,34 +1,3 @@
-"""Statistical analyses for LLogic.
-
-Three analyses that are all about inference, not about data
-collection, and therefore run entirely on the results already on disk:
-
-``paired_phase1``
-    An earlier analysis compared models with Kruskal-Wallis and Mann-Whitney,
-    which treat cells as independent. They are not: every model is measured on
-    the same ontology x strategy combinations. This task re-runs the comparisons
-    as blocked, repeated-measures tests (Friedman + Holm-corrected Wilcoxon
-    signed-rank), reports Kendall's W as an effect size, and prints the original
-    unpaired test beside it so the change is visible.
-
-``phase2_rates``
-    Table 4 tested violation rates against a 50% random-guessing null while the
-    text argued they exceed 0%. Those are different questions. This task reports
-    each rate with an exact confidence interval and evaluates both nulls
-    separately, labelling which is which.
-
-``c6_mixed``
-    The domain-moderation claim treated model/strategy cells as replicates of a
-    domain, when the real replicate is the ontology (2 general vs 3 technical).
-    This task fits concept_coverage with ontology as a random effect and reports
-    the result whichever way it falls, next to the original Mann-Whitney.
-
-Run:
-    python src/analysis/stats_tests.py task=paired_phase1
-    python src/analysis/stats_tests.py task=phase2_rates
-    python src/analysis/stats_tests.py task=c6_mixed
-"""
-
 from __future__ import annotations
 
 import csv
@@ -47,39 +16,26 @@ from omegaconf import DictConfig
 
 csv.field_size_limit(10 ** 9)
 
-# Domain assignment used for C6.
 DOMAIN = {"book": "general", "agrovoc": "general",
           "anatomy": "technical", "cso": "technical", "mesh": "technical"}
 
-# Phase 2 was originally run with a hardcoded SKOS relation list applied to every RDF
-# ontology, which is wrong. Counted directly in the source
-# files, the properties actually present are:
-#
-#   AGROVOC : skos:broader 42,269 ; skos:related 8,907 ; skos:narrower 0
-#   GEMET   : skos:broader 5,685  ; skos:narrower 5,689
-#   CSO     : superTopicOf 44,510 ; contributesTo 48,980 ; no skos:* at all
-#
-# and neither AGROVOC, GEMET nor CSO declares any transitive or symmetric
-# property. A measured rate is therefore only interpretable when the property
-# both EXISTS in the ontology and CARRIES the semantics being tested.
 RELATION_PRESENT = {
     ("agrovoc", "broader"): True,
-    ("agrovoc", "narrower"): False,   # AGROVOC contains no skos:narrower
+    ("agrovoc", "narrower"): False,
     ("agrovoc", "related"): True,
-    ("cso", "broader"): False,        # CSO contains no skos:broader
+    ("cso", "broader"): False,
     ("cso", "narrower"): False,
-    ("cso", "related"): False,        # CSO contains no skos:related
+    ("cso", "related"): False,
 }
 
-# Semantics the defining standard licenses for the tested property.
 SEMANTICS_LICENSED = {
-    ("broader", "transitivity"): False,   # skos:broader is not transitive
+    ("broader", "transitivity"): False,
     ("narrower", "transitivity"): False,
-    ("related", "symmetry"): True,        # skos:related is symmetric
+    ("related", "symmetry"): True,
 }
+
 
 def rate_validity(ontology: str, relation: str, kind: str) -> tuple[bool, str]:
-    """Is a measured rate interpretable for this (ontology, relation, test)?"""
     if RELATION_PRESENT.get((ontology, relation)) is False:
         return False, (f"RETRACTED: '{relation}' does not occur in {ontology}; "
                        "the probe tested a property the ontology does not contain")
@@ -89,9 +45,7 @@ def rate_validity(ontology: str, relation: str, kind: str) -> tuple[bool, str]:
                        "defining standard, so a violation is not defined")
     return True, "valid"
 
-# --------------------------------------------------------------------------
-# Helpers
-# --------------------------------------------------------------------------
+
 def read_rows(pattern: str) -> list[dict]:
     rows = []
     for path in sorted(glob.glob(pattern, recursive=True)):
@@ -101,6 +55,7 @@ def read_rows(pattern: str) -> list[dict]:
                 rows.append(row)
     return rows
 
+
 def as_float(value: Any) -> float:
     try:
         out = float(value)
@@ -108,8 +63,8 @@ def as_float(value: Any) -> float:
         return float("nan")
     return out
 
+
 def holm(pvalues: list[float]) -> list[float]:
-    """Holm-Bonferroni adjusted p-values, order preserved."""
     m = len(pvalues)
     order = sorted(range(m), key=lambda i: pvalues[i])
     adjusted = [0.0] * m
@@ -120,8 +75,8 @@ def holm(pvalues: list[float]) -> list[float]:
         adjusted[idx] = min(1.0, running)
     return adjusted
 
+
 def kendalls_w(matrix: np.ndarray) -> float:
-    """Kendall's W for a blocks x treatments matrix (effect size for Friedman)."""
     n_blocks, k = matrix.shape
     if n_blocks == 0 or k < 2:
         return float("nan")
@@ -131,9 +86,11 @@ def kendalls_w(matrix: np.ndarray) -> float:
     s = ((rank_sums - mean_rs) ** 2).sum()
     return float(12 * s / (n_blocks ** 2 * (k ** 3 - k)))
 
+
 def _rankdata(row: np.ndarray) -> np.ndarray:
     from scipy.stats import rankdata
     return rankdata(row)
+
 
 def clopper_pearson(k: int, n: int, conf_level: float) -> tuple[float, float]:
     if n == 0:
@@ -144,12 +101,9 @@ def clopper_pearson(k: int, n: int, conf_level: float) -> tuple[float, float]:
     upper = 1.0 if k == n else float(beta.ppf(1 - alpha / 2, k + 1, n - k))
     return (lower, upper)
 
-# --------------------------------------------------------------------------
-# Task: paired_phase1
-# --------------------------------------------------------------------------
+
 def _blocked_matrix(cells: dict[tuple, float], treatments: list[str],
                     block_keys: list[tuple]) -> tuple[np.ndarray, list[tuple]]:
-    """Build a complete blocks x treatments matrix, dropping incomplete blocks."""
     rows, kept = [], []
     for block in block_keys:
         values = [cells.get(block + (t,), float("nan")) for t in treatments]
@@ -157,6 +111,7 @@ def _blocked_matrix(cells: dict[tuple, float], treatments: list[str],
             rows.append(values)
             kept.append(block)
     return np.array(rows, dtype=float), kept
+
 
 def _friedman_block(name: str, matrix: np.ndarray, treatments: list[str],
                     n_blocks_label: str) -> dict[str, Any]:
@@ -180,7 +135,6 @@ def _friedman_block(name: str, matrix: np.ndarray, treatments: list[str],
     result["friedman"] = {"chi2": round(float(stat), 4), "p": float(p),
                           "kendalls_w": round(kendalls_w(matrix), 4)}
 
-    # The unpaired test the manuscript used, for side-by-side comparison.
     ks_stat, ks_p = kruskal(*[matrix[:, i] for i in range(matrix.shape[1])])
     result["kruskal_wallis_as_submitted"] = {
         "H": round(float(ks_stat), 4), "p": float(ks_p),
@@ -198,7 +152,6 @@ def _friedman_block(name: str, matrix: np.ndarray, treatments: list[str],
             w_stat, w_p = wilcoxon(a, b)
         diff = a - b
         nz = diff[diff != 0]
-        # Matched-pairs rank-biserial correlation as the effect size.
         rbc = float(np.sign(nz).mean()) if nz.size else float("nan")
         pairs.append((treatments[i], treatments[j], float(w_p), round(rbc, 4)))
         praw.append(float(w_p))
@@ -210,6 +163,7 @@ def _friedman_block(name: str, matrix: np.ndarray, treatments: list[str],
         for (a, b, p, rb), q in zip(pairs, adj)
     ]
     return result
+
 
 def task_paired_phase1(cfg: DictConfig, out_dir: str) -> dict[str, Any]:
     path = os.path.join(out_dir, "phase1_cell_table.csv")
@@ -225,7 +179,6 @@ def task_paired_phase1(cfg: DictConfig, out_dir: str) -> dict[str, Any]:
     strategies = list(cfg.grid.strategies)
     ontologies = list(cfg.grid.ontologies)
 
-    # Strategy effect: blocks are (ontology, model).
     strat_cells = {(o, m, s): values[(o, m, s)] for (o, m, s) in values}
     mat_s, kept_s = _blocked_matrix(
         {(o, m) + (s,): v for (o, m, s), v in strat_cells.items()},
@@ -234,7 +187,6 @@ def task_paired_phase1(cfg: DictConfig, out_dir: str) -> dict[str, Any]:
         "prompting strategy", mat_s, strategies,
         "blocked by (ontology, model)")
 
-    # Model effect: blocks are (ontology, strategy).
     mat_m, kept_m = _blocked_matrix(
         {(o, s) + (m,): v for (o, m, s), v in strat_cells.items()},
         models, [(o, s) for o in ontologies for s in strategies])
@@ -259,9 +211,7 @@ def task_paired_phase1(cfg: DictConfig, out_dir: str) -> dict[str, Any]:
         "multiple_comparison_adjustment": "Holm-Bonferroni within each family",
     }
 
-# --------------------------------------------------------------------------
-# Task: phase2_rates
-# --------------------------------------------------------------------------
+
 def task_phase2_rates(cfg: DictConfig, out_dir: str) -> dict[str, Any]:
     from scipy.stats import binomtest
     pattern = os.path.join(cfg.paths.results_dir, cfg.paths.phase2_glob)
@@ -297,7 +247,6 @@ def task_phase2_rates(cfg: DictConfig, out_dir: str) -> dict[str, Any]:
             if flag_col is not None and group[0].get(flag_col) != "1":
                 continue
             if vio_col is None:
-                # Domain-range errors are stored as a rate, not a count.
                 n = sum(int(as_float(r.get(n_col)) or 0) for r in group)
                 k = int(round(sum(as_float(r.get("domain_range_error_rate")) *
                                   (as_float(r.get(n_col)) or 0) for r in group)))
@@ -330,9 +279,7 @@ def task_phase2_rates(cfg: DictConfig, out_dir: str) -> dict[str, Any]:
             })
     return out
 
-# --------------------------------------------------------------------------
-# Task: c6_mixed
-# --------------------------------------------------------------------------
+
 def task_c6_mixed(cfg: DictConfig, out_dir: str) -> dict[str, Any]:
     import pandas as pd
     from scipy.stats import mannwhitneyu
@@ -365,7 +312,6 @@ def task_c6_mixed(cfg: DictConfig, out_dir: str) -> dict[str, Any]:
         "mean_coverage_by_ontology": frame.groupby("ontology").concept_coverage.mean().round(4).to_dict(),
     }
 
-    # The test as submitted: cells treated as independent observations.
     u_stat, u_p = mannwhitneyu(general, technical, alternative="greater")
     n1, n2 = len(general), len(technical)
     z = (u_stat - n1 * n2 / 2) / np.sqrt(n1 * n2 * (n1 + n2 + 1) / 12)
@@ -374,12 +320,9 @@ def task_c6_mixed(cfg: DictConfig, out_dir: str) -> dict[str, Any]:
         "n_general_cells": n1, "n_technical_cells": n2,
         "effect_size_r": round(float(z / np.sqrt(n1 + n2)), 4),
         "note": ("treats each model/strategy cell as a replicate of its domain; "
-                 "this is the pseudoreplication this analysis identifies"),
+                 "this is the pseudoreplication the reviewer identifies"),
     }
 
-    # The ontology-level test: one observation per ontology, which is the real
-    # replicate. With 2 vs 3 ontologies this has almost no power, and saying so
-    # is part of the answer.
     per_onto = frame.groupby(["ontology", "domain"]).concept_coverage.mean().reset_index()
     g_onto = per_onto[per_onto.domain == "general"].concept_coverage.to_numpy()
     t_onto = per_onto[per_onto.domain == "technical"].concept_coverage.to_numpy()
@@ -394,8 +337,6 @@ def task_c6_mixed(cfg: DictConfig, out_dir: str) -> dict[str, Any]:
         "min_attainable_p": 0.1,
     }
 
-    # Leave-one-ontology-out: if the domain contrast depends on a single
-    # ontology, it is an ontology effect wearing a domain label.
     loo = {}
     for dropped in sorted(frame.ontology.unique()):
         sub = frame[frame.ontology != dropped]
@@ -413,7 +354,6 @@ def task_c6_mixed(cfg: DictConfig, out_dir: str) -> dict[str, Any]:
         }
     result["leave_one_ontology_out"] = loo
 
-    # Mixed model: domain as fixed effect, ontology as random intercept.
     try:
         import statsmodels.formula.api as smf
         with warnings.catch_warnings():
@@ -436,7 +376,7 @@ def task_c6_mixed(cfg: DictConfig, out_dir: str) -> dict[str, Any]:
                      "contrast is evaluated against between-ontology variance "
                      "rather than against cell-to-cell noise"),
         }
-    except Exception as exc:  # noqa: BLE001 - report, do not mask
+    except Exception as exc:
         result["mixed_effects"] = {
             "error": f"{type(exc).__name__}: {exc}",
             "interpretation": (
@@ -450,17 +390,8 @@ def task_c6_mixed(cfg: DictConfig, out_dir: str) -> dict[str, Any]:
 
     return result
 
-# --------------------------------------------------------------------------
-# Task: phase2b_strategy
-# --------------------------------------------------------------------------
-def task_phase2b_strategy(cfg: DictConfig, out_dir: str) -> dict[str, Any]:
-    """Does prompting strategy move subClassOf transitivity violations?
 
-    The manuscript asserts relational inconsistency is 'impervious to prompting'.
-    Phase 2b is the only relational experiment that covers all four strategies,
-    so it is the only place that assertion can be tested. Tested here as a
-    blocked comparison, with the incompleteness of the grid stated explicitly.
-    """
+def task_phase2b_strategy(cfg: DictConfig, out_dir: str) -> dict[str, Any]:
     pattern = os.path.join(cfg.paths.results_dir, "**/phase2b_summary.csv")
     rows = read_rows(pattern)
 
@@ -489,7 +420,6 @@ def task_phase2b_strategy(cfg: DictConfig, out_dir: str) -> dict[str, Any]:
                  "comparison and the manuscript must not generalise to them."),
     }
 
-    # Per-cell rates with exact intervals, so the table can report CIs.
     per_cell = []
     for key in sorted(counts):
         k, n = counts[key]
@@ -506,18 +436,8 @@ def task_phase2b_strategy(cfg: DictConfig, out_dir: str) -> dict[str, Any]:
         "claim about tot or self_consistency on named properties is supported.")
     return result
 
-# --------------------------------------------------------------------------
-# Task: phase3_precision
-# --------------------------------------------------------------------------
-def task_phase3_precision(cfg: DictConfig, out_dir: str) -> dict[str, Any]:
-    """Add precision, F1 and hallucination rate to the Phase 3 evaluation.
 
-    The submitted analysis reported concept_coverage only, which is recall:
-    |GT ∩ LLM| / |GT|. It says nothing about how much the model invented. Both
-    |GT| and |LLM| are stored per cell, and coverage is stored to 4 decimals over
-    a 50-concept ground truth, so the intersection size is recoverable exactly
-    (the rounding error is far below 0.5 of a concept). No re-runs are required.
-    """
+def task_phase3_precision(cfg: DictConfig, out_dir: str) -> dict[str, Any]:
     pattern = os.path.join(cfg.paths.results_dir, cfg.paths.phase3_glob)
     rows = read_rows(pattern)
     conf = cfg.stats.conf_level
@@ -606,6 +526,7 @@ def task_phase3_precision(cfg: DictConfig, out_dir: str) -> dict[str, Any]:
         "conf_level": conf,
     }
 
+
 TASKS = {
     "paired_phase1": task_paired_phase1,
     "phase2_rates": task_phase2_rates,
@@ -613,6 +534,7 @@ TASKS = {
     "phase2b_strategy": task_phase2b_strategy,
     "phase3_precision": task_phase3_precision,
 }
+
 
 @hydra.main(version_base=None, config_path="../../conf", config_name="analysis")
 def main(cfg: DictConfig) -> None:
@@ -629,6 +551,7 @@ def main(cfg: DictConfig) -> None:
         json.dump(summary, handle, indent=2, sort_keys=True, default=str)
     print(json.dumps(summary, indent=2, sort_keys=True, default=str))
     print(f"\nwritten: {out_path}")
+
 
 if __name__ == "__main__":
     main()

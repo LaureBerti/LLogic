@@ -1,25 +1,3 @@
-"""Report what experimental results exist, computed from the result files.
-
-A long experimental campaign spreads results across many directories and seeds, and the
-state of it cannot reliably be held in a summary or in memory. This reports, from the files
-themselves:
-
-  - every cell that exists -- (ontology x model x strategy) -- with row counts and
-    completeness against that cell's own expected size. Expected sizes differ per ontology
-    (book samples 36 concepts, anatomy 48, the others 50), so assuming a single number
-    makes complete cells look short and short ones look complete;
-  - empty or failed rows, duplicate keys, and the distribution of each recorded verdict;
-  - which analysis artifacts exist and what they contain.
-
-Run it before drawing any conclusion about coverage, and before launching a run to fill a
-gap: the gap may not be where it is assumed to be.
-
-Compute: CPU only, local, seconds. No LLM calls, no network.
-
-Run:
-    python src/analysis/inventory.py
-"""
-
 from __future__ import annotations
 
 import csv
@@ -36,13 +14,8 @@ from omegaconf import DictConfig
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
 csv.field_size_limit(10 ** 9)
 
-def sample_sizes(root: Path) -> dict[tuple[str, str], int]:
-    """(ontology, seed) -> number of concepts actually sampled.
 
-    A cell is not "short" because it has fewer than 50 rows; it is short relative to
-    its own sample. Treating 50 as universal is what made 36-row book cells and
-    48-row anatomy cells look incomplete.
-    """
+def sample_sizes(root: Path) -> dict[tuple[str, str], int]:
     sizes: dict[tuple[str, str], int] = {}
     for path in glob.glob(str(root / "data/samples/concepts_*_seed*.json")):
         base = os.path.basename(path)
@@ -55,9 +28,11 @@ def sample_sizes(root: Path) -> dict[tuple[str, str], int]:
             continue
     return sizes
 
+
 def seed_of(results_dir: str) -> str:
     name = os.path.basename(results_dir.rstrip("/"))
     return name.replace("results_seed", "") if name.startswith("results_seed") else "42"
+
 
 def scan_phase1(root: Path, sizes: dict[tuple[str, str], int]) -> list[dict]:
     rows = []
@@ -85,6 +60,7 @@ def scan_phase1(root: Path, sizes: dict[tuple[str, str], int]) -> list[dict]:
             })
     return rows
 
+
 def scan_phase2b(root: Path) -> list[dict]:
     rows = []
     for results_dir in sorted(glob.glob(str(root / "outputs/results*"))):
@@ -97,13 +73,8 @@ def scan_phase2b(root: Path) -> list[dict]:
                          "model": parts[-3], "strategy": parts[-2], "rows": len(data)})
     return rows
 
-def scan_phase3(root: Path) -> list[dict]:
-    """Phase 3 cells across every results tree, with the context size each one carried.
 
-    Reported per tree, because the published arm and the full-context arm live in different
-    trees by design, and because a cell is only scorable if its reconstruction.txt survived:
-    a cell without one can never be rescored against a different denominator.
-    """
+def scan_phase3(root: Path) -> list[dict]:
     rows = []
     for results_dir in sorted(glob.glob(str(root / "outputs/results*"))):
         if not os.path.isdir(results_dir):
@@ -137,14 +108,16 @@ def scan_phase3(root: Path) -> list[dict]:
             })
     return rows
 
+
 def scan_arms(root: Path) -> dict:
     out = {}
-    for path in sorted(glob.glob(str(root / "outputs/analysis/reasoner_arm_*.json"))):
+    for path in sorted(glob.glob(str(root / "outputs/paper_ready/analysis/r4_10f_*.json"))):
         try:
             out[os.path.basename(path)] = json.load(open(path))
         except (OSError, ValueError):
             out[os.path.basename(path)] = "unreadable"
     return out
+
 
 @hydra.main(version_base=None, config_path="../../conf", config_name="analysis")
 def main(cfg: DictConfig) -> None:
@@ -190,20 +163,21 @@ def main(cfg: DictConfig) -> None:
         print(f"\n  ontologies covered: {covered}")
 
     print("\n" + "=" * 78)
+    print("R4-10f ARMS — results files present")
+    print("=" * 78)
     print("PHASE 3 — cells on disk, by tree")
     print("=" * 78)
     p3 = scan_phase3(root)
     if not p3:
         print("  none")
-    bytree: dict[str, list[dict]] = defaultdict(list)
+    bytree: dict = {}
     for r in p3:
-        bytree[r["tree"]].append(r)
+        bytree.setdefault(r["tree"], []).append(r)
     for tree, rs in sorted(bytree.items()):
         scorable = [r for r in rs if r["has_reconstruction"]]
         norec = len(rs) - len(scorable)
         ccs = [r["concept_coverage"] for r in rs
-               if isinstance(r["concept_coverage"], float)
-               and r["concept_coverage"] == r["concept_coverage"]]
+               if isinstance(r["concept_coverage"], float) and r["concept_coverage"] == r["concept_coverage"]]
         mean = f"{sum(ccs)/len(ccs):.3f}" if ccs else "n/a"
         turns = sorted({r["available_context_turns"] for r in rs})
         print(f"  {tree:<22s} {len(rs):3d} cells, {len(scorable):3d} with reconstruction.txt"
@@ -213,8 +187,6 @@ def main(cfg: DictConfig) -> None:
         if dups:
             print(f"  {'':<22s} !! {len(dups)} cell(s) with >1 row -- check for duplicate appends")
 
-    print("\n" + "=" * 78)
-    print("the reasoner validation ARMS — results files present")
     print("=" * 78)
     arms = scan_arms(root)
     if not arms:
@@ -234,8 +206,9 @@ def main(cfg: DictConfig) -> None:
     out_path = root / cfg.paths.out_dir / "experiment_inventory.json"
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(
-        {"phase1": p1, "phase2b": p2, "phase3": p3, "reasoner_arms": list(arms)}, indent=2, default=str))
+        {"phase1": p1, "phase2b": p2, "phase3": p3, "r4_10f_arms": list(arms)}, indent=2, default=str))
     print(f"\nwritten: {out_path.relative_to(root)}")
+
 
 if __name__ == "__main__":
     main()

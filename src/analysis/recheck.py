@@ -1,31 +1,3 @@
-"""Re-check every stored Phase 1 definition under a corrected encoding.
-
-Why this exists. The Phase 1 pipeline encodes a definition as
-
-    forall x: C(x) <-> Body(x)
-
-and asks Z3 whether that sentence is satisfiable. It essentially always is: if
-Body is contradictory, the sentence is still satisfied by giving C an empty
-extension. The injection experiment confirms this behaviour directly --
-``C(x) <-> (P(x) and Q(x) and not P(x))`` is reported ``sat``, while the
-syntactically adjacent ``C(x) <-> (P(x) and not P(x))`` is reported ``unsat``
-only because a pattern matcher fires on it. Detection therefore tracked
-syntactic adjacency rather than logic.
-
-The corrected question is the one OWL reasoners actually ask about a class: is
-the class satisfiable, i.e. can anything at all satisfy the definition's body?
-
-    exists x: Body(x)
-
-If that is unsatisfiable, the definition describes a necessarily empty concept,
-which is the concept-level analogue of an unsatisfiable OWL class.
-
-This runs entirely on ``fol_block`` values already stored on disk. No LLM calls.
-
-Run:
-    python src/analysis/recheck.py
-"""
-
 from __future__ import annotations
 
 import csv
@@ -44,12 +16,10 @@ from omegaconf import DictConfig
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
 csv.field_size_limit(10 ** 9)
 
-# Definition connectives, most specific first. The parser normalises Unicode to
-# ASCII, but stored blocks also contain raw LaTeX from some models.
 _CONNECTIVES = ["<->", "<=>", r"\leftrightarrow", r"\equiv", "->", r"\rightarrow"]
 
+
 def extract_body(block: str) -> tuple[str, str] | None:
-    """Return (connective, body) for the definitional part of a block."""
     for connective in _CONNECTIVES:
         idx = block.find(connective)
         if idx != -1:
@@ -60,6 +30,7 @@ def extract_body(block: str) -> tuple[str, str] | None:
                 return connective, body
     return None
 
+
 def clopper_pearson(k: int, n: int, conf_level: float) -> tuple[float, float]:
     if n == 0:
         return (float("nan"), float("nan"))
@@ -68,6 +39,7 @@ def clopper_pearson(k: int, n: int, conf_level: float) -> tuple[float, float]:
     lower = 0.0 if k == 0 else float(beta.ppf(alpha / 2, k, n - k + 1))
     upper = 1.0 if k == n else float(beta.ppf(1 - alpha / 2, k + 1, n - k))
     return (lower, upper)
+
 
 @hydra.main(version_base=None, config_path="../../conf", config_name="analysis")
 def main(cfg: DictConfig) -> None:
@@ -121,7 +93,6 @@ def main(cfg: DictConfig) -> None:
         writer.writerows(records)
 
     verdicts = Counter(r["corrected_verdict"] for r in records)
-    # Evaluable = the corrected check actually reached a solver decision.
     evaluable = [r for r in records if r["corrected_verdict"] in ("sat", "unsat")]
     contradictory = [r for r in evaluable if r["corrected_verdict"] == "unsat"]
     lo, hi = clopper_pearson(len(contradictory), len(evaluable), cfg.stats.conf_level)
@@ -162,6 +133,7 @@ def main(cfg: DictConfig) -> None:
     print(json.dumps({k: v for k, v in summary.items()
                       if k != "examples_newly_detected"}, indent=2, sort_keys=True))
     print(f"\nwritten: {out_path}")
+
 
 if __name__ == "__main__":
     main()

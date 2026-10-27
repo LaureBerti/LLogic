@@ -1,17 +1,3 @@
-"""LLM-as-judge for Phase 1: semantic contradiction detection.
-
-For each row in phase1_results.csv, calls a local LLM (default: llama3.2:latest)
-to judge whether the FOL definition is logically self-contradictory.
-
-Adds column `llm_judge_contradiction` (1=yes, 0=no, -1=unsure/failed) to a new
-file phase1_results_judged.csv. Original CSV is never modified.
-
-The judge sees only the FOL block, not the solver result, so this is an independent signal.
-
-Usage:
-    python src/llm_judge_phase1.py [--judge-model llama3.2:latest] [--api-base http://localhost:11434/v1]
-    python src/llm_judge_phase1.py --dry-run  # show first 3 prompts, no API calls
-"""
 from __future__ import annotations
 import argparse
 import csv
@@ -47,6 +33,7 @@ If there is no explicit P(x) and not P(x) pattern, answer NO.
 Reason step by step, then end your response with exactly one line: YES, NO, or UNSURE.\
 """
 
+
 def build_judge_messages(concept_label: str, fol_block: str) -> list[dict]:
     return [
         {"role": "system", "content": JUDGE_PROMPT_SYSTEM},
@@ -55,13 +42,8 @@ def build_judge_messages(concept_label: str, fol_block: str) -> list[dict]:
         )},
     ]
 
-def parse_judge_response(response: str) -> int:
-    """Return 1=yes, 0=no, -1=unsure.
 
-    Scans from the last line upward so reasoning chains don't confuse the parser.
-    DeepSeek-R1 ends its response with the final verdict after the <think> block
-    has been stripped by call_llm().
-    """
+def parse_judge_response(response: str) -> int:
     if not response:
         return -1
     for line in reversed(response.strip().splitlines()):
@@ -72,18 +54,17 @@ def parse_judge_response(response: str) -> int:
             return 0
         if token in ("UNSURE", "UNSURE."):
             return -1
-        # also accept lines that are purely YES/NO with punctuation
         if token.startswith("YES") and len(token) <= 5:
             return 1
         if token.startswith("NO") and len(token) <= 4:
             return 0
-    # fallback: search anywhere in last 200 chars
     tail = response[-200:].upper()
     if "\nYES" in tail or tail.endswith("YES") or tail.endswith("YES."):
         return 1
     if "\nNO" in tail or tail.endswith("NO") or tail.endswith("NO."):
         return 0
     return -1
+
 
 def judge_file(path: Path, client: object, model: str, dry_run: bool = False) -> Path:
     from src.prompting.llm_client import call_llm
@@ -109,7 +90,6 @@ def judge_file(path: Path, client: object, model: str, dry_run: bool = False) ->
         new_row = dict(row)
 
         if key in already_judged:
-            # preserve existing judge result (will be merged on write)
             skipped += 1
             new_rows.append(new_row)
             continue
@@ -142,7 +122,6 @@ def judge_file(path: Path, client: object, model: str, dry_run: bool = False) ->
         new_rows.append(new_row)
 
     if not dry_run:
-        # Merge with already-judged rows
         if already_judged and out_path.exists():
             existing = {f"{r['concept_iri']}|{r['strategy']}": r
                         for r in csv.DictReader(open(out_path))}
@@ -165,6 +144,7 @@ def judge_file(path: Path, client: object, model: str, dry_run: bool = False) ->
     print(f"  → {path.parts[-4]}/{path.parts[-3]}/{path.parts[-2]}: {judged} judged, {skipped} skipped")
     return out_path
 
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--judge-model", default="mistral:7b")
@@ -185,7 +165,6 @@ def main() -> None:
         api_key = "ollama" if "11434" in args.api_base or "localhost" in args.api_base else "key"
         client = OpenAI(api_key=api_key, base_url=args.api_base)
         print(f"Judge model: {args.judge_model} via {args.api_base}")
-        # Pre-warm: force model load before the timed batch begins
         print("Warming up model (may take ~60s on cold start)...")
         from src.prompting.llm_client import call_llm
         try:
@@ -203,6 +182,7 @@ def main() -> None:
     if not args.dry_run:
         print("\nDone. Judged CSVs: phase1_results_judged.csv alongside each input.")
         print("Run src/reanalyze_phase1.py to also apply the improved Z3 parser (if not done).")
+
 
 if __name__ == "__main__":
     main()

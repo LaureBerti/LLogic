@@ -1,27 +1,3 @@
-"""Recompute every C1 number from a single stated grid, and write it to an artifact.
-
-Why this exists. The C1 figures in the manuscript (2,579 valid / 1,165 parse failures /
-3,744 evaluated) matched no file in `outputs/analysis/`. They were computed
-once and hardcoded, and the live results tree could not reproduce them: 82.9% of the
-submitted-grid rows there still store replies truncated at 300 characters, so the extractor
-cannot be re-applied to them.
-
-The run that produced them survives as `outputs/archive/collapse_vm_20260906/`, recovered
-from a VM before it was deleted. It reproduces the denominator exactly (3,744) and the rate
-to 0.1 pp, and it stores full replies for the rows the live tree truncates. This script
-recomputes C1 from it so that every number in the paper traces to a file.
-
-The grid is stated explicitly rather than assumed, because the manuscript's two number
-families used different denominators (3,744 over the submitted grid; 4,489 over the whole
-corpus) without saying which was which.
-
-Compute: CPU only, local, seconds. No LLM calls, no network.
-
-Run:
-    python src/analysis/c1_recompute.py
-    python src/analysis/c1_recompute.py c1.source=outputs/results
-"""
-
 from __future__ import annotations
 
 import csv
@@ -37,11 +13,9 @@ from omegaconf import DictConfig
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
 csv.field_size_limit(10 ** 9)
 
-# The grid an earlier version reports on: the four original models over the five
-# ontologies that carry usable concept labels. Stated here so the denominator is a
-# decision, not an accident of which directories happened to exist.
 GRID_ONTOLOGIES = ("book", "anatomy", "agrovoc", "cso", "mesh")
 GRID_MODELS = ("gemma2_2b", "llama3.2_latest", "mistral_7b", "qwen2.5_7b")
+
 
 def clopper_pearson_upper(k: int, n: int, conf: float, one_sided: bool) -> float:
     from scipy.stats import beta
@@ -50,13 +24,8 @@ def clopper_pearson_upper(k: int, n: int, conf: float, one_sided: bool) -> float
     alpha = (1.0 - conf) if one_sided else (1.0 - conf) / 2
     return 1.0 if k == n else float(beta.ppf(1 - alpha, k + 1, n - k))
 
-def collect(source: Path) -> tuple[list[dict], int]:
-    """Rows of the stated grid, plus the count dropped as CSV-garbled.
 
-    A garbled row has a strategy field carrying a fragment of another field, from
-    unescaped newlines in an early run. They are excluded from every analysis and the
-    count is reported rather than passed over (an earlier defect).
-    """
+def collect(source: Path) -> tuple[list[dict], int]:
     rows, garbled = [], 0
     for path in sorted(glob.glob(str(source / "*/*/*/phase1_results.csv"))):
         parts = path.split("/")
@@ -69,6 +38,7 @@ def collect(source: Path) -> tuple[list[dict], int]:
                 continue
             rows.append(row)
     return rows, garbled
+
 
 @hydra.main(version_base=None, config_path="../../conf", config_name="analysis")
 def main(cfg: DictConfig) -> None:
@@ -130,6 +100,7 @@ def main(cfg: DictConfig) -> None:
     print(f"\nstored replies truncated at 300 chars: {truncated} "
           f"({100*truncated/n:.1f}%)   empty: {empty}")
     print(f"\nwritten: {out_path.relative_to(root)}")
+
 
 if __name__ == "__main__":
     main()

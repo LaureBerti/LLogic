@@ -1,23 +1,3 @@
-"""Contradiction-injection validation of the Phase 1 checker.
-
-The manuscript reports zero Z3-detectable contradictions across every compilable
-FOL definition. On its own that number is uninterpretable: a checker that never
-fires would produce exactly the same result. the analysis asks for validation
-against controlled contradictions.
-
-This task takes definitions the models actually produced, injects contradictions
-of known kinds at known positions, and measures how often the existing Phase 1
-pipeline recovers them. It reports a sensitivity (true-positive rate) per
-injection kind, and a false-positive rate on untouched controls.
-
-Nothing here involves an LLM: the definitions already exist on disk and the
-checker is local Z3. It is CPU work of the order of seconds per hundred formulas.
-
-Run:
-    python src/analysis/injection.py
-    python src/analysis/injection.py injection.n_per_kind=500
-"""
-
 from __future__ import annotations
 
 import csv
@@ -40,20 +20,16 @@ csv.field_size_limit(10 ** 9)
 _ATOM = re.compile(r"\b([A-Za-z_]\w*)\s*\(\s*([^()]*?)\s*\)")
 _BICOND = re.compile(r"<->")
 
+
 def split_definition(block: str) -> tuple[str, str] | None:
-    """Split 'forall x: C(x) <-> BODY' into (prefix_including_arrow, body)."""
     match = _BICOND.search(block)
     if not match:
         return None
     head, body = block[:match.end()], block[match.end():]
     return (head, body.strip()) if body.strip() else None
 
-def inject_explicit_negation(block: str, label: str, rng: random.Random) -> str | None:
-    """Conjoin the negation of a conjunct the definition already asserts.
 
-    Produces C(x) <-> (... and P(t) and not P(t)), which is unsatisfiable for
-    any non-empty extension of C.
-    """
+def inject_explicit_negation(block: str, label: str, rng: random.Random) -> str | None:
     parts = split_definition(block)
     if not parts:
         return None
@@ -65,8 +41,8 @@ def inject_explicit_negation(block: str, label: str, rng: random.Random) -> str 
     atom = rng.choice(atoms)
     return f"{head} ({body}) and not {atom}"
 
+
 def inject_fresh_contradiction(block: str, label: str, rng: random.Random) -> str | None:
-    """Conjoin a self-contained contradiction on a predicate not otherwise used."""
     parts = split_definition(block)
     if not parts:
         return None
@@ -74,8 +50,8 @@ def inject_fresh_contradiction(block: str, label: str, rng: random.Random) -> st
     fresh = f"Zq{rng.randrange(10_000)}"
     return f"{head} ({body}) and ({fresh}(x) and not {fresh}(x))"
 
+
 def inject_self_negation(block: str, label: str, rng: random.Random) -> str | None:
-    """Replace the body with the negation of the definiendum: C(x) <-> not C(x)."""
     parts = split_definition(block)
     if not parts:
         return None
@@ -83,11 +59,13 @@ def inject_self_negation(block: str, label: str, rng: random.Random) -> str | No
     safe = re.sub(r"\W+", "_", label).strip("_") or "C"
     return f"{head} not {safe}(x)"
 
+
 INJECTORS = {
     "explicit_negation_of_own_conjunct": inject_explicit_negation,
     "fresh_predicate_contradiction": inject_fresh_contradiction,
     "self_negation": inject_self_negation,
 }
+
 
 def load_compilable(cfg: DictConfig) -> list[dict]:
     ontologies = set(cfg.grid.ontologies)
@@ -106,6 +84,7 @@ def load_compilable(cfg: DictConfig) -> list[dict]:
                     rows.append(row)
     return rows
 
+
 def clopper_pearson(k: int, n: int, conf_level: float) -> tuple[float, float]:
     if n == 0:
         return (float("nan"), float("nan"))
@@ -115,6 +94,7 @@ def clopper_pearson(k: int, n: int, conf_level: float) -> tuple[float, float]:
     upper = 1.0 if k == n else float(beta.ppf(1 - alpha / 2, k + 1, n - k))
     return (lower, upper)
 
+
 @hydra.main(version_base=None, config_path="../../conf", config_name="analysis")
 def main(cfg: DictConfig) -> None:
     root = hydra.utils.get_original_cwd()
@@ -123,6 +103,8 @@ def main(cfg: DictConfig) -> None:
     os.makedirs(out_dir, exist_ok=True)
 
     from src.parsing.fol_parser import parse_to_z3, check_satisfiability
+    from src.analysis.recheck import extract_body as _eb
+    extract_body = lambda b: (_eb(b) or (None,))[-1] if _eb(b) else None
 
     n_per_kind = int(cfg.injection.n_per_kind)
     timeout_ms = int(cfg.injection.solver_timeout_s * 1000)
@@ -133,15 +115,22 @@ def main(cfg: DictConfig) -> None:
         sys.exit("no compilable Phase 1 definitions found")
     print(f"compilable definitions available: {len(pool)}")
 
+    encoding = str(getattr(cfg.injection, "encoding", "original")).lower()
+
     def verdict(block: str, label: str) -> str:
-        expr, ok = parse_to_z3(block, label)
+        if encoding == "corrected":
+            body = extract_body(block)
+            if body is None:
+                return "no_body_found"
+            expr, ok = parse_to_z3(f"exists x: ({body})", label)
+        else:
+            expr, ok = parse_to_z3(block, label)
         if not ok:
             return "parse_fail"
         return check_satisfiability(expr, timeout_ms=timeout_ms)
 
     records: list[dict] = []
 
-    # Control arm: untouched definitions must not be flagged.
     controls = rng.sample(pool, min(n_per_kind, len(pool)))
     for row in controls:
         records.append({
@@ -153,7 +142,6 @@ def main(cfg: DictConfig) -> None:
         print(f"\rcontrol {len(records)}/{len(controls)}", end="", flush=True)
     print()
 
-    # Injection arms.
     for kind, injector in INJECTORS.items():
         chosen = rng.sample(pool, min(n_per_kind, len(pool)))
         done = 0
@@ -223,6 +211,7 @@ def main(cfg: DictConfig) -> None:
         json.dump(summary, handle, indent=2, sort_keys=True)
     print(json.dumps(summary, indent=2, sort_keys=True))
     print(f"\nwritten: {out_path}")
+
 
 if __name__ == "__main__":
     main()

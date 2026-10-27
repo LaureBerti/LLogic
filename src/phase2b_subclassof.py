@@ -1,19 +1,3 @@
-"""Phase 2b: subClassOf transitivity probing via full ontology parent map.
-
-For each sampled concept C, we enumerate triples (C, B, A) where:
-  C subClassOf B  and  B subClassOf A  (from the full ontology, not just the sample).
-We then ask the LLM: "Is C also a subclass of A?"  A "NO" answer = transitivity violation.
-
-Phase 2 probes only named object properties
-(Anatomy has 2, making C4's ≥3 qualifier hollow). subClassOf applies to all OWL
-ontologies and produces much larger sample sizes.
-
-Supported ontologies:
-  - anatomy, cso  (OWL/rdf — owlready2/rdflib, uses is_a parents or cso:superTopicOf)
-  - agrovoc       (SKOS — rdflib, uses skos:broader; loads slowly ~120s)
-  - book          (OWL — flat hierarchy, all concepts → owl:Thing; 0 triples, self-skips)
-  - gemet         (SKOS — numeric IRIs, no English labels in RDF; self-skips)
-"""
 from __future__ import annotations
 
 import sys
@@ -25,14 +9,12 @@ import time
 from pathlib import Path
 from typing import Any
 
-# Allow `from src.X import Y` whether invoked as a script or as a module
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-# Optional heavy imports — graceful fallback
 try:
     import owlready2 as owl
 except ImportError:
-    owl = None  # type: ignore
+    owl = None
 
 try:
     from rdflib import Graph, URIRef
@@ -41,17 +23,14 @@ try:
 except ImportError:
     _RDFLIB_AVAILABLE = False
 
-# ---------------------------------------------------------------------------
-# Ontology metadata
-# ---------------------------------------------------------------------------
 
 ONTOLOGY_FILES = {
     "book":    ("book.rdf",           "owl"),
     "anatomy": ("anatomy.owl",        "owl"),
     "agrovoc": ("agrovoc_core.rdf",   "skos"),
     "gemet":   ("gemet.rdf",          "skos"),
-    "cso":     ("cso.owl",            "cso"),   # custom schema: cso:superTopicOf
-    "mesh":    ("mesh.ttl",           "mesh"),  # BioPortal: owl:Class + rdfs:subClassOf
+    "cso":     ("cso.owl",            "cso"),
+    "mesh":    ("mesh.ttl",           "mesh"),
 }
 
 _CSO_SUPER_TOPIC_OF = "http://cso.kmi.open.ac.uk/schema/cso#superTopicOf"
@@ -59,9 +38,6 @@ _CSO_SUPER_TOPIC_OF = "http://cso.kmi.open.ac.uk/schema/cso#superTopicOf"
 MAX_TRIPLES = 50
 SAMPLE_SEED = 42
 
-# Reasoning strategies need room to reason before their final verdict line; the
-# zero-shot probe answers in one word. Using 16 tokens for every strategy would
-# truncate CoT and ToT before they reach a verdict.
 STRATEGY_MAX_TOKENS = {
     "zero_shot": 16,
     "cot": 200,
@@ -69,8 +45,6 @@ STRATEGY_MAX_TOKENS = {
     "self_consistency": 16,
 }
 
-# CPU inference on a laptop: a 200-token reasoning reply can take minutes, and
-# the client default is far too short. Sized per strategy from a measured run.
 STRATEGY_TIMEOUT_S = {
     "zero_shot": 120.0,
     "cot": 420.0,
@@ -78,22 +52,9 @@ STRATEGY_TIMEOUT_S = {
     "self_consistency": 120.0,
 }
 
-# Reasoning models (qwen3, deepseek-r1, …) spend the token budget thinking before
-# they emit a verdict, and Ollama counts those thinking tokens against max_tokens.
-# At the budgets above they hit finish_reason="length" mid-thought and return an
-# empty string, which is why the first Phase 2b run scored qwen3 100% unclear and
-# gemma4 93.5%. Measured on deepseek-r1:1.5b for one anatomy triple: 16 and 200
-# tokens both return "", 800 returns a clean "YES".
-#
-# The escalation is applied on an empty reply rather than from a hardcoded model
-# list, so a model that has never been seen before is handled too, and a model
-# that answers within its normal budget costs nothing extra.
 EMPTY_REPLY_MAX_TOKENS = 2000
 EMPTY_REPLY_TIMEOUT_S = 900.0
 
-# Self-consistency must sample, so it cannot run at the deterministic
-# temperature used for the other strategies. Matches Phase 1, which samples
-# self-consistency at 0.7.
 SELF_CONSISTENCY_TEMPERATURE = 0.7
 
 RESULT_COLS = [
@@ -109,12 +70,8 @@ SUMMARY_COLS = [
     "n_unclear",
 ]
 
-# ---------------------------------------------------------------------------
-# Parent-map builders (full ontology — not restricted to the sample)
-# ---------------------------------------------------------------------------
 
 def _build_parent_map_owl(onto_path: Path) -> tuple[dict[str, list[str]], dict[str, str]]:
-    """Return (parent_map, label_map) from an OWL ontology via owlready2."""
     if owl is None:
         raise ImportError("owlready2 is required for OWL ontologies. pip install owlready2")
     onto = owl.get_ontology(str(onto_path)).load()
@@ -127,19 +84,17 @@ def _build_parent_map_owl(onto_path: Path) -> tuple[dict[str, list[str]], dict[s
         parent_map[iri] = parents
     return parent_map, label_map
 
+
 def _build_parent_map_skos(onto_path: Path) -> tuple[dict[str, list[str]], dict[str, str]]:
-    """Return (parent_map, label_map) using skos:broader as parent relation."""
     if not _RDFLIB_AVAILABLE:
         raise ImportError("rdflib is required for SKOS ontologies. pip install rdflib")
     g = Graph()
     g.parse(str(onto_path))
 
-    # Build broader map: subject → list of broader concepts (= parents in hierarchy)
     parent_map: dict[str, list[str]] = {}
     for s, _, o in g.triples((None, SKOS.broader, None)):
         parent_map.setdefault(str(s), []).append(str(o))
 
-    # Build English prefLabel map
     label_map: dict[str, str] = {}
     for s, _, o in g.triples((None, SKOS.prefLabel, None)):
         lang = getattr(o, "language", None)
@@ -147,13 +102,6 @@ def _build_parent_map_skos(onto_path: Path) -> tuple[dict[str, list[str]], dict[
         if lang == "en" or s_str not in label_map:
             label_map[s_str] = str(o)
 
-    # Fallback: SKOS-XL prefLabel -> literalForm. AGROVOC publishes ZERO plain
-    # skos:prefLabel triples, so without this every concept is unlabelled, the
-    # transitivity probe finds nothing, and the run reports "no transitivity triples
-    # ... may have a flat hierarchy". That reading is wrong: AGROVOC has 42,269
-    # skos:broader triples and 41,261 A->B->C chains. `ontology_loader.py` already
-    # had this fallback; Phase 2b did not, which is why Phase 2b silently covered
-    # only 2 of the 4 study ontologies.
     if not label_map:
         from rdflib import Namespace
         SKOSXL = Namespace("http://www.w3.org/2008/05/skos-xl#")
@@ -166,12 +114,8 @@ def _build_parent_map_skos(onto_path: Path) -> tuple[dict[str, list[str]], dict[
 
     return parent_map, label_map
 
-def _build_parent_map_cso(onto_path: Path) -> tuple[dict[str, list[str]], dict[str, str]]:
-    """Return (parent_map, label_map) from CSO using cso:superTopicOf as hierarchy.
 
-    superTopicOf(B, A) means B is a sub-topic of A, i.e. A is the parent of B.
-    We invert: parent_map[B] = [A, ...].
-    """
+def _build_parent_map_cso(onto_path: Path) -> tuple[dict[str, list[str]], dict[str, str]]:
     if not _RDFLIB_AVAILABLE:
         raise ImportError("rdflib is required for CSO. pip install rdflib")
     from rdflib import RDFS as _RDFS
@@ -180,7 +124,6 @@ def _build_parent_map_cso(onto_path: Path) -> tuple[dict[str, list[str]], dict[s
 
     super_topic = URIRef(_CSO_SUPER_TOPIC_OF)
     parent_map: dict[str, list[str]] = {}
-    # superTopicOf(subject=B, object=A) → A is parent of B
     for s, _, o in g.triples((None, super_topic, None)):
         parent_map.setdefault(str(s), []).append(str(o))
 
@@ -190,12 +133,8 @@ def _build_parent_map_cso(onto_path: Path) -> tuple[dict[str, list[str]], dict[s
 
     return parent_map, label_map
 
-def _build_parent_map_mesh(onto_path: Path) -> tuple[dict[str, list[str]], dict[str, str]]:
-    """Return (parent_map, label_map) from MeSH BioPortal Turtle.
 
-    Hierarchy: rdfs:subClassOf among D-class descriptors (transitive IS-A).
-    Labels: skos:prefLabel (English).
-    """
+def _build_parent_map_mesh(onto_path: Path) -> tuple[dict[str, list[str]], dict[str, str]]:
     if not _RDFLIB_AVAILABLE:
         raise ImportError("rdflib is required for MeSH. pip install rdflib")
     from rdflib import RDFS as _RDFS
@@ -218,30 +157,18 @@ def _build_parent_map_mesh(onto_path: Path) -> tuple[dict[str, list[str]], dict[
             label_map[s_str] = str(o)
     return parent_map, label_map
 
+
 def _cache_path(onto_name: str, onto_path: Path) -> Path:
-    """Cache file keyed by ontology size and mtime, so a changed file misses."""
     stat = onto_path.stat()
     key = f"{onto_name}_{stat.st_size}_{int(stat.st_mtime)}"
     cache_dir = Path("data/cache")
     cache_dir.mkdir(parents=True, exist_ok=True)
-    # The key includes a loader version. The key is otherwise (size, mtime) of the
-    # source file, so a fix to the LOADER never invalidates it: after the SKOS-XL
-    # fallback was added, AGROVOC kept loading a cached label_map of 0 entries in
-    # 0.1s and every cell still reported "no transitivity triples". Bump this
-    # whenever the parent/label extraction changes.
     return cache_dir / f"parentmap_{key}_v2.json"
+
 
 def build_parent_and_label_maps(
     onto_name: str, onto_dir: Path
 ) -> tuple[dict[str, list[str]], dict[str, str]]:
-    """Dispatch to the correct parser and return (parent_map, label_map).
-
-    The result is cached on disk. MeSH is an 803 MB Turtle file whose parent map
-    takes about ten minutes to build, and Phase 2b invokes this once per cell, so
-    without a cache the same graph would be re-parsed sixteen times. JSON is used
-    rather than pickle: the payload is plain string data and JSON carries no
-    code-execution risk.
-    """
     if onto_name not in ONTOLOGY_FILES:
         raise ValueError(f"Unknown ontology '{onto_name}'. Choose from: {list(ONTOLOGY_FILES)}")
     fname, fmt = ONTOLOGY_FILES[onto_name]
@@ -274,15 +201,12 @@ def build_parent_and_label_maps(
         tmp = cache_file.with_suffix(".tmp")
         with open(tmp, "w") as handle:
             json.dump({"parent_map": result[0], "label_map": result[1]}, handle)
-        tmp.replace(cache_file)   # atomic, so a killed run leaves no half-file
+        tmp.replace(cache_file)
         print(f"  Parent map cached to {cache_file.name}")
         return result
     else:
         raise ValueError(f"Unknown format: {fmt}")
 
-# ---------------------------------------------------------------------------
-# Triple enumeration
-# ---------------------------------------------------------------------------
 
 def enumerate_triples(
     concepts: list[dict],
@@ -291,11 +215,6 @@ def enumerate_triples(
     max_triples: int = MAX_TRIPLES,
     seed: int = SAMPLE_SEED,
 ) -> list[dict]:
-    """Enumerate subClassOf transitivity triples (C, B, A) where C⊑B and B⊑A.
-
-    C must be a sampled concept; B and A come from the full ontology label_map.
-    Returns at most `max_triples` triples, random-sampled with `seed`.
-    """
     all_triples: list[dict] = []
     for concept in concepts:
         c_iri = concept["iri"]
@@ -303,10 +222,10 @@ def enumerate_triples(
         for b_iri in parent_map.get(c_iri, []):
             b_label = label_map.get(b_iri)
             if not b_label:
-                continue  # B not in ontology label map — skip
+                continue
             for a_iri in parent_map.get(b_iri, []):
                 if a_iri == c_iri:
-                    continue  # avoid trivial self-loops
+                    continue
                 a_label = label_map.get(a_iri)
                 if not a_label:
                     continue
@@ -325,12 +244,8 @@ def enumerate_triples(
     rng = random.Random(seed)
     return rng.sample(all_triples, max_triples)
 
-# ---------------------------------------------------------------------------
-# Core phase runner
-# ---------------------------------------------------------------------------
 
 def run_phase2b(cfg: Any, out_dir: Path) -> None:
-    """Entry point called from main.py (phase="2b" or standalone)."""
     onto_name = cfg.ontology.name
     seed = cfg.sampling.seed
     model = cfg.llm.model
@@ -363,7 +278,6 @@ def run_phase2b(cfg: Any, out_dir: Path) -> None:
     results_path = out_dir / "phase2b_results.csv"
     summary_path = out_dir / "phase2b_summary.csv"
 
-    # Resume logic: key = (triple_c, triple_b, triple_a, model, strategy)
     completed_keys: set[tuple[str, str, str, str, str]] = set()
     if results_path.exists() and results_path.stat().st_size > 0:
         with open(results_path) as f:
@@ -376,8 +290,8 @@ def run_phase2b(cfg: Any, out_dir: Path) -> None:
     else:
         write_mode, write_header = "w", True
 
-    from src.prompting.llm_client import get_client, call_llm  # noqa: E402 (path set at module top)
-    from src.prompting.prompter import (  # noqa: E402
+    from src.prompting.llm_client import get_client, call_llm
+    from src.prompting.prompter import (
         build_subclassof_prompts, parse_yes_no, FORCED_VERDICT_QUESTION)
     client = get_client(cfg)
 
@@ -396,10 +310,6 @@ def run_phase2b(cfg: Any, out_dir: Path) -> None:
             if key in completed_keys:
                 continue
 
-            # The prompt now depends on the strategy. An earlier implementation
-            # was a fixed prompt and `strategy` was only an output column, so at
-            # temperature 0 all four strategies re-ran one identical probe and
-            # produced bit-identical counts. See build_subclassof_prompts().
             max_tokens = STRATEGY_MAX_TOKENS[strategy]
             timeout_s = STRATEGY_TIMEOUT_S[strategy]
 
@@ -420,7 +330,6 @@ def run_phase2b(cfg: Any, out_dir: Path) -> None:
                     if vote is not None:
                         votes.append(vote)
                 n_candidates = len(votes)
-                # Majority vote; a tie counts as unclear rather than as agreement.
                 if not votes or sum(votes) * 2 == len(votes):
                     verdict = None
                 else:
@@ -432,16 +341,12 @@ def run_phase2b(cfg: Any, out_dir: Path) -> None:
                                   temperature=cfg.llm.temperature,
                                   max_tokens=max_tokens, timeout=timeout_s)
                 if not answer.strip():
-                    # Thinking consumed the whole budget; retry once with room to
-                    # finish. See EMPTY_REPLY_MAX_TOKENS.
                     answer = call_llm(client, model, messages,
                                       temperature=cfg.llm.temperature,
                                       max_tokens=EMPTY_REPLY_MAX_TOKENS,
                                       timeout=EMPTY_REPLY_TIMEOUT_S)
                 verdict = parse_yes_no(answer)
                 if verdict is None:
-                    # One cheap forced-choice follow-up before giving up, so that
-                    # a rambling reply is not silently scored as "no violation".
                     followup = messages + [
                         {"role": "assistant", "content": answer},
                         {"role": "user", "content": FORCED_VERDICT_QUESTION},
@@ -450,8 +355,6 @@ def run_phase2b(cfg: Any, out_dir: Path) -> None:
                                      temperature=cfg.llm.temperature,
                                      max_tokens=12, timeout=STRATEGY_TIMEOUT_S["zero_shot"])
                     if not retry.strip():
-                        # 12 tokens cannot hold a reasoning model's thinking, so the
-                        # forced question came back empty too, giving "|| FORCED:".
                         retry = call_llm(client, model, followup,
                                          temperature=cfg.llm.temperature,
                                          max_tokens=EMPTY_REPLY_MAX_TOKENS,
@@ -460,8 +363,6 @@ def run_phase2b(cfg: Any, out_dir: Path) -> None:
                     answer = f"{answer} || FORCED: {retry}"
                 n_candidates = 1
 
-            # An unrecoverable verdict is excluded from the rate entirely; it is
-            # neither a violation nor a compliance.
             unclear = verdict is None
             is_violation = int(verdict == 1)
             if unclear:
@@ -479,9 +380,6 @@ def run_phase2b(cfg: Any, out_dir: Path) -> None:
                 "c_label": triple["c_label"],
                 "b_label": triple["b_label"],
                 "a_label": triple["a_label"],
-                # Collapse whitespace: a raw newline inside a quoted CSV field
-                # splits the record across physical lines and corrupts later parsing
-                # (unescaped newlines here corrupt downstream CSV parsing).
                 "llm_answer": " ".join(answer.split()).upper()[:300],
                 "is_violation": is_violation,
                 "is_unclear": int(unclear),
@@ -495,7 +393,6 @@ def run_phase2b(cfg: Any, out_dir: Path) -> None:
                 print(f"  [{n_done}/{len(triples)}] violation_rate={vrate:.3f}  "
                       f"elapsed={elapsed:.1f}s")
 
-    # Recount from full CSV for the summary (covers resumed runs)
     total_triples, total_violations, total_unclear = 0, 0, 0
     if results_path.exists():
         with open(results_path) as f:
@@ -509,7 +406,6 @@ def run_phase2b(cfg: Any, out_dir: Path) -> None:
 
     viol_rate = round(total_violations / total_triples, 4) if total_triples else 0.0
 
-    # Append summary row (overwrite summary for this (onto, model, strategy) combination)
     _update_summary(summary_path, {
         "onto": onto_name,
         "model": model,
@@ -527,8 +423,8 @@ def run_phase2b(cfg: Any, out_dir: Path) -> None:
     print(f"  Wall time: {elapsed_total:.1f}s ({elapsed_total/60:.1f} min)")
     print(f"{'─'*60}")
 
+
 def _update_summary(summary_path: Path, new_row: dict) -> None:
-    """Write or update a summary CSV row for (onto, model, strategy)."""
     rows: list[dict] = []
     key = (new_row["onto"], new_row["model"], new_row["strategy"])
     found = False
@@ -550,14 +446,10 @@ def _update_summary(summary_path: Path, new_row: dict) -> None:
         writer.writeheader()
         writer.writerows(rows)
 
-# ---------------------------------------------------------------------------
-# Standalone CLI (for dry-run and direct invocation)
-# ---------------------------------------------------------------------------
 
 def _make_dummy_cfg(onto_name: str, model: str, strategy: str,
                     seed: int, api_base: str,
                     max_triples: int = MAX_TRIPLES) -> Any:
-    """Build a minimal config namespace for standalone use."""
     from types import SimpleNamespace
     return SimpleNamespace(
         ontology=SimpleNamespace(name=onto_name, path="data/ontologies/"),
@@ -572,6 +464,7 @@ def _make_dummy_cfg(onto_name: str, model: str, strategy: str,
         max_triples=max_triples,
         output=SimpleNamespace(dir="outputs/results"),
     )
+
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Phase 2b — subClassOf transitivity probing")
@@ -607,7 +500,6 @@ def main() -> None:
         api_base=args.api_base,
     )
 
-    # Load concept sample
     concepts_path = Path("data/samples") / f"concepts_{args.ontology}_seed{args.seed}.json"
     if not concepts_path.exists():
         print(f"ERROR: {concepts_path} not found. Run phase=0 first.")
@@ -644,6 +536,7 @@ def main() -> None:
     out_dir = Path(root) / args.ontology / model_safe / args.strategy
     out_dir.mkdir(parents=True, exist_ok=True)
     run_phase2b(cfg, out_dir)
+
 
 if __name__ == "__main__":
     main()

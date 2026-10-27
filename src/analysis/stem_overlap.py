@@ -1,38 +1,3 @@
-"""Mechanical stem-overlap pass over the manual audit (all 96 items).
-
-Why this exists. The audit distinguishes two things that look alike:
-
-  circular    the definiens restates the definiendum -- verbatim, by alias, by
-              synonym, by acronym expansion, or by negation. A defect.
-  stem_reuse  a word from the concept label recurs in the definiens, but the
-              definiens genuinely decomposes. NOT a defect: supplying the genus
-              of "Mediastinal_Lymph_Node" as "Lymph_Node" is what a definition
-              is supposed to do.
-
-`circular` is a judgement and stays with the author. `stem_reuse` is mechanical,
-so it is computed here rather than annotated, which makes it comparable across
-all 96 items. Items 1-64 were annotated before the tag existed, so without this
-pass `stem_reuse` would read 0% for the older models and 18.8% for the newer
-ones -- an artefact of when the tag was introduced, not a property of the models.
-
-The two are reported as nested, not exclusive: a circular definition normally
-reuses a stem as well. So `stem_reuse` counts all stem-sharing rows, and
-`circular` is the subset where the reuse restates instead of decomposing.
-
-Deliberately crude and auditable: lowercase alphabetic tokens, logical and
-stop-words removed, compared on a fixed-length prefix. Every matched stem is
-written back to the row so a reader can check it. A prefix match will over-fire
-on unrelated words that happen to share an opening (an earlier pass flagged
-"2-Acetolactate Mutase" against "Acetolactate"), so the matched stems are
-reported and the rate is a ceiling.
-
-No LLM calls. CPU-only, local, instant.
-
-Run:
-    python src/analysis/stem_overlap.py
-    python src/analysis/stem_overlap.py stem.write=true
-"""
-
 from __future__ import annotations
 
 import csv
@@ -47,8 +12,6 @@ from omegaconf import DictConfig
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
 csv.field_size_limit(10 ** 9)
 
-#: Logic keywords and prose stop-words. These recur in every definiens and would
-#: otherwise match any label containing them, which measures nothing.
 _IGNORE = {
     "forall", "exists", "and", "or", "not", "iff", "implies", "true", "false",
     "the", "a", "an", "of", "for", "with", "that", "this", "which", "such",
@@ -59,10 +22,12 @@ _IGNORE = {
     "conditions", "biconditional", "definition", "define", "defined", "where",
 }
 
+
 def _stems(text: str, prefix_len: int, min_len: int) -> set[str]:
     words = re.split(r"[^A-Za-z]+", (text or "").lower())
     return {w[:prefix_len] for w in words
             if len(w) >= min_len and w not in _IGNORE}
+
 
 @hydra.main(version_base=None, config_path="../../conf", config_name="analysis")
 def main(cfg: DictConfig) -> None:
@@ -120,6 +85,7 @@ def main(cfg: DictConfig) -> None:
     print("\nsample matches (verify these — a prefix match over-fires):")
     for item, label, shared in examples:
         print(f"  {item:>3s} {label:36s} {shared}")
+
 
 if __name__ == "__main__":
     main()

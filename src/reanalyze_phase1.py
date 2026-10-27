@@ -1,15 +1,3 @@
-"""Re-analyze existing phase1_results.csv files with the improved FOL parser.
-
-Reads every phase1_results.csv under outputs/results/, re-parses the fol_block
-column with the updated parse_to_z3 + check_satisfiability, and writes an updated
-CSV alongside the original (phase1_results_reanalyzed.csv).
-
-Usage:
-    python src/reanalyze_phase1.py [--dry-run] [--inplace]
-
---dry-run   Print what would change, but don't write files.
---inplace   Overwrite phase1_results.csv instead of writing a separate file.
-"""
 from __future__ import annotations
 import argparse
 import csv
@@ -21,6 +9,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from src.parsing.fol_parser import parse_to_z3, check_satisfiability
 
 TIMEOUT_MS = 10_000
+
 
 def reanalyze_file(path: Path, dry_run: bool = False, inplace: bool = False) -> dict:
     rows = list(csv.DictReader(open(path)))
@@ -68,6 +57,7 @@ def reanalyze_file(path: Path, dry_run: bool = False, inplace: bool = False) -> 
         "contradiction_rate": round(contradiction_rate * 100, 2),
     }
 
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--dry-run", action="store_true")
@@ -99,6 +89,7 @@ def main() -> None:
     if not args.dry_run:
         suffix = "phase1_results.csv" if args.inplace else "phase1_results_reanalyzed.csv"
         print(f"Output written to: {suffix} alongside each input CSV")
+
 
 if __name__ == "__main__":
     main()

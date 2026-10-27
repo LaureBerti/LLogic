@@ -1,4 +1,3 @@
-"""Generate prompts for LLM querying over ontology concepts/relations."""
 from __future__ import annotations
 
 import re
@@ -10,6 +9,7 @@ SYSTEM_PROMPT = (
     "∀, ∃, →, ∧, ∨, ¬, =. Do not add examples or prose unless explicitly asked."
 )
 
+
 def concept_zero_shot(concept: dict) -> list[dict]:
     label = concept["label"]
     return [
@@ -20,6 +20,7 @@ def concept_zero_shot(concept: dict) -> list[dict]:
             f"∀x: {label}(x) ↔ [conditions]"
         )},
     ]
+
 
 def concept_cot(concept: dict) -> list[dict]:
     label = concept["label"]
@@ -35,8 +36,8 @@ def concept_cot(concept: dict) -> list[dict]:
         )},
     ]
 
+
 def concept_tot(concept: dict) -> list[dict]:
-    """Tree-of-Thoughts: explore multiple definition branches, then synthesise."""
     label = concept["label"]
     return [
         {"role": "system", "content": SYSTEM_PROMPT},
@@ -50,12 +51,12 @@ def concept_tot(concept: dict) -> list[dict]:
         )},
     ]
 
+
 def concept_self_consistency(concept: dict, n: int = 5) -> list[list[dict]]:
-    """Return n independent zero-shot prompt chains for majority-vote aggregation."""
     return [concept_zero_shot(concept) for _ in range(n)]
 
+
 def relation_consistency_prompt(relation: dict, concept_a: dict, concept_b: dict, concept_c: dict | None = None) -> list[dict]:
-    """Probe LLM for transitivity/symmetry/domain-range assertions."""
     rel = relation["label"]
     a, b = concept_a["label"], concept_b["label"]
     msgs = [
@@ -67,13 +68,8 @@ def relation_consistency_prompt(relation: dict, concept_a: dict, concept_b: dict
         msgs.append({"role": "user", "content": f"Given your answer above, is it also true that '{a}' {rel} '{c}'? (Transitivity check.)"})
     return msgs
 
-def subclassof_zero_shot(triple: dict) -> list[dict]:
-    """Phase 2b subClassOf transitivity probe, zero-shot.
 
-    Kept byte-identical to the prompt used for the originally reported Phase 2b
-    runs, so that previously collected zero-shot cells remain valid and do not
-    need to be re-collected.
-    """
+def subclassof_zero_shot(triple: dict) -> list[dict]:
     return [
         {"role": "system", "content": "You are a formal ontology expert."},
         {"role": "user", "content": (
@@ -84,14 +80,13 @@ def subclassof_zero_shot(triple: dict) -> list[dict]:
         )},
     ]
 
-# Small models drift into prose and never emit a bare YES/NO, which would be
-# silently scored as "no violation". Demanding a fixed final token sequence, and
-# parsing that sequence first, makes the verdict recoverable.
+
 VERDICT_INSTRUCTION = ("Be brief. Finish your reply with a final line in exactly "
                        "this form:\nANSWER: YES\nor\nANSWER: NO")
 
 FORCED_VERDICT_QUESTION = ("Based on your reasoning above, reply with exactly one "
                            "line: 'ANSWER: YES' or 'ANSWER: NO'.")
+
 
 def subclassof_cot(triple: dict) -> list[dict]:
     c, b, a = triple["c_label"], triple["b_label"], triple["a_label"]
@@ -108,6 +103,7 @@ def subclassof_cot(triple: dict) -> list[dict]:
         )},
     ]
 
+
 def subclassof_tot(triple: dict) -> list[dict]:
     c, b, a = triple["c_label"], triple["b_label"], triple["a_label"]
     return [
@@ -123,18 +119,13 @@ def subclassof_tot(triple: dict) -> list[dict]:
         )},
     ]
 
+
 def subclassof_self_consistency(triple: dict, n: int = 5) -> list[list[dict]]:
-    """n independent zero-shot chains, to be sampled at temperature > 0."""
     return [subclassof_zero_shot(triple) for _ in range(n)]
+
 
 def build_subclassof_prompts(triple: dict, strategy: str,
                              n_samples: int = 5) -> list[list[dict]] | list[dict]:
-    """Strategy-aware Phase 2b prompt builder.
-
-    The original Phase 2b implementation built one fixed prompt and used the
-    strategy only as an output column, so all four strategies re-ran the same
-    deterministic probe. This function is what makes the strategy factor real.
-    """
     if strategy == "zero_shot":
         return subclassof_zero_shot(triple)
     if strategy == "cot":
@@ -145,38 +136,31 @@ def build_subclassof_prompts(triple: dict, strategy: str,
         return subclassof_self_consistency(triple, n=n_samples)
     raise ValueError(f"unknown strategy: {strategy!r}")
 
+
 _ANSWER_LINE = re.compile(r"ANSWER\s*:\s*(YES|NO)\b")
 
-def parse_yes_no(answer: str) -> int | None:
-    """Return 1 for NO (a transitivity violation), 0 for YES, None if unclear.
 
-    Returning None matters: an unrecoverable verdict must be excluded from the
-    denominator, not scored as "no violation", which would bias violation rates
-    downwards for exactly those models that ramble.
-    """
+def parse_yes_no(answer: str) -> int | None:
     if not answer:
         return None
     text = answer.strip().upper()
 
-    # The requested explicit form, last occurrence first.
     matches = _ANSWER_LINE.findall(text)
     if matches:
         return 1 if matches[-1] == "NO" else 0
 
-    # Otherwise a line that is only a verdict, scanning from the end.
     for line in reversed(text.splitlines()):
         stripped = line.strip().strip(".*_:# ")
         if stripped in ("YES", "NO"):
             return 1 if stripped == "NO" else 0
 
-    # Last resort: the whole reply mentions exactly one of the two.
     has_yes, has_no = "YES" in text, "NO" in text
     if has_yes != has_no:
         return 1 if has_no else 0
     return None
 
+
 def reconstruction_prompt(conversation_history: list[dict], ontology_name: str) -> list[dict]:
-    """Ask LLM to reconstruct the ontology as OWL Manchester syntax from its own conversation."""
     msgs = conversation_history.copy()
     msgs.append({"role": "user", "content": (
         f"Based on all the concepts and relations you have defined above, "
@@ -186,8 +170,8 @@ def reconstruction_prompt(conversation_history: list[dict], ontology_name: str) 
     )})
     return msgs
 
+
 def build_prompts(concept: dict, strategy: str, n_samples: int = 5) -> list[list[dict]] | list[dict]:
-    """Dispatch to the correct prompting function."""
     if strategy == "zero_shot":
         return concept_zero_shot(concept)
     elif strategy == "cot":
