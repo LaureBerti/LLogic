@@ -178,3 +178,12 @@ phase3_untruncate:
   only_truncated: true
   limit: 0
   write: false
+qwen_budget:
+  seeds:
+  - 42
+  - 123
+  - 456
+  arm_2048: outputs/results_qwen_budget_2048
+  arm_8192: outputs/results_qwen_budget_8192
+  out_json: outputs/analysis/qwen_budget_contrast.json
+  write: false
